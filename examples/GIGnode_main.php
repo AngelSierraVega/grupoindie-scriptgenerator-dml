@@ -11,8 +11,8 @@
 
 require_once '../GIGnode.php';
 $ex = new GIGnode("parent");
-$ex->addElement(new GIGnode("child_1"));
-$ex->addElement(new GIGnode("child_2", false, ["attr"=>null]));
-$ex->addElement(new GIGnode("child_3", false, ["attr"=>"value"]));
-$ex->addElement(new GIGnode("child_4", false, [], [new GIGnode("chid_4_1")] ));
+$ex->addContent(new GIGnode("child_1", false));
+$ex->addContent(new GIGnode("child_2", false, ["attribute1"=>null]));
+$ex->addContent(new GIGnode("child_3", false, ["attribute2"=>"value_of_2"]));
+$ex->addContent(new GIGnode("child_4", false, [], [new GIGnode("chid_4_1")] ));
 echo $ex;

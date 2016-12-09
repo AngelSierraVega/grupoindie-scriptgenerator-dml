@@ -8,6 +8,9 @@
  * Public License as published by the Free Software Foundation, either 
  * version 3 of the License, or (at your option) any later version.
  */
+require_once 'GIGnode/GIGnode_attributes.php';
+require_once 'GIGnode/GIGnode_tag.php';
+require_once 'GIGnode/GIGnode_content.php';
 
 /**
  * Represents a GIGnode object
@@ -15,152 +18,88 @@
  */
 class GIGnode {
 
-    private $_attributes;
-    private $_elements;
+    private $_content;
     private $_emptyNode;
-    private $_tag;
+    private $_tagClose;
+    private $_tagOpen;
 
     /**
+     * @version UPD beta.00.02
      * Creates a new GIGnode object
      * @param $tag [optional]
      * @param $emptyNode [optional]
      * @param $attributes [optional]
      * @param $content [optional]
-     * @version beta.00.01
+     * @version UPD beta.00.02 GIGnode +__construct
+     *  - NEW Removed private var _tag, added var to open node
+     *  - NEW Removed private var _attributes, added var to open node
+     *  - NEW Created private vars _tagOpen, _tagClose and _content
+     * @version NEW beta.00.01 GIGnode +__construct
      */
-    function __construct($tag = null, $emptyNode = false, $attributes = [], $elements = []) {
+    function __construct($tag = null, $emptyNode = false, $attributes = [], $content = []) {
         try {
-            $this->_tag = $tag;
             $this->_emptyNode = $emptyNode;
-            $this->_elements = $elements;
-            $this->_attributes = $attributes;
+            $this->_tagOpen = new GIGnode_tagOpen($tag, $attributes);
+            $this->_tagClose = $emptyNode ? new GIGnode_tagClose() : new GIGnode_tagClose($tag);
+            $this->_content = $emptyNode ? new GIGnode_content() : new GIGnode_content($content);
         } catch (Exception $e) {
             displayErrorPage($e->getMessage());
         }
     }
 
     /**
-     * Returns the value of <i>_emptyNode</i>
-     * @return bool if  <i>_emptyNode</i> is specified. This function returns
-     * a boolean on success and <b>FALSE</b> otherwise.
-     * @version beta.00.01
+     * @version UPD beta.00.02
+     * Renders and returns the stringed node.
+     * @version NEW beta.00.01
      */
-    public function getEmptyNode() {
+    public function __toString() {
         try {
-            return isset($this->_emptyNode) ? $this->_emptyNode : FALSE;
+            return $this->_tagOpen . $this->_content . $this->_tagClose;
         } catch (Exception $e) {
             displayErrorPage($e->getMessage());
         }
     }
 
     /**
+     * @version NEW beta.00.02
+     * NEW Adds content to the node
+     * @return NEW mixed An instace of the added content
+     * @param NEW $content
+     * @version NEW beta.00.02 GIGnode +addContent
+     */
+    public function addContent($content) {
+        try {
+            if ($this->_emptyNode) {
+                throw new Exception("Trying to add an element to an empty node");
+                return FALSE;
+            }
+            return $this->_content->addContent($content);
+        } catch (Exception $e) {
+            displayErrorPage($e->getMessage());
+        }
+    }
+
+    /**
+     * @version UPD beta.00.02
      * Returns the value of <i>_tag</i>
-     * @return bool if  <i>_tag</i> is specified. This function returns
-     * a boolean on success and <b>FALSE</b> otherwise.
-     * @version beta.00.01
+     * @version UPD beta.00.02 GIGnode +getTag
+     *  - UPD Returns the value from the _openTag element
+     * @version NEW beta.00.01 GIGnode +getTag
      */
     public function getTag() {
         try {
-            return isset($this->_tag) ? $this->_tag : FALSE;
+            return $this->_openTag->getTag();
         } catch (Exception $e) {
             displayErrorPage($e->getMessage());
         }
     }
 
-    /**
-     * Adds an element as a child of the node
-     * @param $element
-     * @version beta.00.01
-     */
-    public function addElement($element) {
-        try {
-            $rtnElement = &$element;
-            $this->_elements[] = $rtnElement;
-            return $rtnElement;
-        } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
-        }
-    }
-
-    
-
-    /**
-     * Gets the string version of the object and its child objects.
-     * @param $entityNumber [optional]
-     * @version beta.00.01
-     */
-    public function toString($entityNumber = FALSE) {
-        try {
-            $_rtnStr = "";
-            $_rtnStr .= $this->_openTagToString($entityNumber);
-            $_rtnStr .= $this->_constructStringContent($entityNumber);
-            $_rtnStr .= $this->_constructStringCloseTag($entityNumber);
-            return $_rtnStr;
-        } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
-        }
-    }
-    
-    public function __toString() {
-        return $this->toString();
-    }
-
-    /**
-     * 
-     * @version beta.00.01
-     * @todo ...
-     */
-    private function _constructStringCloseTag($entityNumber) {
-        try {
-            $_rtnStr = "";
-            $openSimbol = "<";
-            $closeSimbol = ">";
-            if ($entityNumber === TRUE) {
-                $openSimbol = "&#60;";
-                $closeSimbol = "&#62;";
-            }
-            if ($this->_tag !== null) {
-                if ($this->_emptyNode == FALSE) {
-                    $strTag = $this->_tag;
-                    $_rtnStr = $openSimbol . "/" . $strTag . $closeSimbol;
-                }
-            }
-            return $_rtnStr;
-        } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
-        }
-    }
-
-    /**
-     * 
-     * @version beta.00.01
-     * @todo ...
-     */
-    private function _openTagToString($entityNumber) {
-        try {
-            $_rtnStr = "";
-            $openSimbol = "<";
-            $closeSimbol = ">";
-            if ($entityNumber === TRUE) {
-                $openSimbol = "&#60;";
-                $closeSimbol = "&#62;";
-            }
-            if ($this->_tag !== null) {
-                $strTag = $this->_tag;
-                $strAttributes = $this->_constructStringAttributes();
-                $_rtnStr = $openSimbol . $strTag . $strAttributes . $closeSimbol;
-            }
-            return $_rtnStr;
-        } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
-        }
-    }
-    
     /**
      * Sets (create or replace) an attribute. Returns true if successfull.
      * @param $attributeName
      * @param $value [optional]
      * @version beta.00.01
+     * @todo Reference funcionality to the open tag element of the node.
      */
     public function setAttribute($attributeName, $value = null) {
         try {
@@ -171,65 +110,4 @@ class GIGnode {
         }
     }
 
-    /**
-     * 
-     * @version beta.00.01
-     * @todo ...
-     */
-    protected function _constructStringAttributes() {
-        try {
-            $_rtnStr = "";
-            $_tmpAttr = [];
-            foreach ($this->_attributes as $attribute => $value) {
-                $_rtnStr = " ";
-                if ($value !== null) {
-                    $_tmpAttr[] = "$attribute='$value'";
-                } else {
-                    $_tmpAttr[] = "$attribute";
-                }
-            }
-            $_rtnStr .= join(" ", $_tmpAttr);
-            return $_rtnStr;
-        } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
-        }
-    }
-
-    /**
-     * 
-     * @version beta.00.01
-     * @todo ...
-     */
-    private function _constructStringContent($entityNumber) {
-        try {
-            $_rtnStr = "";
-            if ($this->_emptyNode == FALSE) {
-                foreach ($this->_elements as $content) {
-                    if (is_string($content)) {
-                        $_rtnStr .= $content;
-                    } elseif (is_a($content, "GIGnode")) {
-                        $_rtnStr .= $content->toString($entityNumber);
-                    } else {
-                        throw new Exception("No se puede renderizar, no se reconoce el tipo");
-                    }
-                }
-            }
-            return $_rtnStr;
-        } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
-        }
-    }
-
-}
-
-class GIGnode_tag {
-    
-}
-
-class GIGnode_attributes extends ArrayObject{
-    
-}
-
-class GIGnode_content extends ArrayObject{
-    
 }
