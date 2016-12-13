@@ -8,6 +8,7 @@
  * Public License as published by the Free Software Foundation, either 
  * version 3 of the License, or (at your option) any later version.
  */
+require_once 'GIGnode/ABS_GIGnode.php';
 require_once 'GIGnode/GIGnode_attributes.php';
 require_once 'GIGnode/GIGnode_tag.php';
 require_once 'GIGnode/GIGnode_content.php';
@@ -16,20 +17,22 @@ require_once 'GIGnode/GIGnode_content.php';
  * Represents a GIGnode object
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  */
-class GIGnode {
+class GIGnode extends ABS_GIGnode {
 
-    private $_content;
-    private $_emptyNode;
-    private $_tagClose;
-    private $_tagOpen;
+    protected $_content;
+    protected $_emptyNode;
+    protected $_tagClose;
+    protected $_tagOpen;
 
     /**
-     * @version UPD beta.00.02
+     * @version UPD beta.00.03
      * Creates a new GIGnode object
      * @param $tag [optional]
      * @param $emptyNode [optional]
      * @param $attributes [optional]
      * @param $content [optional]
+     * @version UPD beta.00.03 GIGnode +__construct
+     *  - NEW Changed variables from private to protected on class definition.
      * @version UPD beta.00.02 GIGnode +__construct
      *  - NEW Removed private var _tag, added var to open node
      *  - NEW Removed private var _attributes, added var to open node
@@ -39,11 +42,11 @@ class GIGnode {
     function __construct($tag = null, $emptyNode = false, $attributes = [], $content = []) {
         try {
             $this->_emptyNode = $emptyNode;
-            $this->_tagOpen = new GIGnode_tagOpen($tag, $attributes);
-            $this->_tagClose = $emptyNode ? new GIGnode_tagClose() : new GIGnode_tagClose($tag);
-            $this->_content = $emptyNode ? new GIGnode_content() : new GIGnode_content($content);
+            isset($this->_tagOpen) ? : $this->_tagOpen = new GIGnode_tagOpen($tag, $attributes);
+            $this->_tagClose = $emptyNode ? null : new GIGnode_tagClose($tag);
+            $this->_content = $emptyNode ? null : new GIGnode_content($content);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -56,7 +59,7 @@ class GIGnode {
         try {
             return $this->_tagOpen . $this->_content . $this->_tagClose;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -75,38 +78,38 @@ class GIGnode {
             }
             return $this->_content->addContent($content);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
     /**
-     * @version UPD beta.00.02
+     * @version DPR beta.00.03
      * Returns the value of <i>_tag</i>
      * @version UPD beta.00.02 GIGnode +getTag
      *  - UPD Returns the value from the _openTag element
      * @version NEW beta.00.01 GIGnode +getTag
      */
-    public function getTag() {
-        try {
-            return $this->_openTag->getTag();
-        } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
-        }
-    }
+//    public function getTag() {
+//        try {
+//            return $this->_openTag->getTag();
+//        } catch (Exception $e) {
+//            displayErrorPage($e->getMessage());
+//        }
+//    }
 
     /**
+     * @version UPD beta.00.03
      * Sets (create or replace) an attribute. Returns true if successfull.
      * @param $attributeName
      * @param $value [optional]
-     * @version beta.00.01
-     * @todo Reference funcionality to the open tag element of the node.
+     * @version UPD beta.00.02
+     * @version NEW beta.00.01
      */
     public function setAttribute($attributeName, $value = null) {
         try {
-            $this->_attributes[$attributeName] = $value;
-            return isset($this->_attributes[$attributeName]);
+            return $this->_tagOpen->setAttribute($attributeName, $value);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 

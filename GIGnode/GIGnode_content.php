@@ -28,7 +28,7 @@ abstract class ABS_GIGnode_contentArrayAccess implements ArrayAccess {
         try {
             $this->_content = $content;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -41,7 +41,7 @@ abstract class ABS_GIGnode_contentArrayAccess implements ArrayAccess {
         try {
             return isset($this->_content[$offset]);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -54,7 +54,7 @@ abstract class ABS_GIGnode_contentArrayAccess implements ArrayAccess {
         try {
             return isset($this->_content[$offset]) ? $this->_content[$offset] : null;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -72,7 +72,7 @@ abstract class ABS_GIGnode_contentArrayAccess implements ArrayAccess {
                 $this->_content[$offset] = $value;
             }
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -85,7 +85,7 @@ abstract class ABS_GIGnode_contentArrayAccess implements ArrayAccess {
         try {
             unset($this->_content[$offset]);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -105,7 +105,7 @@ abstract class ABS_GIGnode_contentIterator extends ABS_GIGnode_contentArrayAcces
             parent::__construct($content);
             $this->_position = 0;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -117,7 +117,7 @@ abstract class ABS_GIGnode_contentIterator extends ABS_GIGnode_contentArrayAcces
         try {
             $this->_position = 0;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -129,7 +129,7 @@ abstract class ABS_GIGnode_contentIterator extends ABS_GIGnode_contentArrayAcces
         try {
             return $this->_content[$this->_position];
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -141,7 +141,7 @@ abstract class ABS_GIGnode_contentIterator extends ABS_GIGnode_contentArrayAcces
         try {
             return $this->_position;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -153,7 +153,7 @@ abstract class ABS_GIGnode_contentIterator extends ABS_GIGnode_contentArrayAcces
         try {
             ++$this->_position;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -165,7 +165,7 @@ abstract class ABS_GIGnode_contentIterator extends ABS_GIGnode_contentArrayAcces
         try {
             return isset($this->_content[$this->_position]);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -182,7 +182,7 @@ class GIGnode_content extends ABS_GIGnode_contentIterator {
         try {
             parent::__construct($content);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -194,7 +194,7 @@ class GIGnode_content extends ABS_GIGnode_contentIterator {
         try {
             return count($this->_content) > 0 ? join("", $this->_content) : "";
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -210,7 +210,7 @@ class GIGnode_content extends ABS_GIGnode_contentIterator {
             $this->_content[] = $rtnElement;
             return $rtnElement;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 

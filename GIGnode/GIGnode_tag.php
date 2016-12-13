@@ -23,7 +23,7 @@ abstract class ASB_GIGnode_tag {
         try {
             $this->_tag = $tag;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
     
@@ -37,7 +37,7 @@ abstract class ASB_GIGnode_tag {
         try {
             return isset($this->_tag) ? $this->_tag : null;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -61,7 +61,7 @@ class GIGnode_tagOpen extends ASB_GIGnode_tag {
             $this->_attributes = is_a($attributes, "GIGnode_attributes") ?
                     $attributes : new GIGnode_attributes($attributes);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -74,7 +74,22 @@ class GIGnode_tagOpen extends ASB_GIGnode_tag {
             return $this->_tag == null ? "" :
                     "<" . $this->_tag . $this->_attributes . ">";
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
+        }
+    }
+    
+    /**
+     * @version NEW beta.00.03 
+     * Sets (create or replace) an attribute. Returns true if successfull.
+     * @param $attributeName
+     * @param $value [optional]
+     */
+    public function setAttribute($attributeName, $value = null) {
+        try {
+            $this->_attributes[$attributeName] = $value;
+            return isset($this->_attributes[$attributeName]);
+        } catch (Exception $e) {
+            displayError($e);
         }
     }
 
@@ -92,7 +107,7 @@ class GIGnode_tagClose extends ASB_GIGnode_tag {
         try {
             parent::__construct($tag);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
     
@@ -104,7 +119,7 @@ class GIGnode_tagClose extends ASB_GIGnode_tag {
         try {
             return $this->_tag == null ? "" : "</" . $this->_tag . ">";
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 

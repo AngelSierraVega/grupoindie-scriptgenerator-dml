@@ -27,7 +27,7 @@ abstract class ABS_GIGnode_attributesArrayAccess implements ArrayAccess {
         try {
             $this->_attributes = $attributes;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -40,7 +40,7 @@ abstract class ABS_GIGnode_attributesArrayAccess implements ArrayAccess {
         try {
             return isset($this->_attributes[$offset]);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -53,7 +53,7 @@ abstract class ABS_GIGnode_attributesArrayAccess implements ArrayAccess {
         try {
             return isset($this->_attributes[$offset]) ? $this->_attributes[$offset] : null;
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -71,7 +71,7 @@ abstract class ABS_GIGnode_attributesArrayAccess implements ArrayAccess {
                 $this->_attributes[$offset] = $value;
             }
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -84,7 +84,7 @@ abstract class ABS_GIGnode_attributesArrayAccess implements ArrayAccess {
         try {
             unset($this->_attributes[$offset]);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -106,7 +106,7 @@ abstract class ABS_GIGnode_attributesIteratorAggregate extends ABS_GIGnode_attri
         try {
             parent::__construct($attributes);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -136,7 +136,7 @@ class GIGnode_attributes extends ABS_GIGnode_attributesIteratorAggregate {
         try {
             parent::__construct($attributes);
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
@@ -156,7 +156,7 @@ class GIGnode_attributes extends ABS_GIGnode_attributesIteratorAggregate {
             }
             return count($_ctrlArray) > 0 ? " " . join(" ", $_ctrlArray) . "" : "";
         } catch (Exception $e) {
-            displayErrorPage($e->getMessage());
+            displayError($e);
         }
     }
 
