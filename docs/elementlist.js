@@ -1,0 +1,3 @@
+
+var ApiGen = ApiGen || {};
+ApiGen.elements = [["f","displayError()"],["c","GIgenerator\\GIGnode\\ABS_GIGnode_attributesArrayAccess"],["c","GIgenerator\\GIGnode\\ABS_GIGnode_attributesIteratorAggregate"],["c","GIgenerator\\GIGnode\\ABS_GIGnode_contentArrayAccess"],["c","GIgenerator\\GIGnode\\ABS_GIGnode_contentIterator"],["c","GIgenerator\\GIGnode\\ASB_GIGnode_tag"],["c","GIgenerator\\GIGnode\\GIGnode"],["c","GIgenerator\\GIGnode\\GIGnode_attributes"],["c","GIgenerator\\GIGnode\\GIGnode_content"],["c","GIgenerator\\GIGnode\\GIGnode_tagClose"],["c","GIgenerator\\GIGnode\\GIGnode_tagOpen"],["c","GIgenerator\\GIGnode\\node_abstract"]];

@@ -8,13 +8,13 @@
  * Public License as published by the Free Software Foundation, either 
  * version 3 of the License, or (at your option) any later version.
  */
-
+namespace GIgenerator\GIGnode;
 /**
  * Description of GIGnode_content
  *
  * @author Angel
  */
-abstract class ABS_GIGnode_contentArrayAccess implements ArrayAccess {
+abstract class ABS_GIGnode_contentArrayAccess implements \ArrayAccess {
 
     protected $_content = array();
 
@@ -91,7 +91,7 @@ abstract class ABS_GIGnode_contentArrayAccess implements ArrayAccess {
 
 }
 
-abstract class ABS_GIGnode_contentIterator extends ABS_GIGnode_contentArrayAccess implements Iterator {
+abstract class ABS_GIGnode_contentIterator extends ABS_GIGnode_contentArrayAccess implements \Iterator {
 
     private $_position = 0;
 

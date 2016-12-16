@@ -8,13 +8,13 @@
  * Public License as published by the Free Software Foundation, either 
  * version 3 of the License, or (at your option) any later version.
  */
-
+namespace GIgenerator\GIGnode;
 /*
  * implements ArrayAccess http://php.net/manual/en/class.arrayaccess.php
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  */
 
-abstract class ABS_GIGnode_attributesArrayAccess implements ArrayAccess {
+abstract class ABS_GIGnode_attributesArrayAccess implements \ArrayAccess {
 
     protected $_attributes;
 
@@ -95,7 +95,7 @@ abstract class ABS_GIGnode_attributesArrayAccess implements ArrayAccess {
  * implements Iterator http://php.net/manual/en/class.iterator.php
  */
 
-abstract class ABS_GIGnode_attributesIteratorAggregate extends ABS_GIGnode_attributesArrayAccess implements IteratorAggregate {
+abstract class ABS_GIGnode_attributesIteratorAggregate extends ABS_GIGnode_attributesArrayAccess implements \IteratorAggregate {
 
     /**
      * @version NEW beta.00.02

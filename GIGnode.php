@@ -8,41 +8,85 @@
  * Public License as published by the Free Software Foundation, either 
  * version 3 of the License, or (at your option) any later version.
  */
-require_once 'GIGnode/ABS_GIGnode.php';
+
+/**
+ * ¿Descroption of the namespace?
+ */
+
+namespace GIgenerator\GIGnode;
+
+require_once 'GIGnode/GIGnode_abstract.php';
 require_once 'GIGnode/GIGnode_attributes.php';
 require_once 'GIGnode/GIGnode_tag.php';
 require_once 'GIGnode/GIGnode_content.php';
 
 /**
- * Represents a GIGnode object
- * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * Represents the main element of a <b>descriptive markup languaje</b> such as </br> 
+ * LaTeX, XML and HTML (see <https://en.wikipedia.org/wiki/Markup_language> </br> 
+ * for more information).
+ * 
+ * @category    View
+ * @package     GrupoIndieGenerator
+ * @subpackage  NodeGenerator
+ * @copyright   Angel Sierra Vega. Grupo INDIE.
+ * @example     GIGnode_main.php
+ * 
+ * @example     Simple node 
+ *  <pre>echo new GIGnode("node");</pre>
+ *  <i><pre><node></node></pre></i>
+ * @example     Open node 
+ *  <pre>echo new GIGnode("node",true);</pre> 
+ *  <i><pre><node></pre></i>
+ * @example     Node with simple attribue
+ *  <pre>echo new GIGnode("node",false,["attr"]);</pre> 
+ *  <i><pre><node attr></node></pre></i>
+ * 
+ * @example     Node with attribue-value
+ *  <pre>echo new GIGnode("node",false,["attr"=>"value"]);</pre> 
+ *  <i><pre><node attr='value'></node></pre></i>
+ * 
+ * @example     Simple node with content
+ *  <pre>echo new GIGnode("node",false,[],["content of the node"]);</pre>
+ *  <i><pre><node>content of the node</node></pre></i>
+ * 
+ * @example     Parent-child nodes
+ *  <pre>echo new GIGnode("parent",false,[],[new GIGnode("child")]);</pre> 
+ *  <i><pre><parent><child></child></parent></pre></i>
+ * 
+ * @version     beta.00.03
+ * @since       2016-12-01
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  */
-class GIGnode extends ABS_GIGnode {
-
-    protected $_content;
-    protected $_emptyNode;
-    protected $_tagClose;
-    protected $_tagOpen;
+class GIGnode extends node_abstract {
 
     /**
-     * @version UPD beta.00.03
      * Creates a new GIGnode object
-     * @param $tag [optional]
-     * @param $emptyNode [optional]
-     * @param $attributes [optional]
-     * @param $content [optional]
-     * @version UPD beta.00.03 GIGnode +__construct
-     *  - NEW Changed variables from private to protected on class definition.
-     * @version UPD beta.00.02 GIGnode +__construct
-     *  - NEW Removed private var _tag, added var to open node
-     *  - NEW Removed private var _attributes, added var to open node
-     *  - NEW Created private vars _tagOpen, _tagClose and _content
-     * @version NEW beta.00.01 GIGnode +__construct
+     * 
+     * @param   $tag [optional]
+     * @param   $emptyNode [optional]
+     * @param   $attributes [optional]
+     * @param   $content [optional]
+
+     * @return  GIGnode
+     * @throws  NA
+     * @todo    Boolean validation on $emptyNode
+     * 
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @edit    2016-12-??<br />
+     *          Changed variables from private to protected on class definition.<br />
+     *          #beta.00.03
+     * @edit    2016-12-??<br />
+     *          Removed private var _tag, added var to open node<br />
+     *          Removed private var _attributes, added var to open node
+     *          Created private vars _tagOpen, _tagClose and _content
+     *          #beta.00.02
      */
     function __construct($tag = null, $emptyNode = false, $attributes = [], $content = []) {
         try {
             $this->_emptyNode = $emptyNode;
-            isset($this->_tagOpen) ? : $this->_tagOpen = new GIGnode_tagOpen($tag, $attributes);
+            isset($this->_tagOpen) ?: $this->_tagOpen = new GIGnode_tagOpen($tag, $attributes);
             $this->_tagClose = $emptyNode ? null : new GIGnode_tagClose($tag);
             $this->_content = $emptyNode ? null : new GIGnode_content($content);
         } catch (Exception $e) {
@@ -51,24 +95,15 @@ class GIGnode extends ABS_GIGnode {
     }
 
     /**
-     * @version UPD beta.00.02
-     * Renders and returns the stringed node.
-     * @version NEW beta.00.01
-     */
-    public function __toString() {
-        try {
-            return $this->_tagOpen . $this->_content . $this->_tagClose;
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * @version NEW beta.00.02
-     * NEW Adds content to the node
-     * @return NEW mixed An instace of the added content
-     * @param NEW $content
-     * @version NEW beta.00.02 GIGnode +addContent
+     * Adds content to the node
+     * 
+     * @param   $content
+     * 
+     * @return  mixed. An instace of the added content.
+     * @throws  Exception. Throws exception on adding element to empty node.
+     * 
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public function addContent($content) {
         try {
@@ -83,27 +118,15 @@ class GIGnode extends ABS_GIGnode {
     }
 
     /**
-     * @version DPR beta.00.03
-     * Returns the value of <i>_tag</i>
-     * @version UPD beta.00.02 GIGnode +getTag
-     *  - UPD Returns the value from the _openTag element
-     * @version NEW beta.00.01 GIGnode +getTag
-     */
-//    public function getTag() {
-//        try {
-//            return $this->_openTag->getTag();
-//        } catch (Exception $e) {
-//            displayErrorPage($e->getMessage());
-//        }
-//    }
-
-    /**
-     * @version UPD beta.00.03
-     * Sets (create or replace) an attribute. Returns true if successfull.
-     * @param $attributeName
-     * @param $value [optional]
-     * @version UPD beta.00.02
-     * @version NEW beta.00.01
+     * Sets (create or replace) an attribute of the node.
+     * 
+     * @param   $attributeName
+     * @param   $value [optional]
+     * 
+     * @return  bool. True if attribute is setted.
+     * 
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public function setAttribute($attributeName, $value = null) {
         try {

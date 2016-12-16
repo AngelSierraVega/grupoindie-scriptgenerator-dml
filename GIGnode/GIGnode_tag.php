@@ -9,6 +9,8 @@
  * version 3 of the License, or (at your option) any later version.
  */
 
+namespace GIgenerator\GIGnode;
+
 abstract class ASB_GIGnode_tag {
 
     protected $_tag;
