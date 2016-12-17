@@ -8,7 +8,7 @@
  * Public License as published by the Free Software Foundation, either 
  * version 3 of the License, or (at your option) any later version.
  */
-namespace GIgenerator\GIGnode;
+namespace GIndie\DML\Node\Content;
 /**
  * Description of GIGnode_content
  *
@@ -171,7 +171,7 @@ abstract class ABS_GIGnode_contentIterator extends ABS_GIGnode_contentArrayAcces
 
 }
 
-class GIGnode_content extends ABS_GIGnode_contentIterator {
+class Content extends ABS_GIGnode_contentIterator {
     
     /**
      * @author Angel Sierra Vega <angel.sierra@grupoindie.com>

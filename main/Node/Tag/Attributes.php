@@ -8,7 +8,7 @@
  * Public License as published by the Free Software Foundation, either 
  * version 3 of the License, or (at your option) any later version.
  */
-namespace GIgenerator\GIGnode;
+namespace GIndie\DML\Node\Tag\Attributes;
 /*
  * implements ArrayAccess http://php.net/manual/en/class.arrayaccess.php
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
@@ -125,7 +125,7 @@ abstract class ABS_GIGnode_attributesIteratorAggregate extends ABS_GIGnode_attri
  *
  * @author Angel
  */
-class GIGnode_attributes extends ABS_GIGnode_attributesIteratorAggregate {
+class Attributes extends ABS_GIGnode_attributesIteratorAggregate {
 
     /**
      * @version NEW beta.00.02
