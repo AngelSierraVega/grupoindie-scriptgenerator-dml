@@ -53,6 +53,11 @@
 
 						</li>
 							</ul></li></ul></li></ul></li></ul></li>
+				<li>
+					<a href="namespace-None.html">
+						None					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -62,13 +67,17 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-GIndie.DML.Node._presentationSemantics.html">_presentationSemantics</a></li>
-				<li><a href="class-GIndie.DML.Node._protectedAttrs.html">_protectedAttrs</a></li>
 				<li class="active"><a href="class-GIndie.DML.Node.Factory.html">Factory</a></li>
 				<li><a href="class-GIndie.DML.Node.Node.html">Node</a></li>
 			</ul>
 
 
+			<h3>Traits</h3>
+			<ul>
+				<li><a href="class-GIndie.DML.Node._presentationSemantics.html">_presentationSemantics</a></li>
+				<li><a href="class-GIndie.DML.Node._protectedAttrs.html">_protectedAttrs</a></li>
+				<li><a href="class-GIndie.DML.Node._publicAttrs.html">_publicAttrs</a></li>
+			</ul>
 
 
 
@@ -116,30 +125,22 @@
 
 
 	<div class="description">
-	<p>Node factory for a <b>Descriptive Markup Languaje</b> (<b>DML</b>).</p>
+	<p>Implements a Factory Pattern for a <b>Descriptive Markup Languaje</b> (<b>DML</b>).</p>
 
-<p>LaTeX, XML, and HTML are examples of <b>DML</b>'s that can be generated using<br />
+<p>LaTeX, XML, and HTML are examples of languajes that can be generated using<br />
 this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language">https://en.wikipedia.org/wiki/Markup_language</a>).</p>
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-			<a href="class-GIndie.DML.Node._presentationSemantics.html"><span>GIndie\DML\Node\_presentationSemantics</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by">
-			<a href="class-GIndie.DML.Node.Node.html"><span>GIndie\DML\Node\Node</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:60px">
-			<img src="resources/inherit.png" alt="Extended by">
 <b><span>GIndie\DML\Node\Factory</span></b>			
 			
+			 uses 
+					<a href="class-GIndie.DML.Node._protectedAttrs.html"><span>GIndie\DML\Node\_protectedAttrs</span></a>, 
+			
+					<a href="class-GIndie.DML.Node._publicAttrs.html"><span>GIndie\DML\Node\_publicAttrs</span></a>, 
+			
+					<a href="class-GIndie.DML.Node._presentationSemantics.html"><span>GIndie\DML\Node\_presentationSemantics</span></a>
 			
 		</dd>
 	</dl>
@@ -161,8 +162,13 @@ this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language
 				CodeGenerator<br>
 				<b>Author:</b>
 				Angel Sierra Vega <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;">&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;</a><br>
+				<b>Version:</b>
+				beta.00.04<br>
 				<b>Since:</b>
 				2016-12-16<br>
+				<b>Edit:</b>
+				<p>2016-12-19<br />
+         Factory uses traits instead of extending object</p><br>
 			<b>Located at</b> main.php		<br>
 	</div>
 
@@ -212,6 +218,10 @@ this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language
 				<div class="list">
 						Angel Sierra Vega <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;">&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;</a><br>
 				</div>
+				<h4>Version</h4>
+				<div class="list">
+						beta.00.04<br>
+				</div>
 				<h4>Since</h4>
 				<div class="list">
 						2016-12-16<br>
@@ -227,6 +237,33 @@ this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language
 <pre>&lt;node&gt;&lt;/node&gt;</pre>
 
 <p></i></p><br>
+						<p>test.php Simple node with attributes</p>
+
+<pre><span class="php-keyword1">echo</span> GIndie\DML\Node\Factory::Simple(<span class="php-quote">&quot;node&quot;</span>,[<span class="php-quote">&quot;attr&quot;</span>=&gt;<span class="php-quote">&quot;val&quot;</span>]);</pre>
+
+<p><i></p>
+
+<pre>&lt;node attr=<span class="php-quote">'val'</span>&gt;&lt;/node&gt;</pre>
+
+<p></i></p><br>
+						<p>test.php Simple node with content</p>
+
+<pre>GIndie\DML\Node\Factory::Simple(<span class="php-quote">&quot;node&quot;</span>,[],[<span class="php-quote">&quot;content&quot;</span>]);</pre>
+
+<p><i></p>
+
+<pre>&lt;node&gt;content&lt;/node&gt;</pre>
+
+<p></i></p><br>
+						<p>test.php Nested nodes</p>
+
+<pre><span class="php-keyword1">echo</span> GIndie\DML\Node\Factory::Simple(<span class="php-quote">&quot;parent&quot;</span>,[],[GIndie\DML\Node\Factory::Simple(<span class="php-quote">&quot;child&quot;</span>)]);</pre>
+
+<p><i></p>
+
+<pre>&lt;parent&gt;&lt;child&gt;&lt;/child&gt;&lt;/parent&gt;</pre>
+
+<p></i></p><br>
 				</div>
 
 
@@ -238,26 +275,57 @@ this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language
 		<td class="attributes"><code>
 			 public static
 
-			
+			<code><a href="class-GIndie.DML.Node.Node.html">GIndie\DML\Node\Node</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ContentOnly">#</a>
-		<code>ContentOnly( <span>array <var>$content</var></span> )</code>
+		<code>ContentOnly( <span>array <var>$content</var></span>, <span> <var>$attributes</var>,…</span> )</code>
 
 		<div class="description short">
-			
+			<p>Creates a <i>content only</i> node.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Creates a <i>content only</i> node.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$content</var></dt>
+					<dd></dd>
+					<dt><var>$attributes</var>,…</dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-GIndie.DML.Node.Node.html">GIndie\DML\Node\Node</a></code><br>An object representation of a <i>content only</i> node.
+				</div>
 
 
+				<h4>Author</h4>
+				<div class="list">
+						Angel Sierra Vega <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;">&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;</a><br>
+				</div>
+				<h4>Version</h4>
+				<div class="list">
+						beta.00.04<br>
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						2016-12-21<br>
+				</div>
+				<h4>Example</h4>
+				<div class="list">
+						<p>test.php Content only</p>
 
+<pre>&lt;code&gt;<span class="php-keyword1">echo</span> GIndie\DML\Node\Factory::ContentOnly([GIndie\DML\Node\Factory::Simple(<span class="php-quote">&quot;node1&quot;</span>),GIndie\DML\Node\Factory::Simple(<span class="php-quote">&quot;node2&quot;</span>)]);&lt;/code&gt;</pre>
+
+<p><i><samp><node1></node1><node2></node2></samp></i></p><br>
+				</div>
 
 
 		</div>
@@ -268,7 +336,7 @@ this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language
 		<td class="attributes"><code>
 			 public static
 
-			
+			<code><a href="class-GIndie.DML.Node.Node.html">GIndie\DML\Node\Node</a></code>
 			
 			</code>
 		</td>
@@ -278,16 +346,51 @@ this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language
 		<code>Empty_( <span> <var>$tag</var></span>, <span>array <var>$attributes</var> = []</span> )</code>
 
 		<div class="description short">
-			
+			<p>Creates an empty DML node.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Creates an empty DML node.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tag</var></dt>
+					<dd></dd>
+					<dt><var>$attributes</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-GIndie.DML.Node.Node.html">GIndie\DML\Node\Node</a></code><br>An object representation of an empty DML node.
+				</div>
 
 
+				<h4>Author</h4>
+				<div class="list">
+						Angel Sierra Vega <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;">&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;</a><br>
+				</div>
+				<h4>Version</h4>
+				<div class="list">
+						beta.00.04<br>
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						2016-12-19<br>
+				</div>
+				<h4>Example</h4>
+				<div class="list">
+						<p>Open-Close tags.</p>
 
+<pre><span class="php-keyword1">echo</span> GIndie\DML\Node\Factory::Empty_(<span class="php-quote">&quot;node_empty&quot;</span>)</pre>
+
+<p><i></p>
+
+<pre>&lt;node_empty&gt;</pre>
+
+<p></i></p><br>
+				</div>
 
 
 		</div>
@@ -295,18 +398,27 @@ this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language
 	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-GIndie.DML.Node.Node.html#methods">GIndie\DML\Node\Node</a></caption>
+
+	<table class="summary used">
+	<caption>Methods used from <a href="class-GIndie.DML.Node._protectedAttrs.html#methods">GIndie\DML\Node\_protectedAttrs</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-GIndie.DML.Node.Node.html#___construct">__construct()</a>, 
-			<a href="class-GIndie.DML.Node.Node.html#_addContent">addContent()</a>, 
-			<a href="class-GIndie.DML.Node.Node.html#_setAttribute">setAttribute()</a>
+			<a href="class-GIndie.DML.Node._protectedAttrs.html#___construct">__construct()</a>
 		</code></td>
 	</tr>
 	</table>
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-GIndie.DML.Node._presentationSemantics.html#methods">GIndie\DML\Node\_presentationSemantics</a></caption>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-GIndie.DML.Node._publicAttrs.html#methods">GIndie\DML\Node\_publicAttrs</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-GIndie.DML.Node._publicAttrs.html#___constructDEPRECATED">__constructDEPRECATED()</a>, 
+			<a href="class-GIndie.DML.Node._publicAttrs.html#_addContent">addContent()</a>, 
+			<a href="class-GIndie.DML.Node._publicAttrs.html#_setAttribute">setAttribute()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-GIndie.DML.Node._presentationSemantics.html#methods">GIndie\DML\Node\_presentationSemantics</a></caption>
 	<tr>
 		<td><code>
 			<a href="class-GIndie.DML.Node._presentationSemantics.html#___toString">__toString()</a>
@@ -325,7 +437,17 @@ this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language
 
 
 
-
+	<table class="summary used">
+	<caption>Properties used from <a href="class-GIndie.DML.Node._protectedAttrs.html#properties">GIndie\DML\Node\_protectedAttrs</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-GIndie.DML.Node._protectedAttrs.html#$_content"><var>$_content</var></a>, 
+			<a href="class-GIndie.DML.Node._protectedAttrs.html#$_emptyNode"><var>$_emptyNode</var></a>, 
+			<a href="class-GIndie.DML.Node._protectedAttrs.html#$_tagClose"><var>$_tagClose</var></a>, 
+			<a href="class-GIndie.DML.Node._protectedAttrs.html#$_tagOpen"><var>$_tagOpen</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 

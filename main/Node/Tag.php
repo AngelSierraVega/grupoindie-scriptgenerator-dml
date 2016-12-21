@@ -37,12 +37,17 @@ trait TagMain {
      * @return  string
      * @throws  NA
      * 
-     * @since   2016-12-16
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @version     beta.00.04
+     * @since       2016-12-16
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @edit    2016-12-21<br />
+     *          Corrected bug that returned null instead of string<br />
+     *          #beta.00.04
      */
     public function __toString() {
         try {
-            return $this->_tag == null ? null : static::$OpenSimbol. $this->_tag .static::$CloseSimbol;
+            return $this->_tag == null ? "" : static::$OpenSimbol. $this->_tag .static::$CloseSimbol;
         } catch (Exception $e) {
             displayError($e);
         }

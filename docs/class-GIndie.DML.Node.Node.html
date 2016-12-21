@@ -53,6 +53,11 @@
 
 						</li>
 							</ul></li></ul></li></ul></li></ul></li>
+				<li>
+					<a href="namespace-None.html">
+						None					</a>
+
+						</li>
 			</ul>
 		</div>
 
@@ -62,13 +67,17 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-GIndie.DML.Node._presentationSemantics.html">_presentationSemantics</a></li>
-				<li><a href="class-GIndie.DML.Node._protectedAttrs.html">_protectedAttrs</a></li>
 				<li><a href="class-GIndie.DML.Node.Factory.html">Factory</a></li>
 				<li class="active"><a href="class-GIndie.DML.Node.Node.html">Node</a></li>
 			</ul>
 
 
+			<h3>Traits</h3>
+			<ul>
+				<li><a href="class-GIndie.DML.Node._presentationSemantics.html">_presentationSemantics</a></li>
+				<li><a href="class-GIndie.DML.Node._protectedAttrs.html">_protectedAttrs</a></li>
+				<li><a href="class-GIndie.DML.Node._publicAttrs.html">_publicAttrs</a></li>
+			</ul>
 
 
 
@@ -123,24 +132,19 @@ for more information).</p>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-			<a href="class-GIndie.DML.Node._presentationSemantics.html"><span>GIndie\DML\Node\_presentationSemantics</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by">
 <b><span>GIndie\DML\Node\Node</span></b>			
 			
+			 uses 
+					<a href="class-GIndie.DML.Node._protectedAttrs.html"><span>GIndie\DML\Node\_protectedAttrs</span></a>, 
+			
+					<a href="class-GIndie.DML.Node._publicAttrs.html"><span>GIndie\DML\Node\_publicAttrs</span></a>, 
+			
+					<a href="class-GIndie.DML.Node._presentationSemantics.html"><span>GIndie\DML\Node\_presentationSemantics</span></a>
 			
 		</dd>
 	</dl>
 
 
-	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-GIndie.DML.Node.Factory.html">GIndie\DML\Node\Factory</a>
-	</div>
 
 
 
@@ -160,254 +164,36 @@ for more information).</p>
 				<b>Author:</b>
 				Angel Sierra Vega <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;">&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;</a><br>
 				<b>Version:</b>
-				beta.00.03<br>
+				beta.00.04<br>
 				<b>Since:</b>
-				2016-12-01<br>
-				<b>Example:</b>
-				GIGnode_main.php<br>
-				<b>Example:</b>
-				<p>Simple node</p>
-
-<pre><span class="php-keyword1">echo</span> <span class="php-keyword1">new</span> GIGnode(<span class="php-quote">&quot;node&quot;</span>);</pre>
-
-<p><i></p>
-
-<pre>&lt;node&gt;&lt;/node&gt;</pre>
-
-<p></i></p><br>
-				<b>Example:</b>
-				<p>Open node</p>
-
-<pre><span class="php-keyword1">echo</span> <span class="php-keyword1">new</span> GIGnode(<span class="php-quote">&quot;node&quot;</span>,<span class="php-keyword1">true</span>);</pre>
-
-<p><i></p>
-
-<pre>&lt;node&gt;</pre>
-
-<p></i></p><br>
-				<b>Example:</b>
-				<p>Node with simple attribue</p>
-
-<pre><span class="php-keyword1">echo</span> <span class="php-keyword1">new</span> GIGnode(<span class="php-quote">&quot;node&quot;</span>,<span class="php-keyword1">false</span>,[<span class="php-quote">&quot;attr&quot;</span>]);</pre>
-
-<p><i></p>
-
-<pre>&lt;node attr&gt;&lt;/node&gt;</pre>
-
-<p></i></p><br>
-				<b>Example:</b>
-				<p>Node with attribue-value</p>
-
-<pre><span class="php-keyword1">echo</span> <span class="php-keyword1">new</span> GIGnode(<span class="php-quote">&quot;node&quot;</span>,<span class="php-keyword1">false</span>,[<span class="php-quote">&quot;attr&quot;</span>=&gt;<span class="php-quote">&quot;value&quot;</span>]);</pre>
-
-<p><i></p>
-
-<pre>&lt;node attr=<span class="php-quote">'value'</span>&gt;&lt;/node&gt;</pre>
-
-<p></i></p><br>
-				<b>Example:</b>
-				<p>Simple node with content</p>
-
-<pre><span class="php-keyword1">echo</span> <span class="php-keyword1">new</span> GIGnode(<span class="php-quote">&quot;node&quot;</span>,<span class="php-keyword1">false</span>,[],[<span class="php-quote">&quot;content of the node&quot;</span>]);</pre>
-
-<p><i></p>
-
-<pre>&lt;node&gt;content of the node&lt;/node&gt;</pre>
-
-<p></i></p><br>
-				<b>Example:</b>
-				<p>Parent-child nodes</p>
-
-<pre><span class="php-keyword1">echo</span> <span class="php-keyword1">new</span> GIGnode(<span class="php-quote">&quot;parent&quot;</span>,<span class="php-keyword1">false</span>,[],[<span class="php-keyword1">new</span> GIGnode(<span class="php-quote">&quot;child&quot;</span>)]);</pre>
-
-<p><i></p>
-
-<pre>&lt;parent&gt;&lt;child&gt;&lt;/child&gt;&lt;/parent&gt;</pre>
-
-<p></i></p><br>
+				2016-12-21<br>
 			<b>Located at</b> main/Node.php		<br>
 	</div>
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
-
-		<td class="attributes"><code>
-			 protected 
-
-			GIGnode
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span> <var>$tag</var> = <span class="php-keyword1">null</span></span>, <span> <var>$emptyNode</var> = <span class="php-keyword1">false</span></span>, <span> <var>$attributes</var> = []</span>, <span> <var>$content</var> = []</span> )</code>
-
-		<div class="description short">
-			<p>Creates a new DML node object.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Creates a new DML node object.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$tag</var></dt>
-					<dd>[optional]</dd>
-					<dt><var>$emptyNode</var></dt>
-					<dd>[optional]</dd>
-					<dt><var>$attributes</var></dt>
-					<dd>[optional]</dd>
-					<dt><var>$content</var></dt>
-					<dd>[optional]</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					GIGnode
-				</div>
-
-				<h4>Throws</h4>
-				<div class="list">
-					NA
-				</div>
-
-				<h4>Author</h4>
-				<div class="list">
-						Angel Sierra Vega <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;">&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;</a><br>
-				</div>
-				<h4>Since</h4>
-				<div class="list">
-						2016-12-01<br>
-				</div>
-				<h4>Todo</h4>
-				<div class="list">
-						Boolean validation on $emptyNode<br>
-				</div>
-				<h4>Edit</h4>
-				<div class="list">
-						<p>2016-12-??<br />
-         Changed variables from private to protected on class definition.<br />
-         #beta.00.03</p><br>
-						<p>2016-12-??<br />
-         Removed private var _tag, added var to open node<br />
-         Removed private var _attributes, added var to open node
-         Created private vars _tagOpen, _tagClose and _content
-         #beta.00.02</p><br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="addContent" id="_addContent">
-
-		<td class="attributes"><code>
-			 public 
-
-			mixed.
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_addContent">#</a>
-		<code>addContent( <span> <var>$content</var></span> )</code>
-
-		<div class="description short">
-			<p>Adds content to the DML node object.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Adds content to the DML node object.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$content</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					mixed.<br>An instace of the added content.
-				</div>
-
-				<h4>Throws</h4>
-				<div class="list">
-					Exception.<br>Throws exception on adding element to empty node.
-				</div>
-
-				<h4>Author</h4>
-				<div class="list">
-						Angel Sierra Vega <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;">&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;</a><br>
-				</div>
-				<h4>Since</h4>
-				<div class="list">
-						2016-12-01<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setAttribute" id="_setAttribute">
-
-		<td class="attributes"><code>
-			 public 
-
-			bool.
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setAttribute">#</a>
-		<code>setAttribute( <span> <var>$attributeName</var></span>, <span> <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			<p>Sets (create or replace) an attribute of the DML node object.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Sets (create or replace) an attribute of the DML node object.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$attributeName</var></dt>
-					<dd></dd>
-					<dt><var>$value</var></dt>
-					<dd>[optional]</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					bool.<br>True if attribute is setted.
-				</div>
-
-
-				<h4>Author</h4>
-				<div class="list">
-						Angel Sierra Vega <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;">&#x61;&#110;&#103;&#x65;&#108;&#46;&#x73;&#x69;&#101;r&#x72;&#97;&#64;&#x67;&#x72;&#117;p&#x6f;&#105;&#110;&#x64;&#x69;&#101;.&#x63;&#111;&#109;</a><br>
-				</div>
-				<h4>Since</h4>
-				<div class="list">
-						2016-12-01<br>
-				</div>
-
-
-		</div>
-		</div></td>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-GIndie.DML.Node._protectedAttrs.html#methods">GIndie\DML\Node\_protectedAttrs</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-GIndie.DML.Node._protectedAttrs.html#___construct">__construct()</a>
+		</code></td>
 	</tr>
 	</table>
-
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-GIndie.DML.Node._presentationSemantics.html#methods">GIndie\DML\Node\_presentationSemantics</a></caption>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-GIndie.DML.Node._publicAttrs.html#methods">GIndie\DML\Node\_publicAttrs</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-GIndie.DML.Node._publicAttrs.html#___constructDEPRECATED">__constructDEPRECATED()</a>, 
+			<a href="class-GIndie.DML.Node._publicAttrs.html#_addContent">addContent()</a>, 
+			<a href="class-GIndie.DML.Node._publicAttrs.html#_setAttribute">setAttribute()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-GIndie.DML.Node._presentationSemantics.html#methods">GIndie\DML\Node\_presentationSemantics</a></caption>
 	<tr>
 		<td><code>
 			<a href="class-GIndie.DML.Node._presentationSemantics.html#___toString">__toString()</a>
@@ -426,7 +212,17 @@ for more information).</p>
 
 
 
-
+	<table class="summary used">
+	<caption>Properties used from <a href="class-GIndie.DML.Node._protectedAttrs.html#properties">GIndie\DML\Node\_protectedAttrs</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-GIndie.DML.Node._protectedAttrs.html#$_content"><var>$_content</var></a>, 
+			<a href="class-GIndie.DML.Node._protectedAttrs.html#$_emptyNode"><var>$_emptyNode</var></a>, 
+			<a href="class-GIndie.DML.Node._protectedAttrs.html#$_tagClose"><var>$_tagClose</var></a>, 
+			<a href="class-GIndie.DML.Node._protectedAttrs.html#$_tagOpen"><var>$_tagOpen</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 

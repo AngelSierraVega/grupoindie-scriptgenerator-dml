@@ -18,16 +18,20 @@ namespace GIndie\DML\Node;
  * @package     DescripriveMarkupLanguaje
  * @subpackage  Node
  *
+ * @version beta.00.04
  * @since   2016-12-01
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @version beta.00.03
  * 
+ * @edit    2016-12-19
+ *          Changed class to trait
+ *          #beta.00.04
  * @edit    2016-12-16
  *          Changed class definition and document structure
  *          Moved __toString() to subclass _presentationSemantics
  *          #beta.00.03
+ * 
  */
-abstract class _protectedAttrs {
+trait _protectedAttrs {
 
     /**
      * The content of the GIGnode object.
@@ -53,6 +57,45 @@ abstract class _protectedAttrs {
      */
     protected $_tagOpen;
 
+    /**
+     * Creates a new DML node object.
+     * 
+     * @param   $tag [optional]
+     * @param   $emptyNode [optional]
+     * @param   $attributes [optional]
+     * @param   $content [optional]
+
+     * @return  GIGnode
+     * @throws  NA
+     * @todo    Boolean validation on $emptyNode
+     * 
+     * @version beta.00.04
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @edit    2016-12-19<br />
+     *          Changed constructor to trait _protectedAttrs<br />
+     *          #beta.00.04
+     * @edit    2016-12-??<br />
+     *          Changed variables from private to protected on class definition.<br />
+     *          #beta.00.03
+     * @edit    2016-12-??<br />
+     *          Removed private var _tag, added var to open node<br />
+     *          Removed private var _attributes, added var to open node
+     *          Created private vars _tagOpen, _tagClose and _content
+     *          #beta.00.02
+     */
+    protected function __construct($tag = null, $emptyNode = false, $attributes = [], $content = []) {
+        try {
+            $this->_emptyNode = $emptyNode;
+            isset($this->_tagOpen) ?: $this->_tagOpen = new Tag\OpenTag($tag, $attributes);
+            $this->_tagClose = $emptyNode ? "" : new Tag\CloseTag($tag);
+            $this->_content = $emptyNode ? "" : new Content\Content($content);
+        } catch (Exception $e) {
+            displayError($e);
+        }
+    }
+
 }
 
 /**
@@ -64,9 +107,13 @@ abstract class _protectedAttrs {
  *
  * @since   2016-12-16
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @version beta.00.03
+ * @version beta.00.04
+ * 
+ * @edit    2016-12-19
+ *          Changed class to trait
+ *          #beta.00.04
  */
-abstract class _presentationSemantics {
+trait _presentationSemantics {
 
     /**
      * Casts the DML node object as a string.
@@ -74,6 +121,7 @@ abstract class _presentationSemantics {
      * @throws  NA
      * @todo    Validate vars to string. Error throwing.
      * 
+     * @version beta.00.04
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
@@ -99,79 +147,15 @@ abstract class _presentationSemantics {
 
 require_once 'Node/Tag.php';
 require_once 'Node/Content.php';
+
 /**
- * Represents the main element of a <b>descriptive markup languaje</b> such as </br> 
- * LaTeX, XML and HTML (see <https://en.wikipedia.org/wiki/Markup_language> </br> 
- * for more information).
+ * Encapsulates the public funcitons and attributes of a DML node.
  * 
- * @category    CodeGenerator
- * @package     DescripriveMarkupLanguaje
- * @subpackage  Node
- * @copyright   Angel Sierra Vega. Grupo INDIE.
- * @example     GIGnode_main.php
- * 
- * @example     Simple node 
- *  <pre>echo new GIGnode("node");</pre>
- *  <i><pre><node></node></pre></i>
- * @example     Open node 
- *  <pre>echo new GIGnode("node",true);</pre> 
- *  <i><pre><node></pre></i>
- * @example     Node with simple attribue
- *  <pre>echo new GIGnode("node",false,["attr"]);</pre> 
- *  <i><pre><node attr></node></pre></i>
- * 
- * @example     Node with attribue-value
- *  <pre>echo new GIGnode("node",false,["attr"=>"value"]);</pre> 
- *  <i><pre><node attr='value'></node></pre></i>
- * 
- * @example     Simple node with content
- *  <pre>echo new GIGnode("node",false,[],["content of the node"]);</pre>
- *  <i><pre><node>content of the node</node></pre></i>
- * 
- * @example     Parent-child nodes
- *  <pre>echo new GIGnode("parent",false,[],[new GIGnode("child")]);</pre> 
- *  <i><pre><parent><child></child></parent></pre></i>
- * 
- * @version     beta.00.03
- * @since       2016-12-01
+ * @version     beta.00.04
+ * @since       2016-12-19
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  */
-class Node extends _presentationSemantics {
-    
-    /**
-     * Creates a new DML node object.
-     * 
-     * @param   $tag [optional]
-     * @param   $emptyNode [optional]
-     * @param   $attributes [optional]
-     * @param   $content [optional]
-
-     * @return  GIGnode
-     * @throws  NA
-     * @todo    Boolean validation on $emptyNode
-     * 
-     * @since   2016-12-01
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @edit    2016-12-??<br />
-     *          Changed variables from private to protected on class definition.<br />
-     *          #beta.00.03
-     * @edit    2016-12-??<br />
-     *          Removed private var _tag, added var to open node<br />
-     *          Removed private var _attributes, added var to open node
-     *          Created private vars _tagOpen, _tagClose and _content
-     *          #beta.00.02
-     */
-    protected function __construct($tag = null, $emptyNode = false, $attributes = [], $content = []) {
-        try {
-            $this->_emptyNode = $emptyNode;
-            isset($this->_tagOpen) ?: $this->_tagOpen = new Tag\OpenTag($tag, $attributes);
-            $this->_tagClose = $emptyNode ? null : new Tag\CloseTag($tag);
-            $this->_content = $emptyNode ? null : new Content\Content($content);
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
+trait _publicAttrs {
 
     /**
      * Adds content to the DML node object.
@@ -181,6 +165,7 @@ class Node extends _presentationSemantics {
      * @return  mixed. An instace of the added content.
      * @throws  Exception. Throws exception on adding element to empty node.
      * 
+     * @version beta.00.04
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
@@ -204,6 +189,7 @@ class Node extends _presentationSemantics {
      * 
      * @return  bool. True if attribute is setted.
      * 
+     * @version beta.00.04
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
@@ -214,4 +200,27 @@ class Node extends _presentationSemantics {
             displayError($e);
         }
     }
+
+}
+
+/**
+ * Represents the main element of a <b>descriptive markup languaje</b> such as </br> 
+ * LaTeX, XML and HTML (see <https://en.wikipedia.org/wiki/Markup_language> </br> 
+ * for more information).
+ * 
+ * @category    CodeGenerator
+ * @package     DescripriveMarkupLanguaje
+ * @subpackage  Node
+ * @copyright   Angel Sierra Vega. Grupo INDIE.
+ * 
+ * @version     beta.00.04
+ * @since       2016-12-21
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * 
+ */
+class Node {
+
+    use _protectedAttrs;
+    use _publicAttrs;
+    use _presentationSemantics;
 }
