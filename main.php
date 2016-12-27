@@ -11,7 +11,7 @@
 
 namespace GIndie\DML\Node;
 
-require_once 'main/Node.php';
+require_once __DIR__ . '/main/Node.php';
 
 /**
  * Implements a Factory Pattern for a <b>Descriptive Markup Languaje</b> (<b>DML</b>).

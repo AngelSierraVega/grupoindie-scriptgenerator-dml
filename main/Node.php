@@ -145,8 +145,8 @@ trait _presentationSemantics {
 
 }
 
-require_once 'Node/Tag.php';
-require_once 'Node/Content.php';
+require_once __DIR__ . '/Node/Tag.php';
+require_once __DIR__ . '/Node/Content.php';
 
 /**
  * Encapsulates the public funcitons and attributes of a DML node.

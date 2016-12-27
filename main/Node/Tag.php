@@ -14,6 +14,7 @@ namespace GIndie\DML\Node\Tag;
 trait TagMain {
 
     protected $_tag;
+
 //    protected static $OpenSimbol = "<";
 //    protected static $CloseSimbol = ">";
 
@@ -31,7 +32,7 @@ trait TagMain {
             displayError($e);
         }
     }
-    
+
     /**
      * Casts the tag object as a string.
      * @return  string
@@ -47,7 +48,7 @@ trait TagMain {
      */
     public function __toString() {
         try {
-            return $this->_tag == null ? "" : static::$OpenSimbol. $this->_tag .static::$CloseSimbol;
+            return $this->_tag == null ? "" : static::$OpenSimbol . $this->_tag . static::$CloseSimbol;
         } catch (Exception $e) {
             displayError($e);
         }
@@ -56,26 +57,29 @@ trait TagMain {
 }
 
 /**
-     * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * @version NEW beta.00.02
-     * NEW Represents a closed tag object
-     * @param NEW $tag [optional]
-     */
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @version NEW beta.00.02
+ * NEW Represents a closed tag object
+ * @param NEW $tag [optional]
+ */
 class CloseTag {
-    
+
     use TagMain;
-    
+
     protected static $OpenSimbol = "</";
     //protected static $OpenSimbol = "<";
     protected static $CloseSimbol = ">";
 
 }
-require_once 'Tag/Attributes.php';
+
+require_once __DIR__ . '/Tag/Attributes.php';
+
 trait TagAttributes {
-    
+
     use TagMain;
+
     private $_attributes;
-    
+
     /**
      * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
      * @version NEW beta.00.02
@@ -93,8 +97,8 @@ trait TagAttributes {
             displayError($e);
         }
     }
-    
-        /**
+
+    /**
      * @version NEW beta.00.02
      * NEW Renders and returns the stringed open tag.
      */
@@ -106,7 +110,7 @@ trait TagAttributes {
             displayError($e);
         }
     }
-    
+
     /**
      * @version NEW beta.00.03 
      * Sets (create or replace) an attribute. Returns true if successfull.
@@ -121,14 +125,14 @@ trait TagAttributes {
             displayError($e);
         }
     }
-    
-    
+
 }
 
 class OpenTag {
+
     use TagAttributes;
-    
+
     protected static $OpenSimbol = "<";
     protected static $CloseSimbol = ">";
-}
 
+}
