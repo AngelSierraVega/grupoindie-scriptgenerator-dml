@@ -322,9 +322,13 @@ this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language
 				<div class="list">
 						<p>test.php Content only</p>
 
-<pre>&lt;code&gt;<span class="php-keyword1">echo</span> GIndie\DML\Node\Factory::ContentOnly([GIndie\DML\Node\Factory::Simple(<span class="php-quote">&quot;node1&quot;</span>),GIndie\DML\Node\Factory::Simple(<span class="php-quote">&quot;node2&quot;</span>)]);&lt;/code&gt;</pre>
+<pre><span class="php-keyword1">echo</span> GIndie\DML\Node\Factory::ContentOnly([GIndie\DML\Node\Factory::Simple(<span class="php-quote">&quot;node1&quot;</span>),GIndie\DML\Node\Factory::Simple(<span class="php-quote">&quot;node2&quot;</span>)]);</pre>
 
-<p><i><samp><node1></node1><node2></node2></samp></i></p><br>
+<p><i></p>
+
+<pre>&lt;node1&gt;&lt;/node1&gt;&lt;node2&gt;&lt;/node2&gt;</pre>
+
+<p></i></p><br>
 				</div>
 
 
@@ -381,7 +385,7 @@ this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language
 				</div>
 				<h4>Example</h4>
 				<div class="list">
-						<p>Open-Close tags.</p>
+						<p>Empty node.</p>
 
 <pre><span class="php-keyword1">echo</span> GIndie\DML\Node\Factory::Empty_(<span class="php-quote">&quot;node_empty&quot;</span>)</pre>
 
@@ -411,7 +415,6 @@ this class (more info. at <a href="https://en.wikipedia.org/wiki/Markup_language
 	<caption>Methods used from <a href="class-GIndie.DML.Node._publicAttrs.html#methods">GIndie\DML\Node\_publicAttrs</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-GIndie.DML.Node._publicAttrs.html#___constructDEPRECATED">__constructDEPRECATED()</a>, 
 			<a href="class-GIndie.DML.Node._publicAttrs.html#_addContent">addContent()</a>, 
 			<a href="class-GIndie.DML.Node._publicAttrs.html#_setAttribute">setAttribute()</a>
 		</code></td>
