@@ -11,6 +11,13 @@
 
 namespace GIndie\DML\Node\Tag;
 
+/**
+ * 
+ * @since       2016-12-16
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * 
+ * @version     beta.00.05
+ */
 trait TagMain {
 
     protected $_tag;
@@ -19,7 +26,6 @@ trait TagMain {
 //    protected static $CloseSimbol = ">";
 
     /**
-     * @abstract
      * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
      * @version NEW beta.00.02
      * @abstract Implements basic tag funcionality
@@ -49,6 +55,24 @@ trait TagMain {
     public function __toString() {
         try {
             return $this->_tag == null ? "" : static::$OpenSimbol . $this->_tag . static::$CloseSimbol;
+        } catch (Exception $e) {
+            displayError($e);
+        }
+    }
+
+    /**
+     * @throws      NA
+     * 
+     * @since       2017-01-18
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.05
+     * @param       type $tag
+     * 
+     */
+    public function setTag($tag) {
+        try {
+            $this->_tag = $tag;
         } catch (Exception $e) {
             displayError($e);
         }
