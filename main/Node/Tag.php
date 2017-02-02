@@ -98,6 +98,14 @@ class CloseTag {
 
 require_once __DIR__ . '/Tag/Attributes.php';
 
+/**
+ * 
+ * @since       2017-02-02
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * 
+ * @version     beta.00.04
+ * 
+ */
 trait TagAttributes {
 
     use TagMain;
@@ -105,11 +113,14 @@ trait TagAttributes {
     private $_attributes;
 
     /**
-     * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * @version NEW beta.00.02
-     * NEW Creates a new open tag object
-     * @param NEW $tag [optional].
-     * @param NEW $attributes [optional].
+     * Creates a new open tag object
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.04
+     * @param       type $tag [optional].
+     * @param       array $attributes [optional].
      */
     function __construct($tag = null, array $attributes = []) {
         try {
@@ -123,8 +134,12 @@ trait TagAttributes {
     }
 
     /**
-     * @version NEW beta.00.02
-     * NEW Renders and returns the stringed open tag.
+     * Renders and returns the stringed open tag.
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.04
      */
     public function __toString() {
         try {
@@ -136,10 +151,14 @@ trait TagAttributes {
     }
 
     /**
-     * @version NEW beta.00.03 
      * Sets (create or replace) an attribute. Returns true if successfull.
-     * @param $attributeName
-     * @param $value [optional]
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.04
+     * @param       $attributeName
+     * @param       type $value [optional]
      */
     public function setAttribute($attributeName, $value = null) {
         try {
@@ -150,13 +169,59 @@ trait TagAttributes {
         }
     }
 
+    /**
+     * Gets a reference to an attribute. Returns false if not set.
+     * 
+     * @since       2017-01-19
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.04
+     * @param       type $attributeName
+     * 
+     */
+    public function getAttribute($attributeName) {
+        try {
+            if (isset($this->_attributes[$attributeName])) {
+                $rtn = &$this->_attributes[$attributeName];
+                return $rtn;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            displayError($e);
+        }
+    }
+
 }
 
+/**
+ * 
+ * @since       2017-02-02
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * 
+ * @version     beta.00.01
+ * 
+ */
 class OpenTag {
 
     use TagAttributes;
 
+    /**
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.01
+     * @var         type $OpenSimbol 
+     */
     protected static $OpenSimbol = "<";
+
+    /**
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.01
+     * @var         type $CloseSimbol 
+     */
     protected static $CloseSimbol = ">";
 
 }
