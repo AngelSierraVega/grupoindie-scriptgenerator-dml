@@ -8,67 +8,102 @@
  * Public License as published by the Free Software Foundation, either 
  * version 3 of the License, or (at your option) any later version.
  */
+
 namespace GIndie\DML\Node\Tag\Attributes;
+
 /*
  * implements ArrayAccess http://php.net/manual/en/class.arrayaccess.php
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  */
 
+/**
+ * @abstract
+ * 
+ * @since       2017-02-02
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * 
+ * @version     beta.00.03
+ * 
+ */
 abstract class ABS_GIGnode_attributesArrayAccess implements \ArrayAccess {
 
-    protected $_attributes;
+    /**
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.03
+     * @var         Array _content 
+     */
+    protected $_content;
 
     /**
-     * @version NEW beta.00.02
-     * @abstract Defines protected _attributes and implements ArrayAccess
-     * @param NEW $attributes [optional]
+     * 
+     * Defines protected _content and implements ArrayAccess
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.03
+     * @param       Array $attributes [optional]
      */
     public function __construct(array $attributes = []) {
         try {
-            $this->_attributes = $attributes;
+            $this->_content = $attributes;
         } catch (Exception $e) {
             displayError($e);
         }
     }
 
     /**
-     * @version NEW beta.00.02
      * Implementation for interface ArrayAccess
-     * @param NEW $offset.
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.03
+     * @param       type $offset.
      */
     public function offsetExists($offset) {
         try {
-            return isset($this->_attributes[$offset]);
+            return isset($this->_content[$offset]);
         } catch (Exception $e) {
             displayError($e);
         }
     }
 
     /**
-     * @version NEW beta.00.02
      * Implementation for interface ArrayAccess
-     * @param NEW $offset.
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.03
+     * @param       type $offset.
      */
     public function offsetGet($offset) {
         try {
-            return isset($this->_attributes[$offset]) ? $this->_attributes[$offset] : null;
+            return isset($this->_content[$offset]) ? $this->_content[$offset] : null;
         } catch (Exception $e) {
             displayError($e);
         }
     }
 
     /**
-     * @version NEW beta.00.02
      * Implementation for interface ArrayAccess
-     * @param NEW $offset.
-     * @param NEW $value.
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.03
+     * @param       type $offset.
+     * @param       type $value.
      */
     public function offsetSet($offset, $value) {
         try {
             if (is_null($offset)) {
-                $this->_attributes[$value] = ""; //only real change to overrided funcionts
+                $this->_content[$value] = ""; //only real change to overrided funcionts
             } else {
-                $this->_attributes[$offset] = $value;
+                $this->_content[$offset] = $value;
             }
         } catch (Exception $e) {
             displayError($e);
@@ -76,13 +111,17 @@ abstract class ABS_GIGnode_attributesArrayAccess implements \ArrayAccess {
     }
 
     /**
-     * @version NEW beta.00.02
      * Implementation for interface ArrayAccess
-     * @param NEW $offset.
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.03
+     * @param       type $offset.
      */
     public function offsetUnset($offset) {
         try {
-            unset($this->_attributes[$offset]);
+            unset($this->_content[$offset]);
         } catch (Exception $e) {
             displayError($e);
         }
@@ -95,12 +134,25 @@ abstract class ABS_GIGnode_attributesArrayAccess implements \ArrayAccess {
  * implements Iterator http://php.net/manual/en/class.iterator.php
  */
 
+/**
+ * @abstract
+ * 
+ * @since       2017-02-02
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * 
+ * @version     beta.00.03
+ * 
+ */
 abstract class ABS_GIGnode_attributesIteratorAggregate extends ABS_GIGnode_attributesArrayAccess implements \IteratorAggregate {
 
     /**
-     * @version NEW beta.00.02
-     * @abstract Implements IteratorAggregate
-     * @param NEW $attributes [optional]
+     * Implements IteratorAggregate
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.03
+     * @param       array $attributes [optional]
      */
     public function __construct(array $attributes = []) {
         try {
@@ -111,8 +163,12 @@ abstract class ABS_GIGnode_attributesIteratorAggregate extends ABS_GIGnode_attri
     }
 
     /**
-     * @version NEW beta.00.02
      * Implementation for interface IteratorAggregate
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.03
      */
     public function getIterator() {
         return new ArrayIterator($this);
@@ -123,14 +179,22 @@ abstract class ABS_GIGnode_attributesIteratorAggregate extends ABS_GIGnode_attri
 /**
  * Description of GIGnode_attributes
  *
- * @author Angel
+ * @since       2017-02-02
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * 
+ * @version     beta.00.03
+ * 
  */
 class Attributes extends ABS_GIGnode_attributesIteratorAggregate {
 
     /**
-     * @version NEW beta.00.02
-     * NEW Represents a GIGnode_attributes object
-     * @param NEW $attributes [optional]
+     * Represents a GIGnode_attributes object
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.03
+     * @param       array $attributes [optional]
      */
     public function __construct(array $attributes = []) {
         try {
@@ -141,13 +205,17 @@ class Attributes extends ABS_GIGnode_attributesIteratorAggregate {
     }
 
     /**
-     * @version NEW beta.00.02
-     * NEW Renders and returns the stringed attributes.
+     * Renders and returns the stringed attributes.
+     * 
+     * @since       2017-02-02
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @version     beta.00.03
      */
     public function __toString() {
         try {
             $_ctrlArray = [];
-            foreach ($this->_attributes as $key => $value) {
+            foreach ($this->_content as $key => $value) {
                 if (is_null($value)) {
                     $_ctrlArray[] = "$key";
                 } else {
