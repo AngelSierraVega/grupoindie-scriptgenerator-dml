@@ -151,9 +151,9 @@ require_once __DIR__ . '/Node/Content.php';
 /**
  * Encapsulates the public funcitons and attributes of a DML node.
  * 
- * @version     beta.00.04
  * @since       2016-12-19
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @version     beta.00.05
  */
 trait _publicAttrs {
 
@@ -196,6 +196,27 @@ trait _publicAttrs {
     public function setAttribute($attributeName, $value = null) {
         try {
             return $this->_tagOpen->setAttribute($attributeName, $value);
+        } catch (Exception $e) {
+            displayError($e);
+        }
+    }
+
+    /**
+     * Gets the reference of an attribute. Returns false if not set.
+     * 
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @since   2017-01-19
+     * 
+     * @version beta.00.05
+     * 
+     * @param   type $attributeName
+     * 
+     * @return  mixed
+     * 
+     */
+    public function getAttribute($attributeName) {
+        try {
+            return $this->_tagOpen->getAttribute($attributeName);
         } catch (Exception $e) {
             displayError($e);
         }
