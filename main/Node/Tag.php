@@ -12,31 +12,65 @@
 namespace GIndie\DML\Node\Tag;
 
 /**
+ * Encapsulates the protected attributes of the DML node object.
  * 
+ * @category    DML Generator
+ * @package     Node
+ * @subpackage  Tag
+ *
+ * @version beta.00.06
  * @since       2016-12-16
- * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
- * @version     beta.00.05
+ * @edit    2017-03-13
+ *          Changed trait to abstract class
+ *          #beta.00.06
+ * 
  */
-trait TagMain {
-
-    protected $_tag;
-
-//    protected static $OpenSimbol = "<";
-//    protected static $CloseSimbol = ">";
+abstract class Tag {
 
     /**
-     * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * @version NEW beta.00.02
-     * @abstract Implements basic tag funcionality
-     * @param NEW $tag [optional]
+     * The value of the tag.
+     * @var     string|null
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @version beta.00.05
+     */
+    protected $_tag;
+
+    /**
+     * String containing the open simbol of the tag.
+     * @var     string
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @version beta.00.05
+     */
+    protected static $OpenSimbol = "<";
+    
+    /**
+     * String containing the close simbol of the tag.
+     * @var     string
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @version beta.00.05
+     */
+    protected static $CloseSimbol = ">";   
+    
+    /**
+     * Creates a new tag object.
+     * 
+     * @param   $tag [optional]
+
+     * @return  Tag
+     * @throws  NA
+     * @todo    String validation on $tag
+     * 
+     * @version beta.00.05
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     function __construct($tag = null) {
-        try {
-            $this->_tag = $tag;
-        } catch (Exception $e) {
-            displayError($e);
-        }
+        $this->_tag = $tag;
     }
 
     /**
@@ -44,20 +78,19 @@ trait TagMain {
      * @return  string
      * @throws  NA
      * 
-     * @version     beta.00.04
+     * @version     beta.00.05
      * @since       2016-12-16
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
+     * @edit    2017-03-13<br />
+     *          Removed try-catch<br />
+     *          #beta.00.05
      * @edit    2016-12-21<br />
      *          Corrected bug that returned null instead of string<br />
      *          #beta.00.04
      */
     public function __toString() {
-        try {
-            return $this->_tag == null ? "" : static::$OpenSimbol . $this->_tag . static::$CloseSimbol;
-        } catch (Exception $e) {
-            displayError($e);
-        }
+        return $this->_tag == null ? "" : static::$OpenSimbol . $this->_tag . static::$CloseSimbol;
     }
 
     /**
@@ -80,148 +113,7 @@ trait TagMain {
 
 }
 
-/**
- * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @version NEW beta.00.02
- * NEW Represents a closed tag object
- * @param NEW $tag [optional]
- */
-class CloseTag {
+require_once __DIR__ . '/Tag/CloseTag.php';
+require_once __DIR__ . '/Tag/OpenTag.php';
 
-    use TagMain;
 
-    protected static $OpenSimbol = "</";
-    //protected static $OpenSimbol = "<";
-    protected static $CloseSimbol = ">";
-
-}
-
-require_once __DIR__ . '/Tag/Attributes.php';
-
-/**
- * 
- * @since       2017-02-02
- * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
- * 
- * @version     beta.00.04
- * 
- */
-trait TagAttributes {
-
-    use TagMain;
-
-    private $_attributes;
-
-    /**
-     * Creates a new open tag object
-     * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     beta.00.04
-     * @param       type $tag [optional].
-     * @param       array $attributes [optional].
-     */
-    function __construct($tag = null, array $attributes = []) {
-        try {
-            //parent::__construct($tag);
-            $this->_tag = $tag;
-            $this->_attributes = is_a($attributes, "GIGnode_attributes") ?
-                    $attributes : new Attributes\Attributes($attributes);
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * Renders and returns the stringed open tag.
-     * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     beta.00.04
-     */
-    public function __toString() {
-        try {
-            return $this->_tag == null ? "" :
-                    "<" . $this->_tag . $this->_attributes . ">";
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * Sets (create or replace) an attribute. Returns true if successfull.
-     * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     beta.00.04
-     * @param       $attributeName
-     * @param       type $value [optional]
-     */
-    public function setAttribute($attributeName, $value = null) {
-        try {
-            $this->_attributes[$attributeName] = $value;
-            return isset($this->_attributes[$attributeName]);
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * Gets a reference to an attribute. Returns false if not set.
-     * 
-     * @since       2017-01-19
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     beta.00.04
-     * @param       type $attributeName
-     * 
-     */
-    public function getAttribute($attributeName) {
-        try {
-            if (isset($this->_attributes[$attributeName])) {
-                $rtn = &$this->_attributes[$attributeName];
-                return $rtn;
-            } else {
-                return false;
-            }
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-}
-
-/**
- * 
- * @since       2017-02-02
- * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
- * 
- * @version     beta.00.01
- * 
- */
-class OpenTag {
-
-    use TagAttributes;
-
-    /**
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     beta.00.01
-     * @var         type $OpenSimbol 
-     */
-    protected static $OpenSimbol = "<";
-
-    /**
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     beta.00.01
-     * @var         type $CloseSimbol 
-     */
-    protected static $CloseSimbol = ">";
-
-}

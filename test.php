@@ -10,6 +10,7 @@
 require_once 'main.php';
 echo GIndie\DML\Node\Factory::Simple("node") . " || "; ?><node></node><?php echo "\n";
 echo GIndie\DML\Node\Factory::Simple("node",["attr"=>"val"]) . " || "; ?><node attr='val'></node><?php echo "\n";
+echo GIndie\DML\Node\Factory::Simple("test_attr",["attr"=>null]) . " || "; ?><test_attr attr></test_attr><?php echo "\n";
 echo GIndie\DML\Node\Factory::Simple("node",[],["content"]) . " || "; ?><node>content</node><?php echo "\n";
 echo GIndie\DML\Node\Factory::Simple("parent",[],[GIndie\DML\Node\Factory::Simple("child")]) . " || "; ?><parent><child></child></parent><?php echo "\n";
 echo GIndie\DML\Node\Factory::Empty_("node_empty") . " || "; ?><node_empty><?php echo "\n";

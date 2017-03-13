@@ -12,9 +12,10 @@ namespace GIndie\DML\Node\Content;
 /**
  * Description of GIGnode_content
  *
+ * @since       2016-12-16
  * @author Angel
  */
-abstract class ABS_GIGnode_contentArrayAccess implements \ArrayAccess {
+abstract class _ArrayAccess implements \ArrayAccess {
 
     protected $_content = array();
 
@@ -91,7 +92,7 @@ abstract class ABS_GIGnode_contentArrayAccess implements \ArrayAccess {
 
 }
 
-abstract class ABS_GIGnode_contentIterator extends ABS_GIGnode_contentArrayAccess implements \Iterator {
+abstract class ABS_GIGnode_contentIterator extends _ArrayAccess implements \Iterator {
 
     private $_position = 0;
 
