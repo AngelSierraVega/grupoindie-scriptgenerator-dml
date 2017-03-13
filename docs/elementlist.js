@@ -1,3 +1,0 @@
-
-var ApiGen = ApiGen || {};
-ApiGen.elements = [["f","displayError()"],["c","GIndie\\_ArrayAccess"],["c","GIndie\\DML\\Node\\_presentationSemantics"],["c","GIndie\\DML\\Node\\_protectedAttrs"],["c","GIndie\\DML\\Node\\_publicAttrs"],["c","GIndie\\DML\\Node\\Content\\_ArrayAccess"],["c","GIndie\\DML\\Node\\Content\\ABS_GIGnode_contentIterator"],["c","GIndie\\DML\\Node\\Content\\Content"],["c","GIndie\\DML\\Node\\Factory"],["c","GIndie\\DML\\Node\\Node"],["c","GIndie\\DML\\Node\\Tag\\CloseTag"],["c","GIndie\\DML\\Node\\Tag\\OpenTag"],["c","GIndie\\DML\\Node\\Tag\\OpenTag\\Attributes"],["c","GIndie\\DML\\Node\\Tag\\Tag"]];
