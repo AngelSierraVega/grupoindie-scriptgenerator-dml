@@ -8,211 +8,75 @@
  * Public License as published by the Free Software Foundation, either 
  * version 3 of the License, or (at your option) any later version.
  */
-namespace GIndie\DML\Node\Content;
+
+namespace GIndie\DML\Node;
+
 /**
- * Description of GIGnode_content
- *
- * @since       2016-12-16
- * @author Angel
+ * Manages de content of the node
+ * 
+ * @category    DescripriveMarkupLanguajeGenerator
+ * @package     Node
+ * @subpackage  Content
+ * @copyright (c) 2017 Angel Sierra Vega. Grupo INDIE.
+ * 
+ * 
+ * @version     GI-DML.01.00
+ * @since       2016-12-21
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * 
+ * 
  */
-abstract class _ArrayAccess implements \ArrayAccess {
-
-    protected $_content = array();
+class Content extends \GIndie\_Iterator {
 
     /**
-     * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * @version NEW beta.00.02
-     * @abstract Defines protected _content and implements ArrayAccess
-     * @param NEW $content [optional]
+     * Represents the content of a Node object.
+     * 
+     * @param   array $content [optional]
+
+     * @return  Content
+     * @throws  NA
+     * 
+     * @version GI-DML.01.00
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
      */
     public function __construct(array $content = []) {
-        try {
-            $this->_content = $content;
-        } catch (Exception $e) {
-            displayError($e);
-        }
+        parent::__construct($content);
     }
 
     /**
-     * @version NEW beta.00.02
-     * Implementation for interface ArrayAccess
-     * @param NEW $offset.
-     */
-    public function offsetExists($offset) {
-        try {
-            return isset($this->_content[$offset]);
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * @version NEW beta.00.02
-     * Implementation for interface ArrayAccess
-     * @param NEW $offset.
-     */
-    public function offsetGet($offset) {
-        try {
-            return isset($this->_content[$offset]) ? $this->_content[$offset] : null;
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * @version NEW beta.00.02
-     * Implementation for interface ArrayAccess
-     * @param NEW $offset.
-     * @param NEW $value.
-     */
-    public function offsetSet($offset, $value) {
-        try {
-            if (is_null($offset)) {
-                $this->_content[] = $value;
-            } else {
-                $this->_content[$offset] = $value;
-            }
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * @version NEW beta.00.02
-     * Implementation for interface ArrayAccess
-     * @param NEW $offset.
-     */
-    public function offsetUnset($offset) {
-        try {
-            unset($this->_content[$offset]);
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-}
-
-abstract class ABS_GIGnode_contentIterator extends _ArrayAccess implements \Iterator {
-
-    private $_position = 0;
-
-    /**
-     * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * @version NEW beta.00.02
-     * @abstract Implementation for interface Iterator
-     */
-    public function __construct(array $content = []) {
-        try {
-            parent::__construct($content);
-            $this->_position = 0;
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * @version NEW beta.00.02
-     * Implementation for interface Iterator
-     */
-    function rewind() {
-        try {
-            $this->_position = 0;
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * @version NEW beta.00.02
-     * Implementation for interface Iterator
-     */
-    function current() {
-        try {
-            return $this->_content[$this->_position];
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * @version NEW beta.00.02
-     * Implementation for interface Iterator
-     */
-    function key() {
-        try {
-            return $this->_position;
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * @version NEW beta.00.02
-     * Implementation for interface Iterator
-     */
-    function next() {
-        try {
-            ++$this->_position;
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * @version NEW beta.00.02
-     * Implementation for interface Iterator
-     */
-    function valid() {
-        try {
-            return isset($this->_content[$this->_position]);
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-}
-
-class Content extends ABS_GIGnode_contentIterator {
-    
-    /**
-     * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * @version NEW beta.00.02
-     * NEW Represents the content of a node
-     */
-    public function __construct(array $content = []) {
-        try {
-            parent::__construct($content);
-        } catch (Exception $e) {
-            displayError($e);
-        }
-    }
-
-    /**
-     * @version NEW beta.00.02
-     * NEW Renders and returns the stringed content
+     * Casts the content as a string.
+     * 
+     * @return  string
+     * @throws  NA
+     * 
+     * @version GI-DML.01.00
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
      */
     public function __toString() {
-        try {
-            return count($this->_content) > 0 ? join("", $this->_content) : "";
-        } catch (Exception $e) {
-            displayError($e);
-        }
+        return count($this->_data) > 0 ? join("", $this->_data) : "";
     }
 
     /**
-     * @version NEW beta.00.02
-     * NEW Adds content to the node
-     * @return NEW mixed An instace of the added content
-     * @param NEW $content.
+     * Adds content to the node.
+     * 
+     * @param   mixed $content.
+     * 
+     * @return  mixed An instance of the added content.
+     * @throws  NA
+     * 
+     * @version GI-DML.01.00
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
      */
     public function addContent($content) {
-        try {
-            $rtnElement = &$content;
-            $this->_content[] = $rtnElement;
-            return $rtnElement;
-        } catch (Exception $e) {
-            displayError($e);
-        }
+        $rtnElement = &$content;
+        $this->_data[] = $rtnElement;
+        return $rtnElement;
     }
 
 }
