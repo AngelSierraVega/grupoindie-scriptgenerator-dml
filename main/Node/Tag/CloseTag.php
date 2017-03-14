@@ -12,17 +12,28 @@
 namespace GIndie\DML\Node\Tag;
 
 /**
- * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @version NEW beta.00.02
- * NEW Represents a closed tag object
- * @param NEW $tag [optional]
+ * Close tag
+ * 
+ * @category    DescripriveMarkupLanguajeGenerator
+ * @package     Node
+ * @subpackage  Tag
+ * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
+ *
+ * @version     GI-DML.01.00
+ * @since       2016-12-16
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * 
  */
-class CloseTag extends Tag{
+class CloseTag extends \GIndie\DML\Node\Tag {
 
-    //use TagMain;
-
+    /**
+     * String containing the open simbol of the tag.
+     * @var     string
+     * @static
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @version GI-DML.01.00
+     */
     protected static $OpenSimbol = "</";
-    //protected static $OpenSimbol = "<";
-    protected static $CloseSimbol = ">";
 
 }
