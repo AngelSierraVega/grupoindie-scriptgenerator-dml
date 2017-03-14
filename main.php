@@ -23,6 +23,7 @@ require_once __DIR__ . '/main/Node.php';
  * @category    DescripriveMarkupLanguajeGenerator
  * @package     Node
  * @subpackage  NA
+ * @copyright (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
  * @version     GI-DML.01.00
  * @since       2016-12-16
