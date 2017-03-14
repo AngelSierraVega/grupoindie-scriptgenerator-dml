@@ -12,6 +12,7 @@
 namespace GIndie;
 
 /**
+ * @internal
  * @abstract
  * Implements ArrayAccess http://php.net/manual/en/class.arrayaccess.php
  * 
@@ -127,6 +128,7 @@ abstract class _ArrayAccess implements \ArrayAccess {
 }
 
 /**
+ * @internal
  * @abstract
  * Implements Iterator http://php.net/manual/en/class.iterator.php
  * 
