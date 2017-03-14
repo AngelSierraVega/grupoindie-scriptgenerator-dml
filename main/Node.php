@@ -116,32 +116,33 @@ abstract class Node {
     }
 
     /**
-     * Sets (create or replace) an attribute of the DML node object.
+     * {@see \GIndie\DML\Node\Tag\OpenTag::setAttribute()}
      * 
      * @param   $attributeName
      * @param   $value [optional]
      * 
-     * @return  bool True if attribute is setted.
-     * 
-     * @version beta.00.05
+     * @version GI-DML.01.00
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @return \GIndie\DML\Node\Tag\OpenTag::setAttribute()
+     * 
      */
     public function setAttribute($attributeName, $value = null) {
         return $this->_tagOpen->setAttribute($attributeName, $value);
     }
 
     /**
-     * Gets the reference of an attribute. Returns false if not set.
+     * {@see \GIndie\DML\Node\Tag\OpenTag::getAttribute()}
      * 
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * @since   2017-01-19
      * 
-     * @version beta.00.06
+     * @version GI-DML.01.00
      * 
      * @param   type $attributeName
+     * @return \GIndie\DML\Node\Tag\OpenTag::getAttribute()
      * 
-     * @return  mixed|false An instance of the attribute. False if attribute is not setted.
      * 
      */
     public function getAttribute($attributeName) {

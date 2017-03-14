@@ -14,112 +14,105 @@ namespace GIndie\DML\Node\Tag;
 require_once __DIR__ . '/OpenTag/Attributes.php';
 
 /**
+ * Close tag
  * 
+ * @category    DescripriveMarkupLanguajeGenerator
+ * @package     Node
+ * @subpackage  Tag
+ * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
+ *
+ * @version     GI-DML.01.00
  * @since       2017-02-02
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
- * @version     beta.00.01
- * 
  */
-class OpenTag extends Tag{
+class OpenTag extends \GIndie\DML\Node\Tag {
 
-    //use TagMain;
-
+    /**
+     * Stores the attributes of the node.
+     * 
+     * @var     OpenTag\Attributes
+     * @static
+     * @since   2017-02-02
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @version GI-DML.01.00
+     */
     protected $_attributes;
 
     /**
      * Creates a new open tag object
      * 
+     * @return  OpenTag
+     * @throws  NA
+     * 
      * @since       2017-02-02
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
-     * @version     beta.00.05
-     * @param       type $tag [optional].
+     * @version     GI-DML.01.00
+     * @param       string $tag [optional].
      * @param       array $attributes [optional].
      */
-    function __construct($tag = null, array $attributes = []) {
-        //parent::__construct($tag);
-        $this->_tag = $tag;
-        $this->_attributes = new OpenTag\Attributes($attributes);
+    function __construct($tag, array $attributes = []) {
+        parent::__construct($tag);
+        if ($tag !== null) {
+            $this->_attributes = new OpenTag\Attributes($attributes);
+        }
     }
 
-    //use TagAttributes;
-
     /**
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * Casts the tag as a string.
      * 
-     * @version     beta.00.01
-     * @var         type $OpenSimbol 
-     */
-    protected static $OpenSimbol = "<";
-
-    /**
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @return  string
+     * @throws  NA
      * 
-     * @version     beta.00.01
-     * @var         type $CloseSimbol 
-     */
-    protected static $CloseSimbol = ">";
-
-    /**
-     * Renders and returns the stringed open tag.
+     * @version GI-DML.01.00
+     * @since   2017-02-02
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     beta.00.04
      */
     public function __toString() {
-        try {
-            return $this->_tag == null ? "" :
-                    "<" . $this->_tag . $this->_attributes . ">";
-        } catch (Exception $e) {
-            displayError($e);
-        }
+        return $this->_tag == null ? "" :
+                static::$OpenSimbol . $this->_tag . $this->_attributes . static::$CloseSimbol;
     }
 
     /**
      * Sets (create or replace) an attribute. Returns true if successfull.
      * 
+     * @param       $attributeName
+     * @param       $value [optional]
+     * 
+     * @return      bool TRUE is is setted, FALSE otherwise.
+     * @throws      NA
+     * 
+     * @version     GI-DML.01.00
      * @since       2017-02-02
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
-     * @version     beta.00.04
-     * @param       $attributeName
-     * @param       type $value [optional]
      */
     public function setAttribute($attributeName, $value = null) {
-        try {
-            $this->_attributes[$attributeName] = $value;
-            return isset($this->_attributes[$attributeName]);
-        } catch (Exception $e) {
-            displayError($e);
-        }
+        $this->_attributes[$attributeName] = $value;
+        return isset($this->_attributes[$attributeName]);
     }
 
     /**
      * Gets a reference to an attribute. Returns false if not set.
      * 
+     * @param       $attributeName
+     * 
+     * @return      mixed|FALSE An instance of the attribute. FALSE if it's not setted.
+     * @throws      NA
+     * 
+     * @version     GI-DML.01.00
      * @since       2017-01-19
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
-     * @version     beta.00.04
-     * @param       type $attributeName
-     * 
      */
     public function getAttribute($attributeName) {
-        try {
-            if (isset($this->_attributes[$attributeName])) {
-                $rtn = &$this->_attributes[$attributeName];
-                return $rtn;
-            } else {
-                return false;
-            }
-        } catch (Exception $e) {
-            displayError($e);
+        if (isset($this->_attributes[$attributeName])) {
+            $rtn = &$this->_attributes[$attributeName];
+            return $rtn;
         }
+        return false;
     }
 
 }

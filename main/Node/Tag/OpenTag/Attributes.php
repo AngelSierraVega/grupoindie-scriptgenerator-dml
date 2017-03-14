@@ -13,11 +13,15 @@ namespace GIndie\DML\Node\Tag\OpenTag;
 
 /**
  * Represents the collection of attributes in a DML open tag.
+ * 
+ * @category    DescripriveMarkupLanguajeGenerator
+ * @package     Node
+ * @subpackage  Tag
+ * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
+ * @version     GI-DML.01.00
  * @since       2017-02-02
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
- * 
- * @version     beta.02.00
  * 
  */
 class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate {
@@ -30,6 +34,8 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate {
      * 
      * @version     beta.00.03
      * @param       array $attributes [optional]
+     * 
+     * @return      Attributes
      */
     public function __construct(array $attributes = []) {
         parent::__construct($attributes);
@@ -64,6 +70,8 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate {
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
      * @version     beta.02.00
+     * 
+     * @return      ArrayIterator
      */
     public function getIterator() {
         return new ArrayIterator($this);
@@ -82,8 +90,8 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate {
      * 
      * @version     beta.02.00
      * 
-     * @param       type $offset.
-     * @param       type $value.
+     * @param       $offset.
+     * @param       $value.
      * 
      * @return      void
      */

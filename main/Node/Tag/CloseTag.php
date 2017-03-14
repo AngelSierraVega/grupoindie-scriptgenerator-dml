@@ -30,7 +30,7 @@ class CloseTag extends \GIndie\DML\Node\Tag {
      * String containing the open simbol of the tag.
      * @var     string
      * @static
-     * @since   2016-12-01
+     * @since   2016-12-16
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * @version GI-DML.01.00
      */
