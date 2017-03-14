@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2016 Angel Sierra Vega. Grupo INDIE.
+ * Copyright (C) 2017 Angel Sierra Vega. Grupo INDIE.
  *
  * This software is protected under GNU: you can use, share, study and 
  * modify it but not distribute it under the terms of the GNU General 
@@ -9,22 +9,20 @@
  * version 3 of the License, or (at your option) any later version.
  */
 
-namespace GIndie\DML\Node\Tag;
+namespace GIndie\DML\Node;
 
 /**
- * Encapsulates the protected attributes of the DML node object.
+ * The tag element of a DML Node.
  * 
- * @category    DML Generator
+ * @abstract
+ * @category    DescripriveMarkupLanguajeGenerator
  * @package     Node
  * @subpackage  Tag
+ * @copyright (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
- * @version beta.00.06
+ * @version     GI-DML.01.00
  * @since       2016-12-16
- * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * 
- * @edit    2017-03-13
- *          Changed trait to abstract class
- *          #beta.00.06
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
  */
 abstract class Tag {
@@ -41,6 +39,7 @@ abstract class Tag {
     /**
      * String containing the open simbol of the tag.
      * @var     string
+     * @static
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * @version beta.00.05
@@ -49,6 +48,8 @@ abstract class Tag {
     
     /**
      * String containing the close simbol of the tag.
+     * 
+     * @static
      * @var     string
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
@@ -63,7 +64,6 @@ abstract class Tag {
 
      * @return  Tag
      * @throws  NA
-     * @todo    String validation on $tag
      * 
      * @version beta.00.05
      * @since   2016-12-01
@@ -75,40 +75,33 @@ abstract class Tag {
 
     /**
      * Casts the tag object as a string.
-     * @return  string
-     * @throws  NA
      * 
-     * @version     beta.00.05
+     * @return  string
+     * 
+     * @version     GI-DML.01.00
      * @since       2016-12-16
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
-     * @edit    2017-03-13<br />
-     *          Removed try-catch<br />
-     *          #beta.00.05
-     * @edit    2016-12-21<br />
-     *          Corrected bug that returned null instead of string<br />
-     *          #beta.00.04
      */
     public function __toString() {
         return $this->_tag == null ? "" : static::$OpenSimbol . $this->_tag . static::$CloseSimbol;
     }
 
     /**
-     * @throws      NA
+     * Sets the tag
+     * 
+     * @return      bool True
      * 
      * @since       2017-01-18
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
-     * @version     beta.00.05
+     * @version     GI-DML.01.00
      * @param       type $tag
      * 
      */
     public function setTag($tag) {
-        try {
-            $this->_tag = $tag;
-        } catch (Exception $e) {
-            displayError($e);
-        }
+        $this->_tag = $tag;
+        return TRUE;
     }
 
 }
