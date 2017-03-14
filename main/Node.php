@@ -27,8 +27,6 @@ require_once __DIR__ . '/Node/Content.php';
  * 
  * 
  * @version     GI-DML.01.00
- * @todo        Function for remove attr
- * @todo        Function for change tag
  * @since       2016-12-21
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
@@ -131,6 +129,22 @@ abstract class Node {
     public function setAttribute($attributeName, $value = null) {
         return $this->_tagOpen->setAttribute($attributeName, $value);
     }
+    
+    /**
+     * {@see \GIndie\DML\Node\Tag\OpenTag::unsetAttribute()}
+     * 
+     * @param   $attributeName
+     * 
+     * @version GI-DML.01.00
+     * @since   2017-03-14
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @return \GIndie\DML\Node\Tag\OpenTag::unsetAttribute()
+     * 
+     */
+    public function unsetAttribute($attributeName) {
+        return $this->_tagOpen->unsetAttribute($attributeName);
+    }
 
     /**
      * {@see \GIndie\DML\Node\Tag\OpenTag::getAttribute()}
@@ -143,10 +157,29 @@ abstract class Node {
      * @param   type $attributeName
      * @return \GIndie\DML\Node\Tag\OpenTag::getAttribute()
      * 
-     * 
      */
     public function getAttribute($attributeName) {
         return $this->_tagOpen->getAttribute($attributeName);
+    }
+    
+    /**
+     * {@see \GIndie\DML\Node\Tag::setTag()}
+     * 
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @since   2017-03-14
+     * 
+     * @version GI-DML.01.00
+     * 
+     * @param   $tag
+     * @return  \GIndie\DML\Node\Tag::setTag()
+     * 
+     */
+    public function setTag($tag) {
+        $this->_tagOpen->setTag($tag);
+        if($this->_emptyNode == false){
+            $this->_tagClose->setTag($tag);
+        }
+        return TRUE;
     }
 
     /**

@@ -15,7 +15,21 @@ echo GIndie\DML\Factory::Simple("node",[],["content"]) . " || "; ?><node>content
 echo GIndie\DML\Factory::Simple("parent",[],[GIndie\DML\Factory::Simple("child")]) . " || "; ?><parent><child></child></parent><?php echo "\n";
 echo GIndie\DML\Factory::EmptyNode("node_empty") . " || "; ?><node_empty><?php echo "\n";
 echo GIndie\DML\Factory::ContentOnly([GIndie\DML\Factory::Simple("node1"),GIndie\DML\Factory::Simple("node2")]) . " || ";?><node1></node1><node2></node2><?php
-    //echo "\n";
+echo "\n";
+echo "------------------\n";
+echo "----Functions-----\n";
+echo "------------------\n";
+
+$example = GIndie\DML\Factory::Simple("node",["attr"=>"val"]);
+echo $example . " || "; ?><node attr='val'></node><?php echo "\n";
+$example->unsetAttribute("attr");
+echo $example . " || "; ?><node></node><?php echo "\n";
+$example->setTag("changedTag");
+echo $example . " || "; ?><changedTag></changedTag><?php echo "\n";
+
+
+
+
 //GIndie\DML\Node\
 
 //    function displayError(Exception $e) {

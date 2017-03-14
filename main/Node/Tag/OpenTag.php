@@ -95,6 +95,24 @@ class OpenTag extends \GIndie\DML\Node\Tag {
     }
 
     /**
+     * Unsets an attribute.
+     * 
+     * @param       $attributeName
+     * 
+     * @version     GI-DML.01.00
+     * @since       2017-03-14
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @return      bool TRUE if attribute is unsetted, FALSE otherwise.
+     * @throws      NA
+     * 
+     */
+    public function unsetAttribute($attributeName) {
+        unset($this->_attributes[$attributeName]);
+        return ( isset($this->_attributes[$attributeName]) == FALSE );
+    }
+
+    /**
      * Gets a reference to an attribute. Returns false if not set.
      * 
      * @param       $attributeName

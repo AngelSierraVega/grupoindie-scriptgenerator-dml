@@ -90,7 +90,7 @@ abstract class Tag {
     /**
      * Sets the tag
      * 
-     * @return      bool True
+     * @return      bool TRUE
      * 
      * @since       2017-01-18
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
