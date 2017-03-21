@@ -9,16 +9,17 @@
  * License, or (at your option) any later version.
  */
 
-namespace GIndie\DML\Node\Tag;
+namespace GIgenerator\DML\Node\Tag;
 
 require_once __DIR__ . '/OpenTag/Attributes.php';
 
 /**
  * Close tag
  * 
- * @category    DescripriveMarkupLanguajeGenerator
- * @package     Node
- * @subpackage  Tag
+ * @package     DML
+ * @subpackage  Node
+ * @category    API
+ * 
  * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
  * @version     GI-DML.01.00
@@ -26,7 +27,7 @@ require_once __DIR__ . '/OpenTag/Attributes.php';
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
  */
-class OpenTag extends \GIndie\DML\Node\Tag {
+class OpenTag extends \GIgenerator\DML\Node\Tag {
 
     /**
      * Stores the attributes of the node.

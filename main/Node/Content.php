@@ -9,14 +9,15 @@
  * version 3 of the License, or (at your option) any later version.
  */
 
-namespace GIndie\DML\Node;
+namespace GIgenerator\DML\Node;
 
 /**
  * Manages de content of the node
  * 
- * @category    DescripriveMarkupLanguajeGenerator
- * @package     Node
- * @subpackage  Content
+ * @package     DML
+ * @subpackage  Node
+ * @category    API
+ * 
  * @copyright (c) 2017 Angel Sierra Vega. Grupo INDIE.
  * 
  * 

@@ -9,14 +9,15 @@
  * License, or (at your option) any later version.
  */
 
-namespace GIndie\DML\Node\Tag;
+namespace GIgenerator\DML\Node\Tag;
 
 /**
  * Close tag
  * 
- * @category    DescripriveMarkupLanguajeGenerator
- * @package     Node
- * @subpackage  Tag
+ * @package     DML
+ * @subpackage  Node
+ * @category    API
+ * 
  * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
  * @version     GI-DML.01.00
@@ -24,7 +25,7 @@ namespace GIndie\DML\Node\Tag;
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
  */
-class CloseTag extends \GIndie\DML\Node\Tag {
+class CloseTag extends \GIgenerator\DML\Node\Tag {
 
     /**
      * String containing the open simbol of the tag.

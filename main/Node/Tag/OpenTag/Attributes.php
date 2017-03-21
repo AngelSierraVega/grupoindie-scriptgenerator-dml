@@ -9,14 +9,15 @@
  * version 3 of the License, or (at your option) any later version.
  */
 
-namespace GIndie\DML\Node\Tag\OpenTag;
+namespace GIgenerator\DML\Node\Tag\OpenTag;
 
 /**
  * Represents the collection of attributes in a DML open tag.
  * 
- * @category    DescripriveMarkupLanguajeGenerator
- * @package     Node
- * @subpackage  Tag
+ * @package     DML
+ * @subpackage  Node
+ * @category    API
+ * 
  * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
  * @version     GI-DML.01.00

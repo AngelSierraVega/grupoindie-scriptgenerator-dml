@@ -9,26 +9,25 @@
  * version 3 of the License, or (at your option) any later version.
  */
 
-namespace GIndie\DML;
+namespace GIgenerator\DML\Node;
 
 require_once __DIR__ . '/Node/Tag.php';
 require_once __DIR__ . '/Node/Content.php';
 
 /**
- * Represents the main element of a <b>Descriptive Markup Languaje</b> such as 
- * LaTeX, XML and HTML (see <https://en.wikipedia.org/wiki/Markup_language> 
- * for more information).
+ * Abstract representation of a Node.
  * 
  * @abstract
- * @category    DescripriveMarkupLanguajeGenerator
- * @package     Node
- * @subpackage  NA
- * @copyright (c) 2017 Angel Sierra Vega. Grupo INDIE.
+ * 
+ * @package     DML
+ * @subpackage  Node
+ * @category    API
  * 
  * 
  * @version     GI-DML.01.00
  * @since       2016-12-21
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
  * 
  * 
  */
@@ -88,9 +87,9 @@ abstract class Node {
      */
     protected function __construct($tag = null, $emptyNode = false, $attributes = [], $content = []) {
         $this->_emptyNode = $emptyNode;
-        isset($this->_tagOpen) ?: $this->_tagOpen = new Node\Tag\OpenTag($tag, $attributes);
-        $this->_tagClose = $emptyNode ? "" : new Node\Tag\CloseTag($tag);
-        $this->_content = $emptyNode ? "" : new Node\Content($content);
+        isset($this->_tagOpen) ?: $this->_tagOpen = new Tag\OpenTag($tag, $attributes);
+        $this->_tagClose = $emptyNode ? "" : new Tag\CloseTag($tag);
+        $this->_content = $emptyNode ? "" : new Content($content);
     }
 
     /**

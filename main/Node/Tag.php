@@ -9,15 +9,17 @@
  * version 3 of the License, or (at your option) any later version.
  */
 
-namespace GIndie\DML\Node;
+namespace GIgenerator\DML\Node;
 
 /**
  * The tag element of a DML Node.
  * 
  * @abstract
- * @category    DescripriveMarkupLanguajeGenerator
- * @package     Node
- * @subpackage  Tag
+ * 
+ * @package     DML
+ * @subpackage  Node
+ * @category    API
+ * 
  * @copyright (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
  * @version     GI-DML.01.00

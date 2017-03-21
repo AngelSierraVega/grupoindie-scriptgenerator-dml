@@ -8,19 +8,19 @@
  * License, or (at your option) any later version.
  */
 require_once 'main.php';
-echo GIndie\DML\Factory::Simple("node") . " || "; ?><node></node><?php echo "\n";
-echo GIndie\DML\Factory::Simple("node",["attr"=>"val"]) . " || "; ?><node attr='val'></node><?php echo "\n";
-echo GIndie\DML\Factory::Simple("test_attr",["attr"=>null]) . " || "; ?><test_attr attr></test_attr><?php echo "\n";
-echo GIndie\DML\Factory::Simple("node",[],["content"]) . " || "; ?><node>content</node><?php echo "\n";
-echo GIndie\DML\Factory::Simple("parent",[],[GIndie\DML\Factory::Simple("child")]) . " || "; ?><parent><child></child></parent><?php echo "\n";
-echo GIndie\DML\Factory::EmptyNode("node_empty") . " || "; ?><node_empty><?php echo "\n";
-echo GIndie\DML\Factory::ContentOnly([GIndie\DML\Factory::Simple("node1"),GIndie\DML\Factory::Simple("node2")]) . " || ";?><node1></node1><node2></node2><?php
+echo GIgenerator\DML\Node::Simple("node") . " || "; ?><node></node><?php echo "\n";
+echo GIgenerator\DML\Node::Simple("node",["attr"=>"val"]) . " || "; ?><node attr='val'></node><?php echo "\n";
+echo GIgenerator\DML\Node::Simple("test_attr",["attr"=>null]) . " || "; ?><test_attr attr></test_attr><?php echo "\n";
+echo GIgenerator\DML\Node::Simple("node",[],["content"]) . " || "; ?><node>content</node><?php echo "\n";
+echo GIgenerator\DML\Node::Simple("parent",[],[GIgenerator\DML\Node::Simple("child")]) . " || "; ?><parent><child></child></parent><?php echo "\n";
+echo GIgenerator\DML\Node::EmptyNode("node_empty") . " || "; ?><node_empty><?php echo "\n";
+echo GIgenerator\DML\Node::ContentOnly([GIgenerator\DML\Node::Simple("node1"),GIgenerator\DML\Node::Simple("node2")]) . " || ";?><node1></node1><node2></node2><?php
 echo "\n";
 echo "------------------\n";
 echo "----Functions-----\n";
 echo "------------------\n";
 
-$example = GIndie\DML\Factory::Simple("node",["attr"=>"val"]);
+$example = GIgenerator\DML\Node::Simple("node",["attr"=>"val"]);
 echo $example . " || "; ?><node attr='val'></node><?php echo "\n";
 $example->unsetAttribute("attr");
 echo $example . " || "; ?><node></node><?php echo "\n";

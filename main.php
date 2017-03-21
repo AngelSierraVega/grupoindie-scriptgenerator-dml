@@ -9,7 +9,7 @@
  * License, or (at your option) any later version.
  */
 
-namespace GIndie\DML;
+namespace GIgenerator\DML;
 
 require_once __DIR__ . '/common.php';
 require_once __DIR__ . '/main/Node.php';
@@ -20,9 +20,10 @@ require_once __DIR__ . '/main/Node.php';
  * LaTeX, XML, and HTML are examples of languajes that can be generated using<br />
  * this class (more info. at <https://en.wikipedia.org/wiki/Markup_language>).
  * 
- * @category    DescripriveMarkupLanguajeGenerator
- * @package     Node
- * @subpackage  NA
+ * @package     DML
+ * @subpackage  Node
+ * @category    API
+ * 
  * @copyright (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
  * @version     GI-DML.01.00
@@ -30,7 +31,7 @@ require_once __DIR__ . '/main/Node.php';
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
  */
-class Factory extends Node {
+class Node extends Node\Node {
 
     /**
      * Creates a simple DML node.
@@ -39,7 +40,7 @@ class Factory extends Node {
      * @param   array $attributes [optional]
      * @param   array $content [optional]
      * 
-     * @return  Node An object representation of a DML node.
+     * @return  Node\Node An object representation of a DML node.
      * 
      * @example Simple node (Open-Close tags).
      *  <pre>echo GIndie\DML\Factory::Simple("node");</pre> 
