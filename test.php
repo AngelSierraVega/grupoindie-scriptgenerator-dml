@@ -7,7 +7,7 @@
  * as published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  */
-require_once 'main.php';
+require_once 'src/main.php';
 echo GIgenerator\DML\Node::Simple("node") . " || "; ?><node></node><?php echo "\n";
 echo GIgenerator\DML\Node::Simple("node",["attr"=>"val"]) . " || "; ?><node attr='val'></node><?php echo "\n";
 echo GIgenerator\DML\Node::Simple("test_attr",["attr"=>null]) . " || "; ?><test_attr attr></test_attr><?php echo "\n";
