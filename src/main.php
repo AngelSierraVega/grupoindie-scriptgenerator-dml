@@ -9,6 +9,28 @@
  * License, or (at your option) any later version.
  */
 
+namespace GIgenerator;
+
+/**
+ * prototype
+ * 
+ */
+trait _indentation {
+
+    public function setIndentation($value = FALSE) {
+        $rtnStr = "";
+        if ($value !== FALSE) {
+            if (is_int($rtnStr)) {
+                for ($i = 0; $i < $value; $i++) {
+                    $rtnStr .= " ";
+                }
+            }
+        }
+        return $rtnStr;
+    }
+
+}
+
 namespace GIgenerator\DML;
 
 require_once __DIR__ . '/common.php';
@@ -42,21 +64,37 @@ class Node extends Node\Node {
      * 
      * @return  Node\Node An object representation of a DML node.
      * 
-     * @example Simple node (Open-Close tags).
-     *  <pre>echo GIndie\DML\Factory::Simple("node");</pre> 
-     *  <i><pre><node></node></pre></i>
+     * @example examples/01-Node-Creation.php Example 1: Simple node.
+     *  <pre>  
+     *      echo GIgenerator\DML\Node::Simple("node_simple");
+     * </pre> 
+     *  <i><pre>
+     *      <node_simple></node_simple>
+     *  </pre></i>
      * 
-     * @example Simple node with attributes.
-     *  <pre>echo GIndie\DML\Factory::Simple("node",["attr"=>"val"]);</pre>
-     *  <i><pre><node attr='val'></node></pre></i>
+     * @example examples/01-Node-Creation.php Example 8: Node with attribute-value.
+     *  <pre>  
+     *      echo GIgenerator\DML\Node::Simple("node",["attr"=>"val"]);
+     * </pre> 
+     *  <i><pre>
+     *      <node attr='val'></node>
+     *  </pre></i>
      * 
-     * @example Simple node with content.
-     *  <pre>echo GIndie\DML\Factory::Simple("node",[],["content"]);</pre>
-     *  <i><pre><node>content</node></pre></i>
+     * @example examples/01-Node-Creation.php Example 5: Node with text content.
+     *  <pre>  
+     *      echo GIgenerator\DML\Node::Simple("node",[],["content"]);
+     * </pre> 
+     *  <i><pre>
+     *      <node>content</node>
+     *  </pre></i>
      * 
-     * @example Nested nodes.
-     *  <pre>echo GIndie\DML\Factory::Simple("parent",[],[GIndie\DML\Factory::Simple("child")]);</pre>
-     *  <i><pre><parent><child></child></parent></pre></i>
+     * @example examples/01-Node-Creation.php Example 6: Node with nested node.
+     *  <pre>  
+     *      echo GIgenerator\DML\Node::Simple("parent",[],[GIgenerator\DML\Node::Simple("child")]);
+     * </pre> 
+     *  <i><pre>
+     *      <parent><child></child></parent>
+     *  </pre></i>
      * 
      * @version     GI-DML.01.00
      * @since       2016-12-16
@@ -67,15 +105,43 @@ class Node extends Node\Node {
     }
 
     /**
+     * Creates a closed (open tag only) DML node.
+     * 
+     * @param   $tag
+     * @param   array $attributes [optional]
+     * 
+     * @return  Node\Tag\ClosedTag An object representation of a closed tag.
+     * 
+     * @example examples/01-Node-Creation.php Example 3: Closed tag.
+     *  <pre>  
+     *      GIgenerator\DML\Node::Closed("node_closed");
+     * </pre> 
+     *  <i><pre>
+     *      <node_closed />
+     *  </pre></i>
+     * 
+     * @version     GI-DML.01.00
+     * @since       2017-03-28
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     */
+    public static function Closed($tag, array $attributes = []) {
+        return new Node\Tag\ClosedTag($tag, $attributes);
+    }
+
+    /**
      * Creates a <i>content only</i> node.
      * 
      * @param       array $content
      * 
-     * @return      Node An object representation of a <i>content only</i> node.
+     * @return      Node\Node An object representation of a <i>content only</i> node.
      * 
-     * @example Content only node.
-     *  <pre>echo GIndie\DML\Factory::ContentOnly([GIndie\DML\Factory::Simple("node1"),GIndie\DML\Factory::Simple("node2")]);</pre>
-     *  <i><pre><node1></node1><node2></node2></pre></i>
+     * @example     examples/01-Node-Creation.php Example 4: Content only node.
+     *  <pre>  
+     *      echo GIgenerator\DML\Node::ContentOnly([GIgenerator\DML\Node::Simple("content1"),GIgenerator\DML\Node::Simple("content2")]);
+     * </pre> 
+     *  <i><pre>
+     *      <content1></content1><content2></content2>
+     *  </pre></i>
      * 
      * @version     GI-DML.01.00
      * @since       2016-12-21
@@ -88,14 +154,18 @@ class Node extends Node\Node {
     /**
      * Creates an empty (open tag only) DML node.
      * 
-     * @param   $tag
-     * @param   array $attributes [optional]
+     * @param       $tag
+     * @param       array $attributes [optional]
      * 
-     * @return  Node An object representation of an empty DML node.
+     * @return      Node\Node An object representation of an <i>empty</i> DML node.
      * 
-     * @example Empty node (open tag only).
-     *  <pre>echo GIndie\DML\Factory::EmptyNode("node_empty");</pre> 
-     *  <i><pre><node_empty></pre></i>
+     * @example     examples/01-Node-Creation.php Example 2: Empty node (open tag only).
+     *  <pre>  
+     *      echo GIgenerator\DML\Node::EmptyNode("node_empty");
+     * </pre> 
+     *  <i><pre>
+     *      <node_empty>
+     *  </pre></i>
      * 
      * @version     GI-DML.01.00
      * @since       2016-12-19

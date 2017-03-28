@@ -14,7 +14,7 @@ namespace GIgenerator\DML\Node\Tag;
 require_once __DIR__ . '/OpenTag/Attributes.php';
 
 /**
- * Close tag
+ * Open tag
  * 
  * @package     DML
  * @subpackage  Node
@@ -134,4 +134,32 @@ class OpenTag extends \GIgenerator\DML\Node\Tag {
         return false;
     }
 
+}
+
+
+/**
+ * Closed open tag
+ * 
+ * @package     DML
+ * @subpackage  Node
+ * @category    API
+ * 
+ * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
+ *
+ * @version     GI-DML.01.00
+ * @since       2017-03-28
+ * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * 
+ */
+class ClosedTag extends OpenTag {
+    /**
+     * String containing the close simbol of the tag.
+     * 
+     * @static
+     * @var     string
+     * @since   2017-03-28
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @version GI-DML.01.00
+     */
+    protected static $CloseSimbol = " />"; 
 }

@@ -186,7 +186,6 @@ abstract class Node {
      * 
      * @return  string
      * @throws  NA
-     * @todo    Validate vars to string. Error throwing.
      * 
      * @version beta.00.05
      * @since   2016-12-01

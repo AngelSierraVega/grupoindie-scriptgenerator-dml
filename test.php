@@ -10,8 +10,13 @@
 require_once 'src/main.php';
 echo GIgenerator\DML\Node::Simple("node") . " || "; ?><node></node><?php echo "\n";
 echo GIgenerator\DML\Node::Simple("node",["attr"=>"val"]) . " || "; ?><node attr='val'></node><?php echo "\n";
-echo GIgenerator\DML\Node::Simple("test_attr",["attr"=>null]) . " || "; ?><test_attr attr></test_attr><?php echo "\n";
+echo GIgenerator\DML\Node::Simple("node",["node"=>null]) . " || "; ?><node attr></node><?php echo "\n";
 echo GIgenerator\DML\Node::Simple("node",[],["content"]) . " || "; ?><node>content</node><?php echo "\n";
+echo "\n";
+echo "--- Example 3: Closed node \n";//Should render: <node_closed />
+echo GIgenerator\DML\Node::Closed("node_closed");
+echo "\n";
+echo "\n";
 echo GIgenerator\DML\Node::Simple("parent",[],[GIgenerator\DML\Node::Simple("child")]) . " || "; ?><parent><child></child></parent><?php echo "\n";
 echo GIgenerator\DML\Node::EmptyNode("node_empty") . " || "; ?><node_empty><?php echo "\n";
 echo GIgenerator\DML\Node::ContentOnly([GIgenerator\DML\Node::Simple("node1"),GIgenerator\DML\Node::Simple("node2")]) . " || ";?><node1></node1><node2></node2><?php
