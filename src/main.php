@@ -110,7 +110,7 @@ class Node extends Node\Node {
      * @param   $tag
      * @param   array $attributes [optional]
      * 
-     * @return  Node\Tag\ClosedTag An object representation of a closed tag.
+     * @return Node\Node An object representation of a node.
      * 
      * @example examples/01-Node-Creation.php Example 3: Closed tag.
      *  <pre>  
@@ -120,12 +120,12 @@ class Node extends Node\Node {
      *      <node_closed />
      *  </pre></i>
      * 
-     * @version     GI-DML.01.00
+     * @version     GI-DML.01.01
      * @since       2017-03-28
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public static function Closed($tag, array $attributes = []) {
-        return new Node\Tag\ClosedTag($tag, $attributes);
+        return new self($tag, "closed", $attributes);
     }
 
     /**

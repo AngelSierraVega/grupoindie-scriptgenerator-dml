@@ -12,7 +12,7 @@
 namespace GIgenerator\DML\Node;
 
 require_once __DIR__ . '/Node/Tag.php';
-require_once __DIR__ . '/Node/Content.php';
+//require_once __DIR__ . '/Node/Content.php';
 
 /**
  * Abstract representation of a Node.
@@ -24,7 +24,7 @@ require_once __DIR__ . '/Node/Content.php';
  * @category    API
  * 
  * 
- * @version     GI-DML.01.00
+ * @version     GI-DML.01
  * @since       2016-12-21
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
@@ -72,24 +72,30 @@ abstract class Node {
     /**
      * Creates a new DML Node object.
      * 
-     * @param   $tag [optional]
+     * @param   $tagName [optional]
      * @param   $emptyNode [optional]
      * @param   $attributes [optional]
-     * @param   $content [optional]
-
+     * @param   array $content [optional]
+     * 
      * @return  Node
      * @throws  NA
      * 
-     * @version GI-DML.01.00
+     * @version GI-DML.01.01
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
      */
-    protected function __construct($tag = null, $emptyNode = false, $attributes = [], $content = []) {
+    protected function __construct($tagName = null, $emptyNode = false, $attributes = [], array $content = []) {
         $this->_emptyNode = $emptyNode;
-        isset($this->_tagOpen) ?: $this->_tagOpen = new Tag\OpenTag($tag, $attributes);
-        $this->_tagClose = $emptyNode ? "" : new Tag\CloseTag($tag);
-        $this->_content = $emptyNode ? "" : new Content($content);
+        if($emptyNode == "closed"){
+            $this->_tagOpen = new Tag\ClosedTag($tagName, $attributes);
+        }else{
+            $this->_tagOpen = new Tag\OpenTag($tagName, $attributes);
+        }
+        //isset($this->_tagOpen) ?: $this->_tagOpen = new Tag\OpenTag($tagName, $attributes);
+        $this->_tagClose = $emptyNode ? "" : new Tag\CloseTag($tagName);
+        //$this->_content = $emptyNode ? "" : new Content($content);
+        $this->_content = $emptyNode ? [] : $content;
     }
 
     /**
@@ -109,7 +115,10 @@ abstract class Node {
             throw new Exception("Trying to add content into an empty node.");
             return FALSE;
         }
-        return $this->_content->addContent($content);
+        $rtnElement = &$content;
+        $this->_content[] = $rtnElement;
+        return $rtnElement;
+        //return $this->_content->addContent($content);
     }
 
     /**
@@ -128,7 +137,7 @@ abstract class Node {
     public function setAttribute($attributeName, $value = null) {
         return $this->_tagOpen->setAttribute($attributeName, $value);
     }
-    
+
     /**
      * {@see \GIndie\DML\Node\Tag\OpenTag::unsetAttribute()}
      * 
@@ -160,7 +169,38 @@ abstract class Node {
     public function getAttribute($attributeName) {
         return $this->_tagOpen->getAttribute($attributeName);
     }
-    
+
+    private $_prettyfyed_indentation = "";
+    //private $_prettyfy_insideWrap = false;
+    private $_prettyfyed_finalBreak = "";
+
+    public function prettyfy($indentation = false, $insideWrap = false, $finalBreak = false) {
+        if ($indentation !== false) {
+            if (is_int($indentation)) {
+                for ($i = 0; $i < $indentation; $i++) {
+                    $this->_prettyfyed_indentation .= " ";
+                }
+                $indentation = $indentation + 2;
+            }
+        }
+//        $this->_prettyfy_insideWrap = $insideWrap;
+//        if ($insideWrap) {
+//            ;
+//        }
+        if ($finalBreak) {
+            $this->_prettyfyed_finalBreak = "\n";
+        }
+        if ($this->_emptyNode == false) {
+            foreach ($this->_content as $content) {
+                if (is_subclass_of($content, "GIgenerator\DML\Node\Node")) {
+                    $content->prettyfy($indentation, $insideWrap, $finalBreak);
+                }
+            }
+        }
+
+        //return void;
+    }
+
     /**
      * {@see \GIndie\DML\Node\Tag::setTag()}
      * 
@@ -175,7 +215,7 @@ abstract class Node {
      */
     public function setTag($tag) {
         $this->_tagOpen->setTag($tag);
-        if($this->_emptyNode == false){
+        if ($this->_emptyNode == false) {
             $this->_tagClose->setTag($tag);
         }
         return TRUE;
@@ -193,7 +233,35 @@ abstract class Node {
      * 
      */
     public function __toString() {
-        return $this->_tagOpen . $this->_content . $this->_tagClose;
+        $_rtnSrt = $this->_prettyfyed_indentation . $this->_tagOpen;
+
+        $_vrtcl = false;
+        switch (count($this->_content)) {
+            case 0:
+                $_vrtcl = false;
+                break;
+            case 1:
+                if (is_subclass_of($this->_content[0], "GIgenerator\DML\Node\Node")) {
+                    $_vrtcl = true;
+                }
+                break;
+            default:
+                $_vrtcl = true;
+                break;
+        }
+        $_vrtcl ? $_rtnSrt .= "\n" : null;
+
+        foreach ($this->_content as $_tmpContent) {
+            if (is_subclass_of($_tmpContent, "GIgenerator\DML\Node\Node")) {
+                $_rtnSrt .= $_tmpContent . ($_vrtcl ? "\n" : "");
+            } else {
+                $_rtnSrt .= $_vrtcl ? $this->_prettyfyed_indentation . $_tmpContent : $_tmpContent;
+            }
+        }
+        $_rtnSrt .= $_vrtcl ? $this->_prettyfyed_indentation  :"" ;
+        $_rtnSrt .= $this->_tagClose;
+        //$_rtnSrt .= $this->_prettyfyed_finalBreak;
+        return $_rtnSrt;
     }
 
 }

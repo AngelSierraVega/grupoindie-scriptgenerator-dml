@@ -12,6 +12,7 @@
 namespace GIgenerator\DML\Node;
 
 /**
+ * @deprecated sicnce GI-DML.01.00
  * Manages de content of the node
  * 
  * @package     DML
@@ -27,7 +28,7 @@ namespace GIgenerator\DML\Node;
  * 
  * 
  */
-class Content extends \GIndie\_Iterator {
+class ContentDEPRECATED extends \GIndie\_Iterator {
 
     /**
      * Represents the content of a Node object.
