@@ -12,7 +12,6 @@
 namespace GIgenerator\DML\Node;
 
 require_once __DIR__ . '/Node/Tag.php';
-//require_once __DIR__ . '/Node/Content.php';
 
 /**
  * Abstract representation of a Node.
@@ -80,16 +79,16 @@ abstract class Node {
      * @return  Node
      * @throws  NA
      * 
-     * @version GI-DML.01.01
+     * @version GI-DML.01.02
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
      */
     protected function __construct($tagName = null, $emptyNode = false, $attributes = [], array $content = []) {
         $this->_emptyNode = $emptyNode;
-        if($emptyNode == "closed"){
+        if ($emptyNode == "closed") {
             $this->_tagOpen = new Tag\ClosedTag($tagName, $attributes);
-        }else{
+        } else {
             $this->_tagOpen = new Tag\OpenTag($tagName, $attributes);
         }
         //isset($this->_tagOpen) ?: $this->_tagOpen = new Tag\OpenTag($tagName, $attributes);
@@ -171,10 +170,23 @@ abstract class Node {
     }
 
     private $_prettyfyed_indentation = "";
-    //private $_prettyfy_insideWrap = false;
     private $_prettyfyed_finalBreak = "";
 
-    public function prettyfy($indentation = false, $insideWrap = false, $finalBreak = false) {
+    /**
+     * Documentation
+     * 
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @since   2017-03-31
+     * 
+     * @param   type $indentation.
+     * @param   type $finalBreak.
+     * 
+     * @version GI-DML.01.02
+     * 
+     * @return  TRUE
+     * 
+     */
+    public function prettyfy($indentation = false, $finalBreak = false) {
         if ($indentation !== false) {
             if (is_int($indentation)) {
                 for ($i = 0; $i < $indentation; $i++) {
@@ -183,22 +195,33 @@ abstract class Node {
                 $indentation = $indentation + 2;
             }
         }
-//        $this->_prettyfy_insideWrap = $insideWrap;
-//        if ($insideWrap) {
-//            ;
-//        }
         if ($finalBreak) {
             $this->_prettyfyed_finalBreak = "\n";
         }
         if ($this->_emptyNode == false) {
             foreach ($this->_content as $content) {
                 if (is_subclass_of($content, "GIgenerator\DML\Node\Node")) {
-                    $content->prettyfy($indentation, $insideWrap, $finalBreak);
+                    $content->prettyfy($indentation, $finalBreak);
                 }
             }
         }
+        return TRUE;
+    }
 
-        //return void;
+    /**
+     * Removes (resets) the content of the node.
+     * 
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @since   2017-03-31
+     * 
+     * @version GI-DML.01.02
+     * 
+     * @return  TRUE
+     * 
+     */
+    public function removeContent() {
+        $this->_content = [];
+        return TRUE;
     }
 
     /**
@@ -227,7 +250,8 @@ abstract class Node {
      * @return  string
      * @throws  NA
      * 
-     * @version beta.00.05
+     * @version GI-DML.01.02
+     * 
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
@@ -249,18 +273,16 @@ abstract class Node {
                 $_vrtcl = true;
                 break;
         }
-        $_vrtcl ? $_rtnSrt .= "\n" : null;
-
+        $_vrtcl ? $_rtnSrt .= $this->_prettyfyed_finalBreak : null;
         foreach ($this->_content as $_tmpContent) {
             if (is_subclass_of($_tmpContent, "GIgenerator\DML\Node\Node")) {
-                $_rtnSrt .= $_tmpContent . ($_vrtcl ? "\n" : "");
+                $_rtnSrt .= $_tmpContent . ($_vrtcl ? $this->_prettyfyed_finalBreak : "");
             } else {
                 $_rtnSrt .= $_vrtcl ? $this->_prettyfyed_indentation . $_tmpContent : $_tmpContent;
             }
         }
-        $_rtnSrt .= $_vrtcl ? $this->_prettyfyed_indentation  :"" ;
+        $_rtnSrt .= $_vrtcl ? $this->_prettyfyed_indentation : "";
         $_rtnSrt .= $this->_tagClose;
-        //$_rtnSrt .= $this->_prettyfyed_finalBreak;
         return $_rtnSrt;
     }
 

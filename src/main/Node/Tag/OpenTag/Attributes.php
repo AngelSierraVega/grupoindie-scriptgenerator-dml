@@ -20,7 +20,7 @@ namespace GIgenerator\DML\Node\Tag\OpenTag;
  * 
  * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
- * @version     GI-DML.01.00
+ * @version     GI-DML.01
  * @since       2017-02-02
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
@@ -103,6 +103,28 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate {
         } else {
             parent::offsetSet($offset, $value);
         }
+    }
+    
+    /**
+     * Implementation for interface ArrayAccess
+     * 
+     * @since       2017-03-31
+     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+
+     * 
+     * @version     GI.01.02
+     * 
+     * @param       string $offset.
+     * 
+     * @return      mixed|FALSE An instance of the offsetted data. FALSE if it's not setted.
+     */
+    public function offsetGet($offset) {
+        if (isset($this->_data[$offset])) {
+            $rtn = &$this->_data[$offset];
+            return $rtn;
+        }
+        return FALSE;
     }
 
 }

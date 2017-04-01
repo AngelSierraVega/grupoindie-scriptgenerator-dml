@@ -22,7 +22,7 @@ require_once __DIR__ . '/OpenTag/Attributes.php';
  * 
  * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
- * @version     GI-DML.01.00
+ * @version     GI-DML.01
  * @since       2017-02-02
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
@@ -121,17 +121,16 @@ class OpenTag extends \GIgenerator\DML\Node\Tag {
      * @return      mixed|FALSE An instance of the attribute. FALSE if it's not setted.
      * @throws      NA
      * 
-     * @version     GI-DML.01.00
+     * @version     GI-DML.01.02
      * @since       2017-01-19
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
      */
     public function getAttribute($attributeName) {
         if (isset($this->_attributes[$attributeName])) {
-            $rtn = &$this->_attributes[$attributeName];
-            return $rtn;
+            return $this->_attributes[$attributeName];
         }
-        return false;
+        return FALSE;
     }
 
 }
