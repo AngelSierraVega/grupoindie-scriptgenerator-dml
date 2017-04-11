@@ -9,3 +9,10 @@
  * License, or (at your option) any later version.
  */
 
+require_once '../DML.phar';
+require_once 'classes/HTML-Document.php';
+
+$document = new Document("Simple HTML document");
+$document->addContent("Hello world!");
+$document->prettyfy();
+echo $document;
