@@ -37,7 +37,7 @@ abstract class Node {
      * @var     array
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * @version beta.00.05
+     * @version GI-DML.01.00
      */
     protected $_content;
 
@@ -46,7 +46,7 @@ abstract class Node {
      * @var     bool
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * @version beta.00.05
+     * @version GI-DML.01.00
      */
     protected $_emptyNode;
 
@@ -55,7 +55,7 @@ abstract class Node {
      * @var     GIndie\DML\Node\Tag\OpenTag
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * @version beta.00.05
+     * @version GI-DML.01.00
      */
     protected $_tagOpen;
 
@@ -64,7 +64,7 @@ abstract class Node {
      * @var     GIndie\DML\Node\Tag\CloseTag
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * @version beta.00.05
+     * @version GI-DML.01.00
      */
     protected $_tagClose;
 
@@ -79,24 +79,63 @@ abstract class Node {
      * @return  Node
      * @throws  NA
      * 
-     * @version GI-DML.01.02
+     * @version GI-DML.01.03
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
      */
     protected function __construct($tagName = null, $emptyNode = false, $attributes = [], array $content = []) {
         $this->_emptyNode = $emptyNode;
-        if ($emptyNode == "closed") {
+        if ($emptyNode === "closed") {
             $this->_tagOpen = new Tag\ClosedTag($tagName, $attributes);
         } else {
             $this->_tagOpen = new Tag\OpenTag($tagName, $attributes);
         }
-        //isset($this->_tagOpen) ?: $this->_tagOpen = new Tag\OpenTag($tagName, $attributes);
-        $this->_tagClose = $emptyNode ? "" : new Tag\CloseTag($tagName);
-        //$this->_content = $emptyNode ? "" : new Content($content);
+        $this->_tagClose = ( $emptyNode === true || $emptyNode === "closed" ) ? "" : new Tag\CloseTag($tagName);
         $this->_content = $emptyNode ? [] : $content;
     }
 
+    /**
+     * Casts the DML node object as a string.
+     * 
+     * @return  string
+     * @throws  NA
+     * 
+     * @version GI-DML.01.02
+     * 
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     */
+    public function __toString() {
+        $_rtnSrt = $this->_prettyfyed_indentation . $this->_tagOpen;
+        $_vrtcl = false;
+        switch (count($this->_content)) {
+            case 0:
+                $_vrtcl = false;
+                break;
+            case 1:
+                if (is_subclass_of($this->_content[0], "GIgenerator\DML\Node\Node")) {
+                    $_vrtcl = true;
+                }
+                break;
+            default:
+                $_vrtcl = true;
+                break;
+        }
+        $_vrtcl ? $_rtnSrt .= $this->_prettyfyed_break : null;
+        foreach ($this->_content as $_tmpContent) {
+            if (is_subclass_of($_tmpContent, "GIgenerator\DML\Node\Node")) {
+                $_rtnSrt .= $_tmpContent . ($_vrtcl ? $this->_prettyfyed_break : "");
+            } else {
+                $_rtnSrt .= $_vrtcl ? $this->_prettyfyed_indentation . $_tmpContent : $_tmpContent;
+            }
+        }
+        $_rtnSrt .= $_vrtcl ? $this->_prettyfyed_indentation : "";
+        $_rtnSrt .= $this->_tagClose;
+        return $_rtnSrt;
+    }
+    
     /**
      * Adds content to the DML node object.
      * 
@@ -105,52 +144,18 @@ abstract class Node {
      * @return  mixed An instace of the added content.
      * @throws  Exception Throws exception on adding element to empty node.
      * 
-     * @version GI-DML.01.00
+     * @version GI-DML.01.01
      * @since   2016-12-01
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public function addContent($content) {
-        if ($this->_emptyNode) {
+        if ($this->_emptyNode === TRUE || $this->_emptyNode === "closed") {
             throw new Exception("Trying to add content into an empty node.");
             return FALSE;
         }
         $rtnElement = &$content;
         $this->_content[] = $rtnElement;
         return $rtnElement;
-        //return $this->_content->addContent($content);
-    }
-
-    /**
-     * {@see \GIndie\DML\Node\Tag\OpenTag::setAttribute()}
-     * 
-     * @param   $attributeName
-     * @param   $value [optional]
-     * 
-     * @version GI-DML.01.00
-     * @since   2016-12-01
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @return \GIndie\DML\Node\Tag\OpenTag::setAttribute()
-     * 
-     */
-    public function setAttribute($attributeName, $value = null) {
-        return $this->_tagOpen->setAttribute($attributeName, $value);
-    }
-
-    /**
-     * {@see \GIndie\DML\Node\Tag\OpenTag::unsetAttribute()}
-     * 
-     * @param   $attributeName
-     * 
-     * @version GI-DML.01.00
-     * @since   2017-03-14
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @return \GIndie\DML\Node\Tag\OpenTag::unsetAttribute()
-     * 
-     */
-    public function unsetAttribute($attributeName) {
-        return $this->_tagOpen->unsetAttribute($attributeName);
     }
 
     /**
@@ -169,24 +174,39 @@ abstract class Node {
         return $this->_tagOpen->getAttribute($attributeName);
     }
 
+    /**
+     * 
+     * @var     $_prettyfyed_indentation
+     * @since   2017-04-11
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @version GI-DML.01.01
+     */
     private $_prettyfyed_indentation = "";
-    private $_prettyfyed_finalBreak = "";
+    
+    /**
+     * 
+     * @var     $_prettyfyed_break
+     * @since   2017-04-11
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @version GI-DML.01.01
+     */
+    private $_prettyfyed_break = "";
 
     /**
-     * Documentation
+     * 
      * 
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * @since   2017-03-31
      * 
-     * @param   type $indentation.
-     * @param   type $finalBreak.
+     * @param   false|int $indentation
+     * @param   bool $break
      * 
      * @version GI-DML.01.02
      * 
      * @return  TRUE
      * 
      */
-    public function prettyfy($indentation = false, $finalBreak = false) {
+    public function prettyfy($indentation = 0, $break = true) {
         if ($indentation !== false) {
             if (is_int($indentation)) {
                 for ($i = 0; $i < $indentation; $i++) {
@@ -195,13 +215,13 @@ abstract class Node {
                 $indentation = $indentation + 2;
             }
         }
-        if ($finalBreak) {
-            $this->_prettyfyed_finalBreak = "\n";
+        if ($break) {
+            $this->_prettyfyed_break = "\n";
         }
         if ($this->_emptyNode == false) {
             foreach ($this->_content as $content) {
                 if (is_subclass_of($content, "GIgenerator\DML\Node\Node")) {
-                    $content->prettyfy($indentation, $finalBreak);
+                    $content->prettyfy($indentation, $break);
                 }
             }
         }
@@ -225,6 +245,23 @@ abstract class Node {
     }
 
     /**
+     * {@see \GIndie\DML\Node\Tag\OpenTag::setAttribute()}
+     * 
+     * @param   $attributeName
+     * @param   $value [optional]
+     * 
+     * @version GI-DML.01.00
+     * @since   2016-12-01
+     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * 
+     * @return \GIndie\DML\Node\Tag\OpenTag::setAttribute()
+     * 
+     */
+    public function setAttribute($attributeName, $value = null) {
+        return $this->_tagOpen->setAttribute($attributeName, $value);
+    }
+
+    /**
      * {@see \GIndie\DML\Node\Tag::setTag()}
      * 
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
@@ -245,45 +282,19 @@ abstract class Node {
     }
 
     /**
-     * Casts the DML node object as a string.
+     * {@see \GIndie\DML\Node\Tag\OpenTag::unsetAttribute()}
      * 
-     * @return  string
-     * @throws  NA
+     * @param   $attributeName
      * 
-     * @version GI-DML.01.02
-     * 
-     * @since   2016-12-01
+     * @version GI-DML.01.00
+     * @since   2017-03-14
      * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
+     * @return \GIndie\DML\Node\Tag\OpenTag::unsetAttribute()
+     * 
      */
-    public function __toString() {
-        $_rtnSrt = $this->_prettyfyed_indentation . $this->_tagOpen;
-
-        $_vrtcl = false;
-        switch (count($this->_content)) {
-            case 0:
-                $_vrtcl = false;
-                break;
-            case 1:
-                if (is_subclass_of($this->_content[0], "GIgenerator\DML\Node\Node")) {
-                    $_vrtcl = true;
-                }
-                break;
-            default:
-                $_vrtcl = true;
-                break;
-        }
-        $_vrtcl ? $_rtnSrt .= $this->_prettyfyed_finalBreak : null;
-        foreach ($this->_content as $_tmpContent) {
-            if (is_subclass_of($_tmpContent, "GIgenerator\DML\Node\Node")) {
-                $_rtnSrt .= $_tmpContent . ($_vrtcl ? $this->_prettyfyed_finalBreak : "");
-            } else {
-                $_rtnSrt .= $_vrtcl ? $this->_prettyfyed_indentation . $_tmpContent : $_tmpContent;
-            }
-        }
-        $_rtnSrt .= $_vrtcl ? $this->_prettyfyed_indentation : "";
-        $_rtnSrt .= $this->_tagClose;
-        return $_rtnSrt;
+    public function unsetAttribute($attributeName) {
+        return $this->_tagOpen->unsetAttribute($attributeName);
     }
 
 }
