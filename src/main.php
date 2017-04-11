@@ -11,26 +11,6 @@
 
 namespace GIgenerator;
 
-/**
- * prototype
- * 
- */
-trait _indentation {
-
-    public function setIndentation($value = FALSE) {
-        $rtnStr = "";
-        if ($value !== FALSE) {
-            if (is_int($rtnStr)) {
-                for ($i = 0; $i < $value; $i++) {
-                    $rtnStr .= " ";
-                }
-            }
-        }
-        return $rtnStr;
-    }
-
-}
-
 namespace GIgenerator\DML;
 
 require_once __DIR__ . '/common.php';
@@ -48,7 +28,7 @@ require_once __DIR__ . '/main/Node.php';
  * 
  * @copyright (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
- * @version     GI-DML.01.00
+ * @version     GI-DML.01
  * @since       2016-12-16
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
