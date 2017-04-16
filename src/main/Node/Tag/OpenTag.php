@@ -82,7 +82,7 @@ class OpenTag extends \GIgenerator\DML\Node\Tag {
      * @param       $attributeName
      * @param       $value [optional]
      * 
-     * @return      bool TRUE is is setted, FALSE otherwise.
+     * @return      bool TRUE if is setted, FALSE otherwise.
      * @throws      NA
      * 
      * @version     GI-DML.01.00

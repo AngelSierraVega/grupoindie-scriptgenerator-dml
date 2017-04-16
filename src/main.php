@@ -26,7 +26,7 @@ require_once __DIR__ . '/main/Node.php';
  * @subpackage  Node
  * @category    API
  * 
- * @copyright (c) 2017 Angel Sierra Vega. Grupo INDIE.
+ * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
  * @version     GI-DML.01
  * @since       2016-12-16
@@ -76,12 +76,12 @@ class Node extends Node\Node {
      *      <parent><child></child></parent>
      *  </pre></i>
      * 
-     * @version     GI-DML.01.00
+     * @version     GI-DML.01.02
      * @since       2016-12-16
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public static function Simple($tag, array $attributes = [], array $content = []) {
-        return new self($tag, false, $attributes, $content);
+        return new static($tag, false, $attributes, $content);
     }
 
     /**
@@ -100,12 +100,12 @@ class Node extends Node\Node {
      *      <node_closed />
      *  </pre></i>
      * 
-     * @version     GI-DML.01.01
+     * @version     GI-DML.01.02
      * @since       2017-03-28
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public static function Closed($tag, array $attributes = []) {
-        return new self($tag, "closed", $attributes);
+        return new static($tag, "closed", $attributes);
     }
 
     /**
@@ -123,12 +123,12 @@ class Node extends Node\Node {
      *      <content1></content1><content2></content2>
      *  </pre></i>
      * 
-     * @version     GI-DML.01.00
+     * @version     GI-DML.01.02
      * @since       2016-12-21
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public static function ContentOnly(array $content) {
-        return new self(null, false, [], $content);
+        return new static(null, false, [], $content);
     }
 
     /**
@@ -147,12 +147,12 @@ class Node extends Node\Node {
      *      <node_empty>
      *  </pre></i>
      * 
-     * @version     GI-DML.01.00
+     * @version     GI-DML.01.02
      * @since       2016-12-19
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public static function EmptyNode($tag, array $attributes = []) {
-        return new self($tag, true, $attributes, []);
+        return new static($tag, true, $attributes, []);
     }
 
 }
