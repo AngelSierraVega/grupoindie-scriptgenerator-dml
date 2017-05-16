@@ -31,7 +31,6 @@ abstract class Node {
      * @var     array The content of the Node object.
      * 
      * @since   GIG-DML.01.00
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     protected $_content;
 
@@ -39,7 +38,6 @@ abstract class Node {
      * @var     boolean A boolean flag on wheter or not the current node is an empty node.
      * 
      * @since   GIG-DML.01.00
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     protected $_emptyNode;
 
@@ -47,7 +45,6 @@ abstract class Node {
      * @var     GIndie\DML\Node\Tag\OpenTag  Object representing the open tag of the node.
      * 
      * @since   GIG-DML.01.00
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     protected $_tagOpen;
 
@@ -55,26 +52,28 @@ abstract class Node {
      * @var     GIndie\DML\Node\Tag\CloseTag   Object representing the close tag of the node.
      * 
      * @since   GIG-DML.01.00
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     protected $_tagClose;
 
     /**
      * Creates a new DML Node object.
      * 
-     * @param   [type] $tagName [optional] [description]
-     * @param   [type] $emptyNode [optional] [description]
-     * @param   [type] $attributes [optional] [description]
-     * @param    array $content [optional] [description]
+     * @param   string|NULL $tagName The name of the tag.
+     * @param   boolean|string $emptyNode TRUE if empty node, FALSE if simple node,
+     *               "closed" if empty-closed tag.
+     * @param   array $attributes An associative array where 
+     *              key = Attribute name and value = The literal value of the attribute.   
+     * @param   array $content An array containing the literal contents
+     *              of the node
      * 
      * @return  Node
      * @throws  NA
      * 
      * @since   GIG-DML.01.03
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>     * 
+     * @version GIG-DML.01.04  * 
      */
     protected function __construct($tagName = \NULL, $emptyNode = \FALSE,
-            $attributes = [], array $content = []) {
+            array $attributes = [], array $content = []) {
         $this->_emptyNode = $emptyNode;
         if ($emptyNode === "closed") {
             $this->_tagOpen = new Tag\ClosedTag($tagName, $attributes);
@@ -91,7 +90,6 @@ abstract class Node {
      * @return  string
      *
      * @since   GIG-DML.01.02
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
      */
     public function __toString() {
@@ -127,36 +125,39 @@ abstract class Node {
     /**
      * Adds content to the DML node object.
      * 
-     * @param   [YPE] $content [DESCT]
+     * @param   mixed $content The content to append to the node.
      * 
-     * @return  mixed An instace of the added content.
+     * @return  self
      * @throws  Exception Throws exception on adding element to empty node.
      * 
      * @since   GIG-DML.01.01
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @version GIG-DML.01.04
      */
     public function addContent($content) {
         if ($this->_emptyNode === \TRUE || $this->_emptyNode === "closed") {
+            trigger_error("Trying to add content into an empty node.",
+                    E_USER_ERROR);
             throw new Exception("Trying to add content into an empty node.");
-            return \FALSE;
         }
-        $rtnElement = &$content;
-        $this->_content[] = $rtnElement;
-        return $rtnElement;
+        $this->_content[] = $content;
+//        $rtnElement = &$content;
+//        $this->_content[] = $rtnElement;
+//        return $rtnElement;
+        return $this;
     }
 
     /**
-     * Appends content to the DML node object and returns an instance of the added content.
+     * Appends content to the DML node object and returns a pointer to the added content.
      * 
-     * @param   [type]  $content    [description]
+     * @param   mixed  $content    The content to append to the node.
      * 
-     * @return  mixed An instace of the added content.
+     * @return  mixed A pointer to the added content.
      * @throws  Exception Throws exception on adding element to empty node.
      * 
      * @since   GIG-DML.01.02
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @version GIG-DML.01.04
      */
-    public function appendContent($content) {
+    public function addContentGetPointer($content) {
         if ($this->_emptyNode === \TRUE || $this->_emptyNode === "closed") {
             throw new Exception("Trying to add content into an empty node.");
             return \FALSE;
@@ -167,43 +168,40 @@ abstract class Node {
     }
 
     /**
-     * {@see \GIndie\DML\Node\Tag\OpenTag::getAttribute()}
+     * {@see GIndie\Generator\DML\Node\Tag\OpenTag::getAttribute()}
      * 
-     * @param   type $attributeName [description]
-     * @return \GIndie\DML\Node\Tag\OpenTag::getAttribute()
+     * @param   string $attributeName The name of the attribute.
+     * @return  GIndie\Generator\DML\Node\Tag\OpenTag::getAttribute()
      * 
      * @since   GIG-DML.01.00
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public function getAttribute($attributeName) {
         return $this->_tagOpen->getAttribute($attributeName);
     }
 
     /**
-     * @var    [type] $_prettyfyed_indentation [descrition]
+     * @internal
+     * @var    string $_prettyfyed_indentation The indentation to render if pretyfied.
      * 
      * @since   GIG-DML.01.01
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     private $_prettyfyed_indentation = "";
 
     /**
-     * 
-     * @var    [type] $_prettyfyed_break [description]
+     * @internal
+     * @var    string $_prettyfyed_break The break to render if pretyfied.
      * 
      * @since   GIG-DML.01.01
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     private $_prettyfyed_break = "";
 
     /**
-     * @param   boolean|int $indentation [description]
-     * @param   boolean $break [description]
+     * @param   boolean|int $indentation The custom indendation for the node
+     * @param   boolean $break Whether or not the node breaks
      * 
      * @return  boolean
      * 
      * @version GIG-DML.01.02
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public function prettyfy($indentation = 0, $break = \TRUE) {
         if ($indentation !== \FALSE) {
@@ -230,10 +228,9 @@ abstract class Node {
     /**
      * Removes (resets) the content of the node.
      * 
-     * @return  TRUE
+     * @return  boolean TRUE
      * 
      * @since   GIG-DML.01.02
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public function removeContent() {
         $this->_content = [];
@@ -241,28 +238,26 @@ abstract class Node {
     }
 
     /**
-     * {@see \GIndie\DML\Node\Tag\OpenTag::setAttribute()}
+     * {@see Tag\OpenTag::setAttribute()}
      * 
-     * @param   $attributeName
-     * @param   $value [optional]
+     * @param   [type] $attributeName [descrition]
+     * @param   [type] $value [optional] [descrition]
      * 
-     * @return \GIndie\DML\Node\Tag\OpenTag::setAttribute()
+     * @return Tag\OpenTag::setAttribute()
      * 
      * @since   GIG-DML.01.00
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public function setAttribute($attributeName, $value = \NULL) {
         return $this->_tagOpen->setAttribute($attributeName, $value);
     }
 
     /**
-     * {@see \GIndie\DML\Node\Tag::setTag()}
+     * {@see Tag::setTag()}
      * 
      * @param   [type] $tag [description]
-     * @return  \GIndie\DML\Node\Tag::setTag()
+     * @return  Tag::setTag()
      * 
      * @since   GIG-DML.01.00
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public function setTag($tag) {
         $this->_tagOpen->setTag($tag);
@@ -273,14 +268,13 @@ abstract class Node {
     }
 
     /**
-     * {@see \GIndie\DML\Node\Tag\OpenTag::unsetAttribute()}
+     * {@see Tag\OpenTag::unsetAttribute()}
      * 
      * @param   [type] $attributeName [descrition]
      * 
-     * @return \GIndie\DML\Node\Tag\OpenTag::unsetAttribute()
+     * @return Tag\OpenTag::unsetAttribute()
      * 
      * @since   GIG-DML.01.00
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public function unsetAttribute($attributeName) {
         return $this->_tagOpen->unsetAttribute($attributeName);

@@ -16,7 +16,7 @@ namespace GIndie;
  * @abstract
  * Implements ArrayAccess http://php.net/manual/en/class.arrayaccess.php
  * 
- * @since       2017-02-09
+ * @since       2017-02-02
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
  * @version     GI.01.00
@@ -27,10 +27,8 @@ abstract class _ArrayAccess implements \ArrayAccess {
     /**
      * Stores the data array
      * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @since       GI.01.00
      * 
-     * @version     GI.01.00
      * 
      * @var         array $_data 
      */
@@ -40,27 +38,23 @@ abstract class _ArrayAccess implements \ArrayAccess {
      * 
      * Implementation for interface ArrayAccess
      * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     GI.01.00
+     * @since       GI.01.00
      * 
      * @param       array $data [optional]
      */
     public function __construct(array $data = []) {
         $this->_data = [];
         foreach ($data as $key => $value) {
-            $this->offsetSet($key, $value);
+            //var_dump($key);
+            static::offsetSet($key, $value);
         }
     }
 
     /**
      * Implementation for interface ArrayAccess
      * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
-     * @version     GI.01.00
+     * @since       GI.01.00
      * 
      * @param       string $offset.
      * 
@@ -73,12 +67,11 @@ abstract class _ArrayAccess implements \ArrayAccess {
     /**
      * Implementation for interface ArrayAccess
      * 
-     * @since       2017-02-02
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
 
      * 
-     * @version     GI.01.00
+     * @since       GI.01.00
      * 
      * @param       string $offset.
      * 
@@ -91,10 +84,8 @@ abstract class _ArrayAccess implements \ArrayAccess {
     /**
      * Implementation for interface ArrayAccess
      * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @since       GI.01.00
      * 
-     * @version     GI.01.00
      * 
      * @param       type $offset.
      * @param       type $value.
@@ -102,7 +93,7 @@ abstract class _ArrayAccess implements \ArrayAccess {
      * @return      void
      */
     public function offsetSet($offset, $value) {
-        if (is_null($offset)) {
+        if (is_int($offset)) {
             $this->_data[] = $value;
         } else {
             $this->_data[$offset] = $value;
@@ -112,10 +103,8 @@ abstract class _ArrayAccess implements \ArrayAccess {
     /**
      * Implementation for interface ArrayAccess
      * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @since       GI.01.00
      * 
-     * @version     GI.01.00
      * 
      * @param       string $offset.
      * 
@@ -132,11 +121,9 @@ abstract class _ArrayAccess implements \ArrayAccess {
  * @abstract
  * Implements Iterator http://php.net/manual/en/class.iterator.php
  * 
- * @since       2017-03-13
+ * @since       GI.01.00
+ * 
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
- * 
- * @version     GI.01.00
- * 
  */
 abstract class _Iterator extends _ArrayAccess implements \Iterator {
 
@@ -146,11 +133,7 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
      * 
      * Implementation for interface Iterator
      * 
-     * @since       2017-03-13
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     GI.01.00
-     * 
+     * @since       GI.01.00
      * @param       array $data [optional]
      */
     public function __construct(array $data = []) {
@@ -159,13 +142,9 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
     }
 
     /**
-     * 
      * Implementation for interface Iterator
      * 
-     * @since       2017-03-13
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     GI.01.00
+     * @since       GI.01.00
      * 
      */
     function rewind() {
@@ -176,10 +155,7 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
      * 
      * Implementation for interface Iterator
      * 
-     * @since       2017-03-13
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     GI.01.00
+     * @since       GI.01.00
      * 
      */
     function current() {
@@ -190,11 +166,7 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
      * 
      * Implementation for interface Iterator
      * 
-     * @since       2017-03-13
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     GI.01.00
-     * 
+     * @since       GI.01.00
      */
     function key() {
         return $this->_position;
@@ -204,10 +176,7 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
      * 
      * Implementation for interface Iterator
      * 
-     * @since       2017-03-13
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     GI.01.00
+     * @since       GI.01.00
      * 
      */
     function next() {
@@ -218,10 +187,7 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
      * 
      * Implementation for interface Iterator
      * 
-     * @since       2017-03-13
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     GI.01.00
+     * @since       GI.01.00
      * 
      */
     function valid() {

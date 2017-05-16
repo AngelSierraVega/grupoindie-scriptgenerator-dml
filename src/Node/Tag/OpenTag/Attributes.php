@@ -1,26 +1,24 @@
 <?php
-
 /*
- * Copyright (C) 2016 Angel Sierra Vega. Grupo INDIE.
+ * Copyright (C) 2017 Angel Sierra Vega. Grupo INDIE.
  *
- * This software is protected under GNU: you can use, share, study and 
- * modify it but not distribute it under the terms of the GNU General 
- * Public License as published by the Free Software Foundation, either 
- * version 3 of the License, or (at your option) any later version.
+ * This software is protected under GNU: you can use, study and modify it
+ * but not distribute it under the terms of the GNU General Public License 
+ * as published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  */
 
-namespace GIgenerator\DML\Node\Tag\OpenTag;
+namespace GIndie\Generator\DML\Node\Tag\OpenTag;
 
 /**
  * Represents the collection of attributes in a DML open tag.
  * 
  * @package     DML
- * @subpackage  Node
  * @category    API
  * 
  * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
- * @version     GI-DML.01
+ * @version     GI-DML.01.03
  * @since       2017-02-02
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
@@ -30,14 +28,14 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate {
     /**
      * Creates a representation of the attributes in a DML open tag.
      * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     beta.00.03
-     * @param       array $attributes [optional]
+     * @param       array $attributes [optional] [description]
      * 
      * @return      Attributes
+     * 
+     * @since       GIG-DML.01.03
+     * 
      */
+    
     public function __construct(array $attributes = []) {
         parent::__construct($attributes);
     }
@@ -45,12 +43,10 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate {
     /**
      * Casts the attributes as a string.
      * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     beta.02.00
-     * 
      * @return      string
+     * 
+     * @since       GIG-DML.01.00
+     * 
      */
     public function __toString() {
         $_ctrlArray = [];
@@ -67,15 +63,13 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate {
     /**
      * Implementation for interface IteratorAggregate
      * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
+     * @return      \ArrayIterator
      * 
-     * @version     beta.02.00
+     * @since       GIG-DML.01.00
      * 
-     * @return      ArrayIterator
      */
     public function getIterator() {
-        return new ArrayIterator($this);
+        return new \ArrayIterator($this);
     }
 
     /**
@@ -86,18 +80,16 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate {
      * <pre>$array[] = "value";</pre> 
      * <i>Stores as <pre>$array["value"] = "";</pre></i>
      * 
-     * @since       2017-02-02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-     * @version     beta.02.00
-     * 
-     * @param       $offset.
-     * @param       $value.
+     * @param     [type]  $offset.  [description]
+     * @param     [type]  $value. [description]
      * 
      * @return      void
+     * 
+     * @since      GIG-DML.01.00 
      */
     public function offsetSet($offset, $value) {
-        if (is_null($offset)) {
+        
+        if (is_int($offset)) {
             // replaces $offset for $value
             $this->_data[$value] = "";
         } else {
@@ -107,24 +99,19 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate {
     
     /**
      * Implementation for interface ArrayAccess
-     * 
-     * @since       2017-03-31
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * 
-
-     * 
-     * @version     GI.01.02
-     * 
-     * @param       string $offset.
+     *
+     * @param      string $offset [description]
      * 
      * @return      mixed|FALSE An instance of the offsetted data. FALSE if it's not setted.
+     * 
+     * @since       GIG-DML.01.02
      */
     public function offsetGet($offset) {
         if (isset($this->_data[$offset])) {
             $rtn = &$this->_data[$offset];
             return $rtn;
         }
-        return FALSE;
+        return \FALSE;
     }
 
 }

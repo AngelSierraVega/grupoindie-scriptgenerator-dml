@@ -14,7 +14,7 @@
  * @internal 
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  */
-class Document extends \GIgenerator\DML\Node\Node {
+class Document extends \GIndie\Generator\DML\Node\Node {
 
     private $_html;
     private $_head;
@@ -26,19 +26,25 @@ class Document extends \GIgenerator\DML\Node\Node {
      */
     public function __construct($title) {
         parent::__construct($tag = null, $emptyNode = false);
-        parent::addContent(\GIgenerator\DML\Node::EmptyNode("!DOCTYPE", ["html" => null]));
-        
-        $this->_html = parent::addContent(\GIgenerator\DML\Node::Simple($tag = "html", $attributes = ["lang" => "en"]));
+        parent::addContent(\GIndie\Generator\DML\Node::EmptyNode("!DOCTYPE",
+                        ["html" => null]));
 
-        $this->_head = $this->_html->addContent(\GIgenerator\DML\Node::Simple($tag = "head"));
-        $this->_head->addContent(\GIgenerator\DML\Node::EmptyNode($tag = "meta", ["charset" => "UTF-8"]));
-        $this->_head->addContent(\GIgenerator\DML\Node::Simple($tag = "title",[], [$title]));
+        $this->_html = parent::addContentGetPointer(\GIndie\Generator\DML\Node::Simple($tag = "html",
+                                $attributes = ["lang" => "en"]));
 
-        $this->_body = $this->_html->addContent(\GIgenerator\DML\Node::Simple("body"));
+        $this->_head = $this->_html->addContentGetPointer(\GIndie\Generator\DML\Node::Simple($tag = "head"));
+        $this->_head->addContent(\GIndie\Generator\DML\Node::EmptyNode($tag = "meta",
+                        ["charset" => "UTF-8"]));
+        $this->_head->addContent(\GIndie\Generator\DML\Node::Simple($tag = "title",
+                        [], [$title]));
+
+        $this->_body = $this->_html->addContentGetPointer(\GIndie\Generator\DML\Node::Simple("body"));
     }
-    
+
     public function addContent($content) {
         return $this->_body->addContent($content);
     }
+    
+    
 
 }

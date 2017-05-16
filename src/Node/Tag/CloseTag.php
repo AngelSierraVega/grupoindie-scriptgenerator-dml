@@ -9,31 +9,30 @@
  * License, or (at your option) any later version.
  */
 
-namespace GIgenerator\DML\Node\Tag;
+namespace GIndie\Generator\DML\Node\Tag;
 
 /**
  * Close tag
  * 
  * @package     DML
- * @subpackage  Node
  * @category    API
  * 
  * @copyright   (c) 2017 Angel Sierra Vega. Grupo INDIE.
  *
- * @version     GI-DML.01.00
+ * @version     GIG-DML.01.00
  * @since       2016-12-16
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
  */
-class CloseTag extends \GIgenerator\DML\Node\Tag {
+class CloseTag extends \GIndie\Generator\DML\Node\Tag {
 
     /**
-     * String containing the open simbol of the tag.
-     * @var     string
+     * 
+     * @var     string  String containing the open simbol of the tag.
+     * 
      * @static
-     * @since   2016-12-16
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
-     * @version GI-DML.01.00
+     * 
+     * @since   GIG-DML.01.00
      */
     protected static $OpenSimbol = "</";
 

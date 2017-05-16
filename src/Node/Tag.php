@@ -32,50 +32,44 @@ abstract class Tag {
      * @var     string|null  The value of the tag.
      * 
      * @since   GIG-DML.01.01
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     protected $_tag;
 
     /**
-     * @static
      * @var     string String containing the open simbol of the tag.
+     * @static
      *   
      * @since   GIG-DML.01.01
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     protected static $OpenSimbol = "<";
 
     /**
-     * @static
      * @var     string String containing the close simbol of the tag.
+     * @static
      * 
      * @since   GIG-DML.01.01
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     protected static $CloseSimbol = ">";
 
     /**
      * Creates a new tag object.
      * 
-     * @param   $tag [optional]
+     * @param   string|NULL $tagname The name of the tag. NULL if no tag.
      * 
      * @return  Tag
-     * @throws  NA
      * 
      * @since   GIG-DML.01.01
-     * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
-    function __construct($tag = \NULL) {
-        $this->_tag = $tag;
+    function __construct($tagname = \NULL) {
+        $this->_tag = $tagname;
     }
 
     /**
      * Casts the tag object as a string.
      * 
-     * @return  string
+     * @return      string
      * 
      * @since       GIG-DML.01.01
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      * 
      */
     public function __toString() {
@@ -83,18 +77,17 @@ abstract class Tag {
     }
 
     /**
-     * Sets the tag
+     * Sets the tag's name.
      * 
      * @return      boolean TRUE
      * 
-     * @param       type $tag
+     * @param       string $tagname The name of the tag.
      * 
      * @since       GIG-DML.01.01
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      *      * 
      */
-    public function setTag($tag) {
-        $this->_tag = $tag;
+    public function setTag($tagname) {
+        $this->_tag = $tagname;
         return \TRUE;
     }
 

@@ -43,11 +43,13 @@ class Node extends Node\Node {
     /**
      * Creates a simple DML node.
      * 
+     * @static
+     * 
      * @param   string $tagname The name of the tag.
      * @param   array $attributes [optional] An associative array where 
-     *              key = Attribute name and value = The literal value of the attribute.
-     *                  
-     * @param   array $content [optional]
+     *              key = Attribute name and value = The literal value of the attribute.   
+     * @param   array $content [optional] An array containing the literal contents
+     *              of the node
      * 
      * @return  \GIndie\Generator\DML\Node\Node An object representation of a DML node.
      * 
@@ -84,7 +86,6 @@ class Node extends Node\Node {
      *  </pre></i>
      * 
      * @version     GIG-DML.01.02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public static function Simple($tagname, array $attributes = [],
             array $content = []) {
@@ -94,8 +95,11 @@ class Node extends Node\Node {
     /**
      * Creates a closed (open tag only) DML node.
      * 
-     * @param   $tag
-     * @param   array $attributes [optional]
+     * @static
+     * 
+     * @param   string $tagname The name of the tag.
+     * @param   array $attributes [optional] An associative array where 
+     *              key = Attribute name and value = The literal value of the attribute.
      * 
      * @return Node\Node An object representation of a node.
      * 
@@ -108,16 +112,18 @@ class Node extends Node\Node {
      *  </pre></i>
      * 
      * @version     GIG-DML.01.02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
-    public static function Closed($tag, array $attributes = []) {
-        return new static($tag, "closed", $attributes);
+    public static function Closed($tagname, array $attributes = []) {
+        return new static($tagname, "closed", $attributes);
     }
 
     /**
      * Creates a <i>content only</i> node.
      * 
-     * @param       array $content
+     * @static
+     * 
+     * @param   array $content An array containing the literal contents
+     *              of the node.
      * 
      * @return      Node\Node An object representation of a <i>content only</i> node.
      * 
@@ -130,7 +136,6 @@ class Node extends Node\Node {
      *  </pre></i>
      * 
      * @version     GIG-DML.01.02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public static function ContentOnly(array $content) {
         return new static(\NULL, \FALSE, [], $content);
@@ -139,8 +144,11 @@ class Node extends Node\Node {
     /**
      * Creates an empty (open tag only) DML node.
      * 
-     * @param       $tag
-     * @param       array $attributes [optional]
+     * @static
+     * 
+     * @param       string $tagname The name of the tag.
+     * @param   array $attributes [optional] An associative array where 
+     *              key = Attribute name and value = The literal value of the attribute.
      * 
      * @return      Node\Node An object representation of an <i>empty</i> DML node.
      * 
@@ -153,7 +161,6 @@ class Node extends Node\Node {
      *  </pre></i>
      * 
      * @version     GIG-DML.01.02
-     * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public static function EmptyNode($tag, array $attributes = []) {
         return new static($tag, \TRUE, $attributes, []);

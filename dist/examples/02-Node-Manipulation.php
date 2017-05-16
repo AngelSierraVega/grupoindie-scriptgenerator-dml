@@ -14,7 +14,7 @@ require_once '../DML.phar';
 echo "------------ Node manipulation ------------ \n\n";
 
 echo "--- Example 1: Adding simple content. \n";
-$node = GIgenerator\DML\Node::Simple("node");
+$node = GIndie\Generator\DML\Node::Simple("node");
 $node->addContent("content");
 echo $node; //Should render: <node>content</node>
 echo "\n\n";
@@ -30,24 +30,24 @@ echo $node; //Should render: <parent></parent>
 echo "\n\n";
 
 echo "--- Example 4: Nesting nodes. \n";
-$node->addContent(GIgenerator\DML\Node::Simple("child"));
+$node->addContent(GIndie\Generator\DML\Node::Simple("child"));
 echo $node; //Should render: <parent><child></child></parent>
 echo "\n\n";
 
 echo "--- Example 5: Prettyfy. \n";                                             //Should render: 
-$root = GIgenerator\DML\Node::Simple("root");                                   //  <root>
-$root->addContent(GIgenerator\DML\Node::Simple("parent1"));                     //    <parent1></parent1>
-$parent = $root->addContent(GIgenerator\DML\Node::Simple("parent2"));           //    <parent2>
-$parent->addContent(GIgenerator\DML\Node::Closed("closedChild"));               //      <closedChild />
-$root->prettyfy(0, true, true);                                                 //    </parent2>
-echo $root;                                                                     //  </root>
+$root = GIndie\Generator\DML\Node::Simple("root");                                  //  <root>
+$root->addContent(GIndie\Generator\DML\Node::Simple("parent1"));                    //    <parent1></parent1>
+$parent = $root->addContentGetPointer(GIndie\Generator\DML\Node::Simple("parent2"));//    <parent2>                                                     //    <parent2>
+$parent->addContent(GIndie\Generator\DML\Node::Closed("closedChild"));              //      <closedChild />
+$root->prettyfy(0, true);                                                           //    </parent2>                                                                //    </parent2>
+echo $root;                                                                         //  </root>
 echo "\n\n";
 
 
 echo "------------ Attribute manipulation ------------ \n\n";
 
 echo "--- Example 6: Setting attributes. \n";
-$node = GIgenerator\DML\Node::Simple("node", ["attr"=>null]);
+$node = GIndie\Generator\DML\Node::Simple("node", ["attr" => null]);
 $node->setAttribute("attr2", "value");
 echo $node; //Should render: <node attr attr2='value'></node>
 echo "\n\n";
