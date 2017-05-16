@@ -88,7 +88,7 @@ class Node extends Node\Node {
      */
     public static function Simple($tagname, array $attributes = [],
             array $content = []) {
-        return new static($tagname, false, $attributes, $content);
+        return new static($tagname, \FALSE, $attributes, $content);
     }
 
     /**
@@ -133,7 +133,7 @@ class Node extends Node\Node {
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public static function ContentOnly(array $content) {
-        return new static(null, false, [], $content);
+        return new static(\NULL, \FALSE, [], $content);
     }
 
     /**
@@ -156,7 +156,7 @@ class Node extends Node\Node {
      * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
      */
     public static function EmptyNode($tag, array $attributes = []) {
-        return new static($tag, true, $attributes, []);
+        return new static($tag, \TRUE, $attributes, []);
     }
 
 }
