@@ -20,16 +20,25 @@ echo $node; //Should render: <node>content</node>
 echo "\n\n";
 
 echo "--- Example 2: Remove content. \n";
+$node = GIndie\Generator\DML\Node::Simple("node");
+$node->addContent("content");
 $node->removeContent();
 echo $node; //Should render: <node></node>
 echo "\n\n";
 
 echo "--- Example 3: Set tag. \n";
+$node = GIndie\Generator\DML\Node::Simple("node");
+$node->addContent("content");
+$node->removeContent();
 $node->setTag("parent");
 echo $node; //Should render: <parent></parent>
 echo "\n\n";
 
 echo "--- Example 4: Nesting nodes. \n";
+$node = GIndie\Generator\DML\Node::Simple("node");
+$node->addContent("content");
+$node->removeContent();
+$node->setTag("parent");
 $node->addContent(GIndie\Generator\DML\Node::Simple("child"));
 echo $node; //Should render: <parent><child></child></parent>
 echo "\n\n";
@@ -49,14 +58,19 @@ echo "------------ Attribute manipulation ------------ \n\n";
 echo "--- Example 6: Setting attributes. \n";
 $node = GIndie\Generator\DML\Node::Simple("node", ["attr" => null]);
 $node->setAttribute("attr2", "value");
-echo $node; //Should render: <node attr attr2='value'></node>
+echo $node; //Should render: <node attr attr2="value"></node>
 echo "\n\n";
 
 echo "--- Example 7: Unsetting attribute. \n";
+$node = GIndie\Generator\DML\Node::Simple("node", ["attr" => null]);
+$node->setAttribute("attr2", "value");
 $node->unsetAttribute("attr");
-echo $node; //Should render: <node attr2='value'></node>
+echo $node; //Should render: <node attr2="value"></node>
 echo "\n\n";
 
 echo "--- Example 8: Getting attribute. \n";
+$node = GIndie\Generator\DML\Node::Simple("node", ["attr" => null]);
+$node->setAttribute("attr2", "value");
+$node->unsetAttribute("attr");
 echo $node->getAttribute("attr2"); //Should render: value
 echo "\n\n";

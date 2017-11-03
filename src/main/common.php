@@ -12,6 +12,105 @@
 namespace GIndie;
 
 /**
+ * Represents a Unit-Test
+ * 
+ * @version GI.00.02
+ * @since   2017-05-18
+ * 
+ * @author  Angel Sierra Vega <angel.sierra@grupoindie.com>
+ */
+class Test
+{
+
+    /**
+     * @final
+     * @since GI.00.01
+     */
+    final private function __construct()
+    {
+        echo "<div style=\"font-size: 1.4em;\">------------ " .
+        \get_called_class() .
+        "</div>\n";
+        $ignoreFunctions = \get_class_methods(__CLASS__);
+        $testFunctions = \get_class_methods(\get_called_class());
+        foreach ($testFunctions as $function) {
+            \in_array($function, $ignoreFunctions) ?: static::{$function}();
+        }
+    }
+
+    /**
+     * 
+     * Execute a string comparing test.
+     * @static
+     * 
+     * @param string $expected The expected output.
+     * @param string $result The code that generates the expected output.
+     * 
+     * @since GI.00.01
+     * @version GI.00.01
+     */
+    public static function execStrCmp($expected, $result)
+    {
+        echo "<div style=\"font-size: 1.1em;\">" .
+        debug_backtrace()[1]['function'] . "::";
+        switch (\strcmp($expected, $result))
+        {
+            case 0:
+                echo "<span style=\"color: green; font-weight: bolder;\">Passed</span></div>";
+                break;
+            default:
+                echo "<span style=\"color:red; font-weight: bolder;\"'>Error:</span></div>";
+                echo "<br/><span style=\"font-size: 1.05em;\">Expected:</span><pre>" .
+                htmlentities($expected) . "</pre>" .
+                "<span style=\"font-size: 1.05em;\">Resutl:</span><pre>" . htmlentities($result) .
+                "</pre><br />\n <------------------------>";
+                break;
+        }
+    }
+
+    /**
+     * 
+     * Execute a string comparing test.
+     * @static
+     * 
+     * @param \Exception $exception The exception to be compared.
+     * 
+     * @since GI.02.00
+     * @version GI.02.00
+     */
+    public static function execExceptionCmp(\Exception $exception = null)
+    {
+        echo "<div style=\"font-size: 1.1em;\">" .
+        debug_backtrace()[1]['function'] . "::";
+        switch (true)
+        {
+            case \is_null($exception):
+                echo "<span style=\"color:red; font-weight: bolder;\"'>Error</span></div>";
+                break;
+            default:
+                echo "<span style=\"color: green; font-weight: bolder;\">Passed (exception thrown) ";
+                echo "</span>";
+                echo $exception->getMessage();
+                echo "</div>";
+                break;
+        }
+    }
+
+    /**
+     * Runs the user defined functions. Implementation of a singleton pattern 
+     *      for Test class.
+     * @static
+     * 
+     * @since GI.00.01
+     */
+    public static function run()
+    {
+        new static();
+    }
+
+}
+
+/**
  * @internal
  * @abstract
  * Implements ArrayAccess http://php.net/manual/en/class.arrayaccess.php
@@ -19,20 +118,23 @@ namespace GIndie;
  * @since       2017-02-02
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
- * @version     GI.01.00
+ * @version GI.01.00
+ * @update GI.02.00 Changed var names in complyance with PSR
  * 
  */
-abstract class _ArrayAccess implements \ArrayAccess {
+abstract class _ArrayAccess implements \ArrayAccess
+{
 
     /**
      * Stores the data array
      * 
-     * @since       GI.01.00
+     * @since GI.01.00
+     * @update GI.02.00 Changed var name in complyance with PSR
      * 
      * 
-     * @var         array $_data 
+     * @var array $data 
      */
-    protected $_data;
+    protected $data;
 
     /**
      * 
@@ -42,8 +144,9 @@ abstract class _ArrayAccess implements \ArrayAccess {
      * 
      * @param       array $data [optional]
      */
-    public function __construct(array $data = []) {
-        $this->_data = [];
+    public function __construct(array $data = [])
+    {
+        $this->data = [];
         foreach ($data as $key => $value) {
             //var_dump($key);
             static::offsetSet($key, $value);
@@ -60,8 +163,9 @@ abstract class _ArrayAccess implements \ArrayAccess {
      * 
      * @return      bool True if setted, false otherwise.
      */
-    public function offsetExists($offset) {
-        return isset($this->_data[$offset]);
+    public function offsetExists($offset)
+    {
+        return isset($this->data[$offset]);
     }
 
     /**
@@ -77,8 +181,9 @@ abstract class _ArrayAccess implements \ArrayAccess {
      * 
      * @return      mixed|null The offsetted data. Null if it's not setted.
      */
-    public function offsetGet($offset) {
-        return isset($this->_data[$offset]) ? $this->_data[$offset] : null;
+    public function offsetGet($offset)
+    {
+        return isset($this->data[$offset]) ? $this->data[$offset] : null;
     }
 
     /**
@@ -92,11 +197,12 @@ abstract class _ArrayAccess implements \ArrayAccess {
      * 
      * @return      void
      */
-    public function offsetSet($offset, $value) {
-        if (is_int($offset)) {
-            $this->_data[] = $value;
+    public function offsetSet($offset, $value)
+    {
+        if (\is_int($offset)) {
+            $this->data[] = $value;
         } else {
-            $this->_data[$offset] = $value;
+            $this->data[$offset] = $value;
         }
     }
 
@@ -110,8 +216,9 @@ abstract class _ArrayAccess implements \ArrayAccess {
      * 
      * @return      void
      */
-    public function offsetUnset($offset) {
-        unset($this->_data[$offset]);
+    public function offsetUnset($offset)
+    {
+        unset($this->data[$offset]);
     }
 
 }
@@ -125,7 +232,8 @@ abstract class _ArrayAccess implements \ArrayAccess {
  * 
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  */
-abstract class _Iterator extends _ArrayAccess implements \Iterator {
+abstract class _Iterator extends _ArrayAccess implements \Iterator
+{
 
     private $_position = 0;
 
@@ -136,7 +244,8 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
      * @since       GI.01.00
      * @param       array $data [optional]
      */
-    public function __construct(array $data = []) {
+    public function __construct(array $data = [])
+    {
         parent::__construct($data);
         $this->_position = 0;
     }
@@ -147,7 +256,8 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
      * @since       GI.01.00
      * 
      */
-    function rewind() {
+    function rewind()
+    {
         $this->_position = 0;
     }
 
@@ -158,7 +268,8 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
      * @since       GI.01.00
      * 
      */
-    function current() {
+    function current()
+    {
         return $this->_data[$this->_position];
     }
 
@@ -168,7 +279,8 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
      * 
      * @since       GI.01.00
      */
-    function key() {
+    function key()
+    {
         return $this->_position;
     }
 
@@ -179,7 +291,8 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
      * @since       GI.01.00
      * 
      */
-    function next() {
+    function next()
+    {
         ++$this->_position;
     }
 
@@ -190,7 +303,8 @@ abstract class _Iterator extends _ArrayAccess implements \Iterator {
      * @since       GI.01.00
      * 
      */
-    function valid() {
+    function valid()
+    {
         return isset($this->_data[$this->_position]);
     }
 

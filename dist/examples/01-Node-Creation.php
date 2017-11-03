@@ -44,6 +44,6 @@ echo "--- Example 7: Node with simple attribute. \n";//Should render: <node attr
 echo GIndie\Generator\DML\Node::Simple("node",["attr1","attr2"]);
 echo "\n\n";
 
-echo "--- Example 8: Node with attribute-value. \n";//Should render: <node attr='val'></node>
+echo "--- Example 8: Node with attribute-value. \n";//Should render: <node attr="val"></node>
 echo GIndie\Generator\DML\Node::Simple("node",["attr"=>"val"]);
 echo "\n\n";

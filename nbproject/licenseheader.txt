@@ -1,0 +1,22 @@
+<#assign licenseFirst = "/**">
+<#assign licensePrefix = " * ">
+<#assign licenseLast = " */">
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}${project.displayName} - ${name} ${date?date?string("yyyy-MM-dd")}
+${licensePrefix?replace(" +$", "", "r")}
+${licensePrefix}@copyright (L) ${date?date?string("yyyy")} Angel Sierra Vega. Grupo INDIE.
+${licensePrefix?replace(" +$", "", "r")}
+${licensePrefix}This software is protected under GNU: you can use, study and modify it
+${licensePrefix}but not distribute it under the terms of the GNU General Public License 
+${licensePrefix}as published by the Free Software Foundation, either version 3 of the
+${licensePrefix}License, or (at your option) any later version.
+${licensePrefix?replace(" +$", "", "r")}
+${licensePrefix}@package Generator
+${licensePrefix}@subpackage DML
+${licensePrefix?replace(" +$", "", "r")}
+${licensePrefix}@version GIG-DML.00.00
+<#if licenseLast??>
+${licenseLast}
+</#if>
