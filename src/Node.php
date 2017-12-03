@@ -13,18 +13,21 @@
  * @package Generator
  * @subpackage DML
  *
- * @version GIG-DML.01.03
+ * @version GIG-DML.02.00
  */
 
 namespace GIndie\Generator\DML;
 
 /**
+ * This project is a framework for implementing a <b>Descriptive Markup Languaje</b>
  * Factory Pattern for a <b>Descriptive Markup Languaje</b> (<b>DML</b>).
  * 
  * LaTeX, XML, and HTML are examples of languajes that can be generated using<br />
  * this class (more info. at <https://en.wikipedia.org/wiki/Markup_language>).
  *  
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * 
+ * @version GIG-DML.02.00
  * 
  */
 class Node extends Node\NodeAbs
@@ -33,7 +36,6 @@ class Node extends Node\NodeAbs
     /**
      * Creates a simple DML node.
      * 
-     * @static
      * 
      * @param   string $tagname The name of the tag.
      * @param   array $attributes [optional] An associative array where 
@@ -75,7 +77,8 @@ class Node extends Node\NodeAbs
      *      <parent><child></child></parent>
      *  </pre></i>
      * 
-     * @version     GIG-DML.01.02
+     * @version GIG-DML.01.02
+     * @deprecated since GIG-DML.02.00 Due to PSR-1 violation. Use Node::defaultNode() instead.
      */
     public static function Simple($tagname, array $attributes = [],
                                   array $content = [])
@@ -102,7 +105,8 @@ class Node extends Node\NodeAbs
      *      <node_closed />
      *  </pre></i>
      * 
-     * @version     GIG-DML.01.02
+     * @version GIG-DML.01.02
+     * @deprecated since GIG-DML.02.00 Due to PSR-1 violation. Use Node::emptyClosed() instead.
      */
     public static function Closed($tagname, array $attributes = [])
     {
@@ -127,7 +131,9 @@ class Node extends Node\NodeAbs
      *      <content1></content1><content2></content2>
      *  </pre></i>
      * 
-     * @version     GIG-DML.01.02
+     * @since GIG-DML.01.02
+     * @version GIG-DML.02.00 Renamed due to PSR-1 violation
+     * @deprecated since GIG-DML.02.00 Due to PSR-1 violation. Use Node::contentOnly() instead.
      */
     public static function ContentOnly(array $content)
     {
@@ -154,10 +160,60 @@ class Node extends Node\NodeAbs
      *  </pre></i>
      * 
      * @version     GIG-DML.01.02
+     * @deprecated since GIG-DML.02.00 Due to PSR-1 violation. Use Node::emptyOpen() instead.
      */
     public static function EmptyNode($tag, array $attributes = [])
     {
         return new static($tag, \TRUE, $attributes, []);
+    }
+
+    /**
+     * 
+     * @param mixed $content
+     * @return \static
+     * @since GIG-DML.02.00
+     */
+    public static function contentOnly($content = null)
+    {
+        return new static(static::TYPE_CONTENT_ONLY, null, null, $content);
+    }
+
+    /**
+     * 
+     * @param string $tagName
+     * @param mixed $attributes
+     * @param mixed $content
+     * @return \static
+     * @since GIG-DML.02.00
+     */
+    public static function defaultNode($tagName, $attributes = null,
+                                       $content = null)
+    {
+        return new static(static::TYPE_DEFAULT, $tagName, $attributes, $content);
+    }
+
+    /**
+     * 
+     * @param string $tagName
+     * @param mixed $attributes
+     * @return \static
+     * @since GIG-DML.02.00
+     */
+    public static function emptyClosed($tagName, $attributes = null)
+    {
+        return new static(static::TYPE_EMPTY_CLOSED, $tagName, $attributes);
+    }
+
+    /**
+     * 
+     * @param string $tagName
+     * @param mixed $attributes
+     * @return \static
+     * @since GIG-DML.02.00
+     */
+    public static function emptyOpen($tagName, $attributes = null)
+    {
+        return new static(static::TYPE_EMPTY_OPEN, $tagName, $attributes);
     }
 
 }
