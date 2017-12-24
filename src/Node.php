@@ -10,10 +10,8 @@
  * as published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  *
- * @package Generator
+ * @package ScriptGenerator
  * @subpackage DML
- *
- * @version GIG-DML.02.00
  */
 
 namespace GIndie\Generator\DML;
@@ -28,24 +26,25 @@ namespace GIndie\Generator\DML;
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
  * @version GIG-DML.02.00
- * 
+ * @version SG-DML.00.00 Updated project version
+ * @edit SG-DML.00.01
+ * - Renamed functions for PSR-1 complyance.
  */
 class Node extends Node\NodeAbs
 {
 
     /**
-     * Creates a simple DML node.
+     * Alias for defaultNode(). Creates a simple DML node. 
      * 
-     * 
-     * @param   string $tagname The name of the tag.
-     * @param   array $attributes [optional] An associative array where 
+     * @param string $tagname The name of the tag.
+     * @param array $attributes [optional] An associative array where 
      *              key = Attribute name and value = The literal value of the attribute.   
-     * @param   array $content [optional] An array containing the literal contents
+     * @param array $content [optional] An array containing the literal contents
      *              of the node
      * 
-     * @return  \GIndie\Generator\DML\Node An object representation of a DML node.
+     * @return \GIndie\Generator\DML\Node An object representation of a DML node.
      * 
-     * @example examples/01-Node-Creation.php Example 1: Simple node.
+     * @example http://local.dvlp/ScriptGenerator/DML/dist/examples/01-Node-Creation.php Example 1: Simple node.
      *  <pre>  
      *      echo GIndie\Generator\DML\Node::Simple("node_simple");
      * </pre> 
@@ -53,7 +52,7 @@ class Node extends Node\NodeAbs
      *      <node_simple></node_simple>
      *  </pre></i>
      * 
-     * @example examples/01-Node-Creation.php Example 8: Node with attribute-value.
+     * @example /../examples/01-Node-Creation.php Example 8: Node with attribute-value.
      *  <pre>  
      *      echo GIndie\Generator\DML\Node::Simple("node",["attr"=>"val"]);
      * </pre> 
@@ -61,7 +60,7 @@ class Node extends Node\NodeAbs
      *      <node attr='val'></node>
      *  </pre></i>
      * 
-     * @example examples/01-Node-Creation.php Example 5: Node with text content.
+     * @example /examples/01-Node-Creation.php Example 5: Node with text content.
      *  <pre>  
      *      echo GIndie\Generator\DML\Node::Simple("node",[],["content"]);
      * </pre> 
@@ -76,20 +75,16 @@ class Node extends Node\NodeAbs
      *  <i><pre>
      *      <parent><child></child></parent>
      *  </pre></i>
-     * 
-     * @version GIG-DML.01.02
-     * @deprecated since GIG-DML.02.00 Due to PSR-1 violation. Use Node::defaultNode() instead.
+     * @since GIG-DML.01.02
+     * @edit SG-DML.00.01
      */
-    public static function Simple($tagname, array $attributes = [],
-                                  array $content = [])
+    public static function simple($tagname, array $attributes = [], array $content = [])
     {
-        return new static($tagname, \FALSE, $attributes, $content);
+        return static::defaultNode($tagname, $attributes, $content);
     }
 
     /**
-     * Creates a closed (open tag only) DML node.
-     * 
-     * @static
+     * Use Node::emptyClosed() instead. Creates a closed (open tag only) DML node. 
      * 
      * @param   string $tagname The name of the tag.
      * @param   array $attributes [optional] An associative array where 
@@ -105,20 +100,18 @@ class Node extends Node\NodeAbs
      *      <node_closed />
      *  </pre></i>
      * 
-     * @version GIG-DML.01.02
-     * @deprecated since GIG-DML.02.00 Due to PSR-1 violation. Use Node::emptyClosed() instead.
+     * @since GIG-DML.01.02
+     * @edit SG-DML.00.01
      */
-    public static function Closed($tagname, array $attributes = [])
+    public static function closed($tagname, array $attributes = [])
     {
-        return new static($tagname, "closed", $attributes, []);
+        return static::emptyClosed($tagname, $attributes);
     }
 
     /**
      * Creates a <i>content only</i> node.
      * 
-     * @static
-     * 
-     * @param   array $content An array containing the literal contents
+     * @param mixed $content An array containing the literal contents
      *              of the node.
      * 
      * @return      Node\Node An object representation of a <i>content only</i> node.
@@ -134,14 +127,15 @@ class Node extends Node\NodeAbs
      * @since GIG-DML.01.02
      * @version GIG-DML.02.00 Renamed due to PSR-1 violation
      * @deprecated since GIG-DML.02.00 Due to PSR-1 violation. Use Node::contentOnly() instead.
+     * @edit SG-DML.00.01
      */
-    public static function ContentOnly(array $content)
+    public static function contentOnly($content = null)
     {
-        return new static(\NULL, \FALSE, [], $content);
+        return new static(static::TYPE_CONTENT_ONLY, null, null, $content);
     }
 
     /**
-     * Creates an empty (open tag only) DML node.
+     * Use Node::emptyOpen() instead. Creates an empty (open tag only) DML node.
      * 
      * @static
      * 
@@ -159,23 +153,12 @@ class Node extends Node\NodeAbs
      *      <node_empty>
      *  </pre></i>
      * 
-     * @version     GIG-DML.01.02
-     * @deprecated since GIG-DML.02.00 Due to PSR-1 violation. Use Node::emptyOpen() instead.
+     * @since GIG-DML.01.02
+     * @edit SG-DML.00.01
      */
-    public static function EmptyNode($tag, array $attributes = [])
+    public static function emptyNode($tag, array $attributes = [])
     {
-        return new static($tag, \TRUE, $attributes, []);
-    }
-
-    /**
-     * 
-     * @param mixed $content
-     * @return \static
-     * @since GIG-DML.02.00
-     */
-    public static function contentOnly($content = null)
-    {
-        return new static(static::TYPE_CONTENT_ONLY, null, null, $content);
+        return static::emptyOpen($tag, $attributes);
     }
 
     /**
@@ -186,8 +169,7 @@ class Node extends Node\NodeAbs
      * @return \static
      * @since GIG-DML.02.00
      */
-    public static function defaultNode($tagName, $attributes = null,
-                                       $content = null)
+    public static function defaultNode($tagName, $attributes = null, $content = null)
     {
         return new static(static::TYPE_DEFAULT, $tagName, $attributes, $content);
     }

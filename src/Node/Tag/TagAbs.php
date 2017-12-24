@@ -12,8 +12,6 @@
  *
  * @package Generator
  * @subpackage DML
- *
- * @version GIG-DML.02.00
  */
 
 namespace GIndie\Generator\DML\Node\Tag;
@@ -23,7 +21,10 @@ namespace GIndie\Generator\DML\Node\Tag;
  * 
  * @abstract
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * 
+ * @version GIG-DML.02.00
+ * @version SG-DML.00.00 Updated project version
+ * @edit SG-DML.00.01
+ * - Created alias for removeAttribute()
  */
 abstract class TagAbs
 {
@@ -167,6 +168,17 @@ abstract class TagAbs
         }
         $this->tagName = $tagname;
         return $this;
+    }
+
+    /**
+     * Alias for removeAttribute().
+     * @param string $attributeName
+     * @since SG-DML.00.01
+     * @return GIndie\Generator\DML\Node\Tag
+     */
+    public function unsetAttribute($attributeName)
+    {
+        return $this->removeAttribute($attributeName);
     }
 
     /**

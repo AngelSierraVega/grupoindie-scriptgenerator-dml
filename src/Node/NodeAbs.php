@@ -156,7 +156,7 @@ abstract class NodeAbs
         {
             case static::TYPE_DEFAULT:
                 $this->tagOpen = Tag::open($tagName, $attributes);
-                $this->tagClose = Tag::close($tagname);
+                $this->tagClose = Tag::close($tagName);
                 break;
             case static::TYPE_EMPTY_CLOSED:
                 $this->tagOpen = Tag::openClosed($tagName, $attributes);

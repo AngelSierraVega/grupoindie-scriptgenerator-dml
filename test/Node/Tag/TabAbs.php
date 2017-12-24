@@ -92,6 +92,8 @@ class TabAbs extends \GIndie\Test
         $expected = "<node />";
         $result = new TestTabAbs(TestTabAbs::TYPE_OPEN_CLOSED, "node",
                                  ["test_attribute" => "lol"]);
+        $result->removeAttribute($expected);
+        $result->removeAttribute($expected);
         $result->unsetAttribute("test_attribute");
         static::execStrCmp($expected, $result);
     }
