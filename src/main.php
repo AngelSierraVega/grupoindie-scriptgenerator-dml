@@ -38,8 +38,4 @@ namespace GIndie\Generator\DML;
             }
     }
 });
-
-require_once __DIR__ . '/main/common.php';
 require_once __DIR__ . '/Node.php';
-
-
