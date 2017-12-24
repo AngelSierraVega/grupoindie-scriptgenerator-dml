@@ -1,7 +1,7 @@
 <?php
 
 /**
- * GIG-DML - Attributes 2017-02-02
+ * SG-DML - Attributes 2017-02-02
  *
  * @copyright (L) 2017 Angel Sierra Vega. Grupo INDIE.
  *
@@ -10,10 +10,8 @@
  * as published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  *
- * @package Generator
+ * @package ScriptGenerator
  * @subpackage DML
- *
- * @version GIG-DML.02.00
  */
 
 namespace GIndie\ScriptGenerator\DML\Node\Tag;
@@ -23,8 +21,12 @@ namespace GIndie\ScriptGenerator\DML\Node\Tag;
  * 
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
+ * @version GIG-DML.00.00 2017-02-02
+ * @version GIG-DML.02.00
+ * @version SG-DML.00.00 2017-12-24
+ * 
  */
-class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate
+class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggregate
 {
 
     /**
@@ -32,10 +34,7 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate
      * 
      * @param array $attributes [optional]
      * 
-     * @returnDPR GIndie\Generator\DML\Node\Tag\Attributes
-     * 
      * @since GIG-DML.01.03
-     * 
      */
     public function __construct(array $attributes = [])
     {
@@ -49,7 +48,6 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate
      * 
      * @since GIG-DML.01.00
      * @version GIG-DML.01.04 Returns doble comma instead of single comma.
-     * 
      */
     public function __toString()
     {
@@ -70,7 +68,6 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate
      * @return \ArrayIterator
      * 
      * @since GIG-DML.01.00
-     * 
      */
     public function getIterator()
     {
@@ -81,16 +78,16 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate
      * Adaptation for interface ArrayAccess. When $offset is NULL this funcion
      * replaces $offset for $value in the internal data.
      * 
-     * @example     Non assoc method
+     * @example Non assoc method
      * <pre>$array[] = "value";</pre> 
      * <i>Stores as <pre>$array["value"] = "";</pre></i>
      * 
-     * @param     [type]  $offset.  [description]
-     * @param     [type]  $value. [description]
+     * @param mixed $offset The offset to assign the value to.
+     * @param mixed $value The value to set.
      * 
-     * @return      void
+     * @return void
      * 
-     * @since      GIG-DML.01.00 
+     * @since GIG-DML.01.00 
      */
     public function offsetSet($offset, $value)
     {
@@ -111,8 +108,7 @@ class Attributes extends \GIndie\_ArrayAccess implements \IteratorAggregate
     /**
      * Implementation for interface ArrayAccess
      *
-     * @param string $offset
-     * 
+     * @param mixed $offset The offset to retrieve.
      * @return mixed An instance of the offsetted data.
      * 
      * @throws \Exception If attribute doesnt exists.

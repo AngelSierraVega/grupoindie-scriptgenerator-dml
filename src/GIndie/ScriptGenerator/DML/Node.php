@@ -42,7 +42,7 @@ class Node extends Node\NodeAbs
      * @param array $content [optional] An array containing the literal contents
      *              of the node
      * 
-     * @return \GIndie\Generator\DML\Node An object representation of a DML node.
+     * @return \GIndie\ScriptGenerator\DML\Node An object representation of a DML node.
      * 
      * @example http://local.dvlp/ScriptGenerator/DML/dist/examples/01-Node-Creation.php Example 1: Simple node.
      *  <pre>  
@@ -90,7 +90,7 @@ class Node extends Node\NodeAbs
      * @param   array $attributes [optional] An associative array where 
      *              key = Attribute name and value = The literal value of the attribute.
      * 
-     * @return Node\Node An object representation of a node.
+     * @return \GIndie\ScriptGenerator\DML\Node An object representation of a node.
      * 
      * @example examples/01-Node-Creation.php Example 3: Closed tag.
      *  <pre>  
@@ -114,7 +114,7 @@ class Node extends Node\NodeAbs
      * @param mixed $content An array containing the literal contents
      *              of the node.
      * 
-     * @return      Node\Node An object representation of a <i>content only</i> node.
+     * @return \GIndie\ScriptGenerator\DML\Node An object representation of a <i>content only</i> node.
      * 
      * @example     examples/01-Node-Creation.php Example 4: Content only node.
      *  <pre>  
@@ -143,7 +143,7 @@ class Node extends Node\NodeAbs
      * @param   array $attributes [optional] An associative array where 
      *              key = Attribute name and value = The literal value of the attribute.
      * 
-     * @return      Node\Node An object representation of an <i>empty</i> DML node.
+     * @return \GIndie\ScriptGenerator\DML\Node An object representation of an <i>empty</i> DML node.
      * 
      * @example     examples/01-Node-Creation.php Example 2: Empty node (open tag only).
      *  <pre>  
@@ -166,7 +166,7 @@ class Node extends Node\NodeAbs
      * @param string $tagName
      * @param mixed $attributes
      * @param mixed $content
-     * @return \static
+     * @return \GIndie\ScriptGenerator\DML\Node
      * @since GIG-DML.02.00
      */
     public static function defaultNode($tagName, $attributes = null, $content = null)
@@ -178,7 +178,7 @@ class Node extends Node\NodeAbs
      * 
      * @param string $tagName
      * @param mixed $attributes
-     * @return \static
+     * @return \GIndie\ScriptGenerator\DML\Node
      * @since GIG-DML.02.00
      */
     public static function emptyClosed($tagName, $attributes = null)
@@ -190,7 +190,7 @@ class Node extends Node\NodeAbs
      * 
      * @param string $tagName
      * @param mixed $attributes
-     * @return \static
+     * @return \GIndie\ScriptGenerator\DML\Node
      * @since GIG-DML.02.00
      */
     public static function emptyOpen($tagName, $attributes = null)

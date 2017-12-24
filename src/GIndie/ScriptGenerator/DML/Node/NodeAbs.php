@@ -1,7 +1,7 @@
 <?php
 
 /**
- * GIG-DML - Node 2016-12-21
+ * SG-DML - Node 2016-12-21
  *
  * @copyright (L) 2017 Angel Sierra Vega. Grupo INDIE.
  *
@@ -10,10 +10,8 @@
  * as published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  *
- * @package Generator
+ * @package ScriptGenerator
  * @subpackage DML
- *
- * @version GIG-DML.01.05
  */
 
 namespace GIndie\ScriptGenerator\DML\Node;
@@ -23,6 +21,8 @@ namespace GIndie\ScriptGenerator\DML\Node;
  * 
  * @abstract  
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @since GIG-DML.00.00 2016-12-21
+ * @version GIG-DML.01.05
  * @version SG-DML.00.00
  * @edit SG-DML.00.01
  *  - Created method: setTag()
@@ -35,20 +35,17 @@ abstract class NodeAbs
     /**
      * Creates a new DML Node object.
      * 
-     * @param   int $type The type of node.
-     * @param   string|null $tagName The name of the tag.
-     * @param   mixed $attributes Either a string or an array An associative array where 
+     * @param int $type The type of node.
+     * @param string|null $tagName The name of the tag.
+     * @param mixed $attributes Either a string or an array An associative array where 
      *              key = Attribute name and value = The literal value of the attribute.   
-     * @param   mixed|NULL $content An array containing the literal contents
+     * @param mixed|null $content An array containing the literal contents
      *              of the node
-     * 
-     * @returnDPR  Node
-     * @throwsDPR  NA
-     * 
-     * @since   GIG-DML.01.03
-     * @version GIG-DML.01.05
-     * @version GIG-DML.02.00 Moved attributes and content funct to sepparated functions.
-     * @version GIG-DML.02.00 Renamed attributes
+
+     * @since GIG-DML.01.03
+     * @edit GIG-DML.01.05
+     * @edit GIG-DML.02.00 Moved attributes and content funct to sepparated functions.
+     * @edit GIG-DML.02.00 Renamed attributes
      */
     protected function __construct($type, $tagName = null, $attributes = null, $content = null)
     {
@@ -88,12 +85,12 @@ abstract class NodeAbs
     /**
      * Appends content into the DML node object.
      * 
-     * @param   mixed $content The content to append to the node.
+     * @param mixed $content The content to append to the node.
+     * @return \GIndie\ScriptGenerator\DML\Node
      * 
-     * @return  \self
-     * @throws  \Exception Throws exception on adding element to empty node.
+     * @throws \Exception Throws exception on adding element to empty node.
      * 
-     * @since   GIG-DML.01.01
+     * @since GIG-DML.01.01
      * @version GIG-DML.01.04
      * @version GIG-DML.02.00 Updated exceptions
      */
@@ -117,8 +114,8 @@ abstract class NodeAbs
      * Appends content to the DML node object and returns a pointer to the added content.
      * 
      * @param mixed $content The content to append to the node.
-     * 
      * @return mixed A pointer to the added content.
+     * 
      * @throws \Exception Throws exception on adding element to empty node.
      * 
      * @since GIG-DML.01.02
@@ -146,6 +143,7 @@ abstract class NodeAbs
      * 
      * @param string $tagName
      * @param mixed $attributes
+     * @return void
      * 
      * @throws \Exception
      * @since GIG-DML.02.00
@@ -174,10 +172,10 @@ abstract class NodeAbs
     /**
      * {@see GIndie\Generator\DML\Node\Tag\OpenTag::getAttribute()}
      * 
-     * @param   string $attributeName The name of the attribute.
-     * @return  GIndie\Generator\DML\Node\Tag\OpenTag::getAttribute()
+     * @param string $attributeName The name of the attribute.
+     * @return GIndie\ScriptGenerator\DML\Node\Tag\OpenTag::getAttribute()
      * 
-     * @since   GIG-DML.01.00
+     * @since GIG-DML.01.00
      */
     public function getAttribute($attributeName)
     {
@@ -205,12 +203,13 @@ abstract class NodeAbs
      * 
      * @deprecated since GIG-DML.02.00
      * 
-     * @param   boolean|int $indentation The custom indendation for the node
-     * @param   boolean $break Whether or not the node breaks
+     * @param boolean|int $indentation The custom indendation for the node
+     * @param boolean $break Whether or not the node breaks
      * 
-     * @return  boolean
+     * @return string
      * 
      * @version GIG-DML.01.02
+     * @todo Programm function
      */
     public function prettyfy($indentation = 0, $break = \TRUE)
     {
@@ -272,7 +271,7 @@ abstract class NodeAbs
      * Alias for removeAttribute().
      * 
      * @param string $attributeName
-     * @return \static
+     * @return \GIndie\ScriptGenerator\DML\Node
      * 
      * @since SG-DML.00.02
      */
@@ -285,8 +284,7 @@ abstract class NodeAbs
      * Removes an attribute by name
      * 
      * @param string $attributeName The name of the attribute to remove
-     * 
-     * @return \static
+     * @return \GIndie\ScriptGenerator\DML\Node
      * 
      * @since GIG-DML.01.00
      * @version GIG-DML.02.00 Renamed function from unsetAttribute
@@ -301,9 +299,9 @@ abstract class NodeAbs
     /**
      * Removes (resets) the content of the node.
      * 
-     * @return \static
+     * @return \GIndie\ScriptGenerator\DML\Node
      * 
-     * @sinceGIG-DML.01.02
+     * @since GIG-DML.01.02
      * @version GIG-DML.02.00 Return static
      */
     public function removeContent()
@@ -318,7 +316,7 @@ abstract class NodeAbs
      * @param string $attributeName The name of the attribute.
      * @param string $value [optional] The value of the attribute.
      * 
-     * @return \static
+     * @return \GIndie\ScriptGenerator\DML\Node
      * 
      * @since GIG-DML.01.00
      * @version GIG-DML.02.00 Return static
@@ -334,7 +332,7 @@ abstract class NodeAbs
      * 
      * @param mixed $content
      * 
-     * @return \static
+     * @return \GIndie\ScriptGenerator\DML\Node
      * 
      * @throws \Exception On trying to set content on empty node.
      * 
@@ -358,7 +356,7 @@ abstract class NodeAbs
     /**
      * Alias for setTagname()
      * @param string $tagname
-     * @return \static
+     * @return \GIndie\ScriptGenerator\DML\Node
      * @since SG-DML.00.01
      */
     public function setTag($tagname)
@@ -370,7 +368,7 @@ abstract class NodeAbs
      * Sets the name of the tag
      * 
      * @param string $tagname The name of the tag
-     * @return \static
+     * @return \GIndie\ScriptGenerator\DML\Node
      * 
      * @since GIG-DML.01.00
      * @version GIG-DML.02.00 Return static
@@ -410,7 +408,7 @@ abstract class NodeAbs
      */
 
     /**
-     * @var GIndie\DML\Node\Tag Object representing the open tag of the node.
+     * @var GIndie\ScriptGenerator\DML\Node\Tag Object representing the open tag of the node.
      * 
      * @since GIG-DML.01.00
      * @version GIG-DML.02.00 Renamed due to PSR-1 compliance.
@@ -419,7 +417,7 @@ abstract class NodeAbs
     protected $tagOpen;
 
     /**
-     * @var GIndie\DML\Node\Tag Object representing the close tag of the node.
+     * @var GIndie\ScriptGenerator\DML\Node\Tag Object representing the close tag of the node.
      * 
      * @since GIG-DML.01.00
      * @version GIG-DML.02.00 Renamed due to PSR-1 compliance.

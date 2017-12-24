@@ -1,7 +1,7 @@
 <?php
 
 /**
- * GIG-DML - TagAbs 2017-11-11
+ * SG-DML - TagAbs 2017-11-11
  *
  * @copyright (L) 2017 Angel Sierra Vega. Grupo INDIE.
  *
@@ -10,7 +10,7 @@
  * as published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  *
- * @package Generator
+ * @package ScriptGenerator
  * @subpackage DML
  */
 
@@ -21,8 +21,10 @@ namespace GIndie\ScriptGenerator\DML\Node\Tag;
  * 
  * @abstract
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @version GIG-DML.00.00 2017-11-11
  * @version GIG-DML.02.00
- * @version SG-DML.00.00 Updated project version
+ * @version SG-DML.00.00 2017-12-23
+ * - Updated project version
  * @edit SG-DML.00.01
  * - Created alias for removeAttribute()
  */
@@ -31,11 +33,10 @@ abstract class TagAbs
 
     /**
      * Creates a new tag object.
+     * 
      * @param int $type The type of tag.
      * @param string $tagname The name of the tag.
      * @param array $attributes The attributes of the tag.
-     * 
-     * @returnDPR GIndie\Generator\DML\Node\Tag
      * 
      * @since GIG-DML.01.01
      * @version GIG-DML.02.00 Protected constructor
@@ -72,13 +73,13 @@ abstract class TagAbs
      * Gets a reference to an attribute.
      * 
      * @param string $attributeName The name of the attribute
-     * 
      * @return mixed An instance of the attribute.
+     * 
      * @throws \Exception If is a close tag
+     * 
      * @since GIG-DML.01.02
      * @version GIG-DML.02.00 Throws exception
      * @todo Check if instance.
-     * 
      */
     public function getAttribute($attributeName)
     {
@@ -93,7 +94,7 @@ abstract class TagAbs
      * 
      * @param string $attributeName The name of the attribute to unset
      * 
-     * @return GIndie\Generator\DML\Node\Tag
+     * @return GIndie\ScriptGenerator\DML\Node\Tag
      * 
      * @throws \Exception
      * 
@@ -115,7 +116,7 @@ abstract class TagAbs
      * @param string $attributeName The name of the attribute
      * @param string|null $value [optional] The value of the attribute
      * 
-     * @return GIndie\Generator\DML\Node\Tag
+     * @return GIndie\ScriptGenerator\DML\Node\Tag
      * 
      * @throws \Exception
      * 
@@ -123,7 +124,7 @@ abstract class TagAbs
      * @version GIG-DML.02.00 Return object not attribute. Throw exception
      * 
      */
-    public function setAttribute($attributeName, $value = \null)
+    public function setAttribute($attributeName, $value = null)
     {
         if ($this->type == static::TYPE_CLOSE) {
             throw new \Exception("Trying to set attribute on an close tag");
@@ -134,9 +135,11 @@ abstract class TagAbs
 
     /**
      * Sets the attributes
+     * 
      * @param array $attributes
+     * @return GIndie\ScriptGenerator\DML\Node\Tag
+     * 
      * @throws \Exception
-     * @return GIndie\Generator\DML\Node\Tag
      */
     public function setAttributes(array $attributes)
     {
@@ -154,12 +157,11 @@ abstract class TagAbs
      * 
      * @param string $tagname The name of the tag.
      * 
-     * @return GIndie\Generator\DML\Node\Tag
+     * @return GIndie\ScriptGenerator\DML\Node\Tag
      * 
      * @throws \Exception
      * 
      * @since GIG-DML.01.01
-     *
      */
     public function setTag($tagname)
     {
@@ -172,9 +174,11 @@ abstract class TagAbs
 
     /**
      * Alias for removeAttribute().
+     * 
      * @param string $attributeName
      * @since SG-DML.00.01
-     * @return GIndie\Generator\DML\Node\Tag
+     * 
+     * @return GIndie\ScriptGenerator\DML\Node\Tag
      */
     public function unsetAttribute($attributeName)
     {
@@ -182,7 +186,7 @@ abstract class TagAbs
     }
 
     /**
-     * @var GIndie\Generator\DML\Node\Attributes Stores the attributes of the node.
+     * @var GIndie\ScriptGenerator\DML\Node\Tag\Attributes Stores the attributes of the node.
      * 
      * @since GIG-DML.01.00
      * @version GIG-DML.02.00 Renamed due to PSR-1 compliance.

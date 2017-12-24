@@ -12,8 +12,6 @@
  *
  * @package ScriptGenerator
  * @subpackage DML
- *
- * @version GIG-DML.02.00
  */
 
 namespace GIndie\ScriptGenerator\DML\Node;
@@ -24,7 +22,9 @@ namespace GIndie\ScriptGenerator\DML\Node;
  *
  * @version GIG-DML.01.02 Updated abstract class as a factory pattern.
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * 
+ * @since GIG-DML.00.00 2016-12-16
+ * @version GIG-DML.02.00
+ * @version SG-DML.00.00
  */
 class Tag extends Tag\TagAbs
 {
@@ -32,7 +32,8 @@ class Tag extends Tag\TagAbs
     /**
      * 
      * @param string $tagname The name of the tag
-     * @return GIndie\Generator\DML\Node\Tag
+     * @return GIndie\ScriptGenerator\DML\Node\Tag
+     * @since GIG-DML.02.00
      */
     public static function close($tagname)
     {
@@ -43,7 +44,8 @@ class Tag extends Tag\TagAbs
      * 
      * @param string $tagname The name of the tag
      * @param array attributes The attributes of the tag
-     * @return GIndie\Generator\DML\Node\Tag
+     * @return GIndie\ScriptGenerator\DML\Node\Tag
+     * @since GIG-DML.02.00
      */
     public static function openClosed($tagname, array $attributes = [])
     {
@@ -54,7 +56,8 @@ class Tag extends Tag\TagAbs
      * 
      * @param string $tagname The name of the tag
      * @param array attributes The attributes of the tag
-     * @return GIndie\Generator\DML\Node\Tag
+     * @return GIndie\ScriptGenerator\DML\Node\Tag
+     * @since GIG-DML.02.00
      */
     public static function open($tagname, array $attributes = [])
     {

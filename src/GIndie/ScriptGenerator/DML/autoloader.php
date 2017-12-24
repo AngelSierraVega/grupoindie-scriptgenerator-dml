@@ -14,7 +14,7 @@
  * @subpackage DML
  */
 
-namespace GIndie\Generator\DML;
+namespace GIndie\ScriptGenerator\DML;
 
 /**
  * Autoloader function
@@ -32,4 +32,4 @@ namespace GIndie\Generator\DML;
             }
     }
 });
-require_once __DIR__ . '/GIndie/Generator/DML/Node.php';
+require_once __DIR__ . '/Node.php';
