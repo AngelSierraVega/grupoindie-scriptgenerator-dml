@@ -26,6 +26,8 @@ namespace GIndie\Generator\DML\Node;
  * @version SG-DML.00.00
  * @edit SG-DML.00.01
  *  - Created method: setTag()
+ * @edit SG-DML.00.02
+ * - Created method: unsetAttribute()
  */
 abstract class NodeAbs
 {
@@ -48,8 +50,7 @@ abstract class NodeAbs
      * @version GIG-DML.02.00 Moved attributes and content funct to sepparated functions.
      * @version GIG-DML.02.00 Renamed attributes
      */
-    protected function __construct($type, $tagName = null, $attributes = null,
-                                   $content = null)
+    protected function __construct($type, $tagName = null, $attributes = null, $content = null)
     {
         $this->type = $type;
         switch ($this->type)
@@ -102,8 +103,7 @@ abstract class NodeAbs
         {
             case ($this->type === static::TYPE_EMPTY_CLOSED):
             case ($this->type === static::TYPE_EMPTY_OPEN):
-                \trigger_error("Trying to add content into an empty node.",
-                               \E_USER_ERROR);
+                \trigger_error("Trying to add content into an empty node.", \E_USER_ERROR);
                 throw new \Exception("Trying to add content into an empty node.");
             case \is_null($content):
                 \trigger_error("Content cannot be null.", \E_USER_ERROR);
@@ -131,8 +131,7 @@ abstract class NodeAbs
         {
             case ($this->type === static::TYPE_EMPTY_CLOSED):
             case ($this->type === static::TYPE_EMPTY_OPEN):
-                \trigger_error("Trying to add content into an empty node.",
-                               \E_USER_ERROR);
+                \trigger_error("Trying to add content into an empty node.", \E_USER_ERROR);
                 throw new \Exception("Trying to add content into an empty node.");
             case \is_null($content):
                 \trigger_error("Content cannot be null.", \E_USER_ERROR);
@@ -215,6 +214,7 @@ abstract class NodeAbs
      */
     public function prettyfy($indentation = 0, $break = \TRUE)
     {
+        return "" . $this;
         if ($indentation !== \FALSE) {
             if (is_int($indentation)) {
                 for ($i = 0; $i < $indentation; $i++) {
@@ -243,8 +243,7 @@ abstract class NodeAbs
                 $_vrtcl = \FALSE;
                 break;
             case 1:
-                if (is_subclass_of($this->_content[0],
-                                   "GIndie\Generator\DML\Node\Node")) {
+                if (is_subclass_of($this->_content[0], "GIndie\Generator\DML\Node\Node")) {
                     $_vrtcl = \TRUE;
                 }
                 break;
@@ -267,6 +266,19 @@ abstract class NodeAbs
         return $_rtnSrt;
 
         return \TRUE;
+    }
+
+    /**
+     * Alias for removeAttribute().
+     * 
+     * @param string $attributeName
+     * @return \static
+     * 
+     * @since SG-DML.00.02
+     */
+    public function unsetAttribute($attributeName)
+    {
+        return static::removeAttribute($attributeName);
     }
 
     /**
@@ -342,13 +354,15 @@ abstract class NodeAbs
         }
         return $this;
     }
+
     /**
      * Alias for setTagname()
      * @param string $tagname
      * @return \static
      * @since SG-DML.00.01
      */
-    public function setTag($tagname){
+    public function setTag($tagname)
+    {
         return static::setTagname($tagname);
     }
 
