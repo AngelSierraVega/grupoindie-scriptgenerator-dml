@@ -10,13 +10,13 @@
  * as published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  *
- * @package Generator
+ * @package ScriptGenerator
  * @subpackage DML
  *
  * @version GIG-DML.02.00
  */
 
-namespace GIndie\Generator\DML\Node;
+namespace GIndie\ScriptGenerator\DML\Node;
 
 /**
  * Factory pattern for the tag element of a DML Node.

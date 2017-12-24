@@ -14,7 +14,7 @@
  * @subpackage DML
  */
 
-namespace GIndie\Generator\DML;
+namespace GIndie\ScriptGenerator\DML;
 
 /**
  * This project is a framework for implementing a <b>Descriptive Markup Languaje</b>

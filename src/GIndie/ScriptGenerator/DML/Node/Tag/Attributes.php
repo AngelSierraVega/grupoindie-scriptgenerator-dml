@@ -16,7 +16,7 @@
  * @version GIG-DML.02.00
  */
 
-namespace GIndie\Generator\DML\Node\Tag;
+namespace GIndie\ScriptGenerator\DML\Node\Tag;
 
 /**
  * Represents the collection of attributes in a DML open tag.

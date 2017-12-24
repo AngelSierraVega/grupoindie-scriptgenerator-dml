@@ -14,7 +14,7 @@
  * @subpackage DML
  */
 
-namespace GIndie\Generator\DML\Node\Tag;
+namespace GIndie\ScriptGenerator\DML\Node\Tag;
 
 /**
  * The abstract representation of a tag element of a DML Node.

@@ -16,7 +16,7 @@
  * @version GIG-DML.01.05
  */
 
-namespace GIndie\Generator\DML\Node;
+namespace GIndie\ScriptGenerator\DML\Node;
 
 /**
  * Abstract representation of a Node.
