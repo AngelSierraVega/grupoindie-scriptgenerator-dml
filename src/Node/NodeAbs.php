@@ -23,6 +23,9 @@ namespace GIndie\Generator\DML\Node;
  * 
  * @abstract  
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @version SG-DML.00.00
+ * @edit SG-DML.00.01
+ *  - Created method: setTag()
  */
 abstract class NodeAbs
 {
@@ -338,6 +341,15 @@ abstract class NodeAbs
                 throw new \Exception("Trying to set content on empty node.");
         }
         return $this;
+    }
+    /**
+     * Alias for setTagname()
+     * @param string $tagname
+     * @return \static
+     * @since SG-DML.00.01
+     */
+    public function setTag($tagname){
+        return static::setTagname($tagname);
     }
 
     /**
