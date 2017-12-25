@@ -18,14 +18,19 @@
 
 namespace GIndie\Generator\DML\Test\Node\Tag;
 
-use GIndie\Generator\DML\Node\Tag\Attributes as TestClass;
+use GIndie\ScriptGenerator\DML\Node\Tag\Attributes as TestClass;
 
 /**
  * 
  * @since   GIG-DML.01.01
  */
-class Attributes extends \GIndie\Test
+class Attributes extends \GIndie\Common\UnitTestClass
 {
+
+    public function classname()
+    {
+        return \GIndie\ScriptGenerator\DML\Node\Tag\Attributes::class;
+    }
 
     /**
      * @test

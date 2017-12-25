@@ -22,11 +22,10 @@ namespace GIndie\Generator\DML\Test\Node;
  * @internal 
  * @author      Angel Sierra Vega <angel.sierra@grupoindie.com>
  */
-class LocalTestNodeAbs extends \GIndie\Generator\DML\Node\NodeAbs
+class LocalTestNodeAbs extends \GIndie\ScriptGenerator\DML\Node\NodeAbs
 {
 
-    public function __construct($type, $tagName = null, $attributes = null,
-                                $content = null)
+    public function __construct($type, $tagName = null, $attributes = null, $content = null)
     {
         parent::__construct($type, $tagName, $attributes, $content);
     }
@@ -39,8 +38,13 @@ class LocalTestNodeAbs extends \GIndie\Generator\DML\Node\NodeAbs
  * @author  Liliana Hernández Castañeda <liliana.hercast@gmail.com>
  * @internal 
  */
-class NodeAbs extends \GIndie\Test
+class NodeAbs extends \GIndie\Common\UnitTestClass
 {
+
+    public function classname()
+    {
+        return \GIndie\ScriptGenerator\DML\Node\NodeAbs::class;
+    }
 
     /**
      * @test
@@ -48,8 +52,7 @@ class NodeAbs extends \GIndie\Test
     public static function constructorDefault()
     {
         $expected = "<default_node test>content</default_node>";
-        $result = new LocalTestNodeAbs(LocalTestNodeAbs::TYPE_DEFAULT,
-                                       "default_node", "test", "content");
+        $result = new LocalTestNodeAbs(LocalTestNodeAbs::TYPE_DEFAULT, "default_node", "test", "content");
         static::execStrCmp($expected, $result);
     }
 

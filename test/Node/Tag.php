@@ -18,15 +18,20 @@
 
 namespace GIndie\Generator\DML\Test\Node;
 
-use GIndie\Generator\DML\Node;
+use \GIndie\ScriptGenerator\DML\Node;
 
 /**
  * Description of Tag
  *
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  */
-class Tag extends \GIndie\Test
+class Tag extends \GIndie\Common\UnitTestClass
 {
+
+    public function classname()
+    {
+        return Node\Tag::class;
+    }
 
     /**
      * @test

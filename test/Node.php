@@ -18,7 +18,7 @@
 
 namespace GIndie\Generator\DML\Test;
 
-use GIndie\Generator\DML;
+use GIndie\ScriptGenerator\DML;
 
 /**
  * @since   GIG-DML.01.01
@@ -27,8 +27,13 @@ use GIndie\Generator\DML;
  * @internal 
  * @author  Liliana Hernández Castañeda <liliana.hercast@gmail.com>
  */
-class Node extends \GIndie\Test
+class Node extends \GIndie\Common\UnitTestClass
 {
+
+    public function classname()
+    {
+        return DML\Node::class;
+    }
 
     /**
      * @test
@@ -99,4 +104,5 @@ class Node extends \GIndie\Test
         $result = DML\Node::Simple("node", ["attr1", "attr2" => "val"]);
         static::execStrCmp($expected, $result);
     }
+
 }

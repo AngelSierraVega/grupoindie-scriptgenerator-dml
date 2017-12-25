@@ -20,7 +20,7 @@ namespace GIndie\Generator\DML\Test\Node\Tag;
 
 //use GIndie\Generator\DML\Node\Tag\TagAbs as TestClass;
 
-class TestTabAbs extends \GIndie\Generator\DML\Node\Tag\TagAbs
+class TestTabAbs extends \GIndie\ScriptGenerator\DML\Node\Tag\TagAbs
 {
 
     public function __construct($type, $tagname, array $attributes = array())
@@ -35,8 +35,13 @@ class TestTabAbs extends \GIndie\Generator\DML\Node\Tag\TagAbs
  *
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  */
-class TabAbs extends \GIndie\Test
+class TabAbs extends \GIndie\Common\UnitTestClass
 {
+
+    public function classname()
+    {
+        return \GIndie\ScriptGenerator\DML\Node\Tag\TagAbs::class;
+    }
 
     /**
      * @test
@@ -67,8 +72,7 @@ class TabAbs extends \GIndie\Test
     public static function setAttributes()
     {
         $expected = "<node new_and_only>";
-        $result = new TestTabAbs(TestTabAbs::TYPE_OPEN, "node",
-                                 ["attr1", "attr2" => "val2"]);
+        $result = new TestTabAbs(TestTabAbs::TYPE_OPEN, "node", ["attr1", "attr2" => "val2"]);
         $result->setAttributes(["new_and_only"]);
         static::execStrCmp($expected, $result);
     }
@@ -90,8 +94,7 @@ class TabAbs extends \GIndie\Test
     public static function unsetAttribute()
     {
         $expected = "<node />";
-        $result = new TestTabAbs(TestTabAbs::TYPE_OPEN_CLOSED, "node",
-                                 ["test_attribute" => "lol"]);
+        $result = new TestTabAbs(TestTabAbs::TYPE_OPEN_CLOSED, "node", ["test_attribute" => "lol"]);
         $result->removeAttribute($expected);
         $result->removeAttribute($expected);
         $result->unsetAttribute("test_attribute");
