@@ -27,6 +27,11 @@ namespace GIndie\ScriptGenerator\DML\Node\Tag;
  * - Updated project version
  * @edit SG-DML.00.01
  * - Created alias for removeAttribute()
+ * @edit SG-DML.00.02 18-01-02
+ * - Moved aliases to trait
+ * - Revised class for UnitTest
+ * @edit SG-DML.00.03
+ * - Small bugfix
  */
 abstract class TagAbs
 {
@@ -80,6 +85,10 @@ abstract class TagAbs
      * @since GIG-DML.01.02
      * @version GIG-DML.02.00 Throws exception
      * @todo Check if instance.
+     * 
+     * @ut_factory getAttribute GIndie\ScriptGenerator\DML\Node\Tag::open open_with_attribute
+     * @ut_params getAttribute "attribute" 
+     * @ut_str getAttribute "value"
      */
     public function getAttribute($attributeName)
     {
@@ -100,6 +109,10 @@ abstract class TagAbs
      * 
      * @since GIG-DML.01.00
      * @version GIG-DML.02.00 Return object not attribute.
+     * 
+     * @ut_factory removeAttribute GIndie\ScriptGenerator\DML\Node\Tag::open open_with_attribute 
+     * @ut_params removeAttribute "attribute"
+     * @ut_str removeAttribute "<open_tag>"
      */
     public function removeAttribute($attributeName)
     {
@@ -123,13 +136,25 @@ abstract class TagAbs
      * @since GIG-DML.01.00
      * @version GIG-DML.02.00 Return object not attribute. Throw exception
      * 
+     * @ut_factory setAttribute GIndie\ScriptGenerator\DML\Node\Tag::open open
+     * @ut_params setAttribute "myAttribute" "myValue"
+     * @ut_str setAttribute "<open_tag myAttribute="myValue">"
+     * 
+     * @edit SG-DML.00.03
      */
     public function setAttribute($attributeName, $value = null)
     {
-        if ($this->type == static::TYPE_CLOSE) {
-            throw new \Exception("Trying to set attribute on an close tag");
+        switch (true)
+        {
+            case ($this->type == static::TYPE_CLOSE):
+                throw new \Exception("Trying to set attribute on an close tag");
+            case \is_null($this->attributes):
+                $this->setAttributes([$attributeName=>$value]);
+                break;
+            default:
+                $this->attributes[$attributeName] = $value;
+                break;
         }
-        $this->attributes[$attributeName] = $value;
         return $this;
     }
 
@@ -140,6 +165,10 @@ abstract class TagAbs
      * @return GIndie\ScriptGenerator\DML\Node\Tag
      * 
      * @throws \Exception
+     * 
+     * @ut_factory setAttributes GIndie\ScriptGenerator\DML\Node\Tag::open open_with_attribute
+     * @ut_params setAttributes ["new_and_only"]
+     * @ut_str setAttributes "<open_tag new_and_only>"
      */
     public function setAttributes(array $attributes)
     {
@@ -149,6 +178,7 @@ abstract class TagAbs
             }
             $this->attributes = new Attributes($attributes);
         }
+        //\var_dump($this->attributes);
         return $this;
     }
 
@@ -162,6 +192,10 @@ abstract class TagAbs
      * @throws \Exception
      * 
      * @since GIG-DML.01.01
+     * 
+     * @ut_factory setTag GIndie\ScriptGenerator\DML\Node\Tag::open open
+     * @ut_params setTag "myTag"
+     * @ut_str setTag "<myTag>"
      */
     public function setTag($tagname)
     {
@@ -170,19 +204,6 @@ abstract class TagAbs
         }
         $this->tagName = $tagname;
         return $this;
-    }
-
-    /**
-     * Alias for removeAttribute().
-     * 
-     * @param string $attributeName
-     * @since SG-DML.00.01
-     * 
-     * @return GIndie\ScriptGenerator\DML\Node\Tag
-     */
-    public function unsetAttribute($attributeName)
-    {
-        return $this->removeAttribute($attributeName);
     }
 
     /**

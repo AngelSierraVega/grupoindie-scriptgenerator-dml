@@ -35,6 +35,9 @@ class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggr
      * @param array $attributes [optional]
      * 
      * @since GIG-DML.01.03
+     * 
+     * @ut_params __construct ["attr1"=>"val1","attr2","attr3"=>null,null=>"attr4"]
+     * @ut_str __construct " attr1="val1" attr2 attr3 attr4"
      */
     public function __construct(array $attributes = [])
     {
