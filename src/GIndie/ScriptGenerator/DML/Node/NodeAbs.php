@@ -30,6 +30,8 @@ namespace GIndie\ScriptGenerator\DML\Node;
  * - Created method: unsetAttribute()
  * @edit SG-DML.00.03 18-01-02
  * - Revised class for UnitTest
+ * @edit SG-DML.00.01 18-01-18
+ * - 
  */
 abstract class NodeAbs
 {
@@ -55,21 +57,28 @@ abstract class NodeAbs
      * @edit GIG-DML.01.05
      * @edit GIG-DML.02.00 Moved attributes and content funct to sepparated functions.
      * @edit GIG-DML.02.00 Renamed attributes
+     * @edit SG-DML.00.01
+     * - Switch uses true instead of type
+     * @todo 
+     * - Error handling
      */
     protected function __construct($type, $tagName = null, $attributes = null, $content = null)
     {
         $this->type = $type;
-        switch ($this->type)
+        switch (true)
         {
-            case static::TYPE_DEFAULT:
+            case (!\is_int($type)):
+                \trigger_error("DML Exception: TYPE NOT FOUND " . $this->type,\E_USER_ERROR);
+                break;
+            case $this->type == static::TYPE_DEFAULT:
                 static::defineTags($tagName, $attributes);
                 static::setContent($content);
                 break;
-            case static::TYPE_CONTENT_ONLY:
+            case $this->type == static::TYPE_CONTENT_ONLY:
                 static::setContent($content);
                 break;
-            case static::TYPE_EMPTY_CLOSED:
-            case static::TYPE_EMPTY_OPEN:
+            case $this->type == static::TYPE_EMPTY_CLOSED:
+            case $this->type == static::TYPE_EMPTY_OPEN:
                 static::defineTags($tagName, $attributes);
                 break;
         }
