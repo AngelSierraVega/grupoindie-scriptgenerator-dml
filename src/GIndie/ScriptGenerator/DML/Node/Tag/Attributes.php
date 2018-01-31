@@ -36,8 +36,11 @@ class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggr
      * 
      * @since GIG-DML.01.03
      * 
-     * @ut_params __construct ["attr1"=>"val1","attr2","attr3"=>null,null=>"attr4"]
-     * @ut_str __construct " attr1="val1" attr2 attr3 attr4"
+     * @ut_params __construct "attr1"
+     * @ut_str __construct " attr1"
+     * 
+     * @ut_paramsDPR __construct ["attr1"=>"val1","attr2","attr3"=>null,null=>"attr4"]
+     * @ut_strDPR __construct " attr1="val1" attr2 attr3 attr4"
      */
     public function __construct(array $attributes = [])
     {
@@ -118,6 +121,8 @@ class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggr
      * 
      * @since GIG-DML.01.02
      * @update GIG-DML.02.00 Throws exception. Return mixed not mixed|false.
+     * @edit 18-01-20
+     * - return null if not exist
      */
     public function offsetGet($offset)
     {
@@ -125,7 +130,8 @@ class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggr
             $rtn = &$this->data[$offset];
             return $rtn;
         }
-        throw new \Exception("Attribute doesnt exists.");
+        return null;
+        throw new \Exception("Attribute doesnt exists. ". $offset);
     }
 
 }

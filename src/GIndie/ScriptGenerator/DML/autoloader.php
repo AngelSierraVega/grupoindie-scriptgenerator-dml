@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SG-DML - autoloader 2017-??-??
+ * SG-DML - autoloade
  *
  * @copyright (L) 2017 Angel Sierra Vega. Grupo INDIE.
  *
@@ -12,14 +12,18 @@
  *
  * @package ScriptGenerator
  * @subpackage DML
+ * @since 2017
+ * @version GIG-DML.01.03
+ * @version SG-DML.00.01
+ * @edit SG-DML.00.02 18-01-20
+ * - Removed require
  */
 
 namespace GIndie\ScriptGenerator\DML;
 
 /**
  * Autoloader function
- * @version GIG-DML.01.03
- * @version SG-DML.00.01
+ * @edit SG-DML.00.02
  */
 \spl_autoload_register(function($className) {
     switch (\substr($className, 0, (\strlen(__NAMESPACE__) * 1)))
@@ -32,4 +36,3 @@ namespace GIndie\ScriptGenerator\DML;
             }
     }
 });
-require_once __DIR__ . '/Node.php';

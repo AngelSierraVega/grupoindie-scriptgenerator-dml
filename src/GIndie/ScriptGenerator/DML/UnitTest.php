@@ -19,50 +19,5 @@ namespace GIndie\ScriptGenerator\DML;
  * @edit SG-DML.00.01
  * - Extended from \GIndie\UnitTest\HandlerProject
  * - Implemented methods.
+ * - Moved code to \Plugins\UnitTest\HandlerProject
  */
-class UnitTest extends \GIndie\UnitTest\HandlerProject
-{
-
-    /**
-     * @since SG-DML.00.01
-     * @return array
-     * @todo Unit test for Node\Tag\Attributes
-     */
-    public static function projectClasses()
-    {
-        return [Node::class,
-            Node\NodeAbs::class,
-            Node\Tag::class,
-            Node\Tag\TagAbs::class
-            //,Node\Tag\Attributes::class
-                ];
-    }
-    
-    /**
-     * @since SG-DML.00.01
-     * @return string
-     */
-    public static function projectName()
-    {
-        return "DML\\";
-    }
-
-    /**
-     * @since SG-DML.00.01
-     * @return string
-     */
-    public static function projectNamespace()
-    {
-        return "ScriptGenerator\\";
-    }
-
-    /**
-     * @since SG-DML.00.01
-     * @return string
-     */
-    public static function projectVendor()
-    {
-        return "\\GIndie\\";
-    }
-
-}
