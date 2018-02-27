@@ -13,9 +13,27 @@ namespace GIndie\ScriptGenerator\DML;
  * @version SG-DML.00.00 18-02-24 Empty class created.
  * @edit SG-DML.00.01
  * - Class extends \GIndie\ProjectHandler
+ * @edit SG-DML.00.02
+ * - Created projectClasses()
  */
 class ProjectHandler extends \GIndie\ProjectHandler
 {
+    
+    /**
+     * @since SG-DML.00.02
+     * @return array
+     * @todo Unit test for Node\Tag\Attributes
+     */
+    public static function projectClasses()
+    {
+        return [
+            Node::class,
+            Node\NodeAbs::class,
+            Node\Tag::class,
+            Node\Tag\TagAbs::class,
+            Node\Tag\Attributes::class
+        ];
+    }
 
     /**
      * @return string
