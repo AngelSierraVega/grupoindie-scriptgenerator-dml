@@ -15,6 +15,8 @@ namespace GIndie\ScriptGenerator\DML;
  * - Class extends \GIndie\ProjectHandler
  * @edit SG-DML.00.02
  * - Created projectClasses()
+ * @edit SG-DML.00.03 18-03-09
+ * - Deprecated autoloaderFilename()
  */
 class ProjectHandler extends \GIndie\ProjectHandler
 {
@@ -38,10 +40,9 @@ class ProjectHandler extends \GIndie\ProjectHandler
     /**
      * @return string
      * @since SG-DML.00.01
-     * @todo
-     * - Deprecate method
+     * @deprecated since SG-DML.00.03
      */
-    public static function autoloaderFilename()
+    public static function autoloaderFilenameDPR()
     {
         return "autoloader.php";
     }
