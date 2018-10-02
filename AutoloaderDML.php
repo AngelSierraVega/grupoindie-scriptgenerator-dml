@@ -1,29 +1,25 @@
 <?php
 
 /**
- * SG-DML - autoloade
+ * GI-SG0-DML-DVLP - AutoloaderDML
  *
- * @copyright (L) 2017 Angel Sierra Vega. Grupo INDIE.
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
  *
- * This software is protected under GNU: you can use, study and modify it
- * but not distribute it under the terms of the GNU General Public License 
- * as published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
+ * @package GIndie\ScriptGenerator\DML
  *
- * @package ScriptGenerator
- * @subpackage DML
- * @since 2017
- * @version GIG-DML.01.03
- * @version SG-DML.00.01
- * @edit SG-DML.00.02 18-01-20
- * - Removed require
+ * @version 00.D0
+ * @since 17-00-00
+ * @edit 18-10-01
+ * - Upgraded docblock
  */
 
 namespace GIndie\ScriptGenerator\DML;
 
 /**
  * Autoloader function
- * @edit SG-DML.00.02
+ * @edit 18-01-20
+ * - Removed require
  */
 \spl_autoload_register(function($className) {
     switch (\substr($className, 0, (\strlen(__NAMESPACE__) * 1)))

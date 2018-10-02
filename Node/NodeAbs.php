@@ -1,17 +1,15 @@
 <?php
 
 /**
- * SG-DML - Node 2016-12-21
+ * GI-SG0-DML-DVLP - Node
  *
- * @copyright (L) 2017 Angel Sierra Vega. Grupo INDIE.
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
  *
- * This software is protected under GNU: you can use, study and modify it
- * but not distribute it under the terms of the GNU General Public License 
- * as published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
+ * @package GIndie\ScriptGenerator\DML
  *
- * @package ScriptGenerator
- * @subpackage DML
+ * @version 00.D0
+ * @since 16-12-21
  */
 
 namespace GIndie\ScriptGenerator\DML\Node;
@@ -19,25 +17,19 @@ namespace GIndie\ScriptGenerator\DML\Node;
 /**
  * Abstract representation of a Node.
  * 
- * @abstract  
- * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @since GIG-DML.00.00 2016-12-21
- * @version GIG-DML.01.05
- * @version SG-DML.00.00
- * @edit SG-DML.00.01
+ * @edit 17-12-24
  *  - Created method: setTag()
- * @edit SG-DML.00.02
- * - Created method: unsetAttribute()
- * @edit SG-DML.00.03 18-01-02
+ *  - Created method: unsetAttribute()
+ * @edit 18-01-02
  * - Revised class for UnitTest
- * @edit SG-DML.00.01 18-01-18
- * - 
+ * @edit 18-10-01
+ * - Upgraded docblock and versions
  */
 abstract class NodeAbs
 {
 
     /**
-     * @since SG-DML.00.03
+     * @since 18-01-02
      */
     use AliasMethods;
     use ToDo;
@@ -52,12 +44,10 @@ abstract class NodeAbs
      *              key = Attribute name and value = The literal value of the attribute.   
      * @param mixed|null $content An array containing the literal contents
      *              of the node
-
-     * @since GIG-DML.01.03
-     * @edit GIG-DML.01.05
-     * @edit GIG-DML.02.00 Moved attributes and content funct to sepparated functions.
-     * @edit GIG-DML.02.00 Renamed attributes
-     * @edit SG-DML.00.01
+     * @edit 17-12-24
+     * - Moved attributes and content funct to sepparated functions.
+     * - Renamed attributes
+     * @edit 18-01-18
      * - Switch uses true instead of type
      * @todo 
      * - Error handling
@@ -68,7 +58,7 @@ abstract class NodeAbs
         switch (true)
         {
             case (!\is_int($type)):
-                \trigger_error("DML Exception: TYPE NOT FOUND " . $this->type,\E_USER_ERROR);
+                \trigger_error("DML Exception: TYPE NOT FOUND " . $this->type, \E_USER_ERROR);
                 break;
             case $this->type == static::TYPE_DEFAULT:
                 static::defineTags($tagName, $attributes);
@@ -89,8 +79,7 @@ abstract class NodeAbs
      * 
      * @return string
      *
-     * @since GIG-DML.01.02
-     * @update GIG-DML.02.00 
+     * @update 17-12-24 
      * - Moved prettyfy funcitonality. No vars to render
      * 
      */
@@ -109,15 +98,14 @@ abstract class NodeAbs
      * 
      * @throws \Exception Throws exception on adding element to empty node.
      * 
-     * @since GIG-DML.01.01
-     * @version GIG-DML.01.04
-     * @version GIG-DML.02.00 Updated exceptions
+     * @edit 17-12-24 
+     * - Updated exceptions
      * 
      * @ut_factory addContent GIndie\ScriptGenerator\DML\Node::defaultNode dflt_0
      * @ut_params addContent "content"
      * @ut_str addContent "<default_node>content</default_node>"
      * 
-     * @edit SG-DML.00.03
+     * @edit 18-01-02
      */
     public function addContent($content)
     {
@@ -143,15 +131,14 @@ abstract class NodeAbs
      * 
      * @throws \Exception Throws exception on adding element to empty node.
      * 
-     * @since GIG-DML.01.02
-     * @version GIG-DML.01.04
-     * @version GIG-DML.02.00 Updated exceptions
+     * @edit 17-12-24
+     * - Updated exceptions
      * 
      * @ut_factory addContentGetPointer GIndie\ScriptGenerator\DML\Node::defaultNode dflt_0
      * @ut_params addContentGetPointer "content" 
      * @ut_str addContentGetPointer "content"
      * 
-     * @edit SG-DML.00.03
+     * @edit 18-01-02
      */
     public function addContentGetPointer($content)
     {
@@ -177,7 +164,7 @@ abstract class NodeAbs
      * @return void
      * 
      * @throws \Exception
-     * @since GIG-DML.02.00
+     * @since 17-12-24
      */
     protected function defineTags($tagName, $attributes)
     {
@@ -206,13 +193,12 @@ abstract class NodeAbs
      * @param string $attributeName The name of the attribute.
      * @return GIndie\ScriptGenerator\DML\Node\Tag\OpenTag::getAttribute()
      * 
-     * @since GIG-DML.01.00
      * 
      * @ut_factory getAttribute GIndie\ScriptGenerator\DML\Node::emptyOpen mpty_pn_1
      * @ut_params getAttribute "attribute" 
      * @ut_str getAttribute "value"
      * 
-     * @edit SG-DML.00.03
+     * @edit 18-01-02
      */
     public function getAttribute($attributeName)
     {
@@ -225,15 +211,15 @@ abstract class NodeAbs
      * @param string $attributeName The name of the attribute to remove
      * @return \GIndie\ScriptGenerator\DML\Node
      * 
-     * @since GIG-DML.01.00
-     * @version GIG-DML.02.00 Renamed function from unsetAttribute
-     * @version GIG-DML.02.00 Return static
+     * @edit 17-12-24 
+     * - Renamed function from unsetAttribute
+     * - Return static
      * 
      * @ut_factory removeAttribute GIndie\ScriptGenerator\DML\Node::emptyClosed mpty_clsd_1
      * @ut_params removeAttribute "attribute" 
      * @ut_str removeAttribute "<empty_closed />"
      * 
-     * @edit SG-DML.00.03
+     * @edit 18-01-02
      */
     public function removeAttribute($attributeName)
     {
@@ -246,14 +232,14 @@ abstract class NodeAbs
      * 
      * @return \GIndie\ScriptGenerator\DML\Node
      * 
-     * @since GIG-DML.01.02
-     * @version GIG-DML.02.00 Return static
+     * @edit 17-12-24 
+     * - Return static
      * 
      * @ut_factory removeContent GIndie\ScriptGenerator\DML\Node::defaultNode dflt_2
      * @ut_params removeContent
      * @ut_str removeContent "<default_node attribute></default_node>"
      * 
-     * @edit SG-DML.00.03
+     * @edit 18-01-02
      */
     public function removeContent()
     {
@@ -269,8 +255,8 @@ abstract class NodeAbs
      * 
      * @return \GIndie\ScriptGenerator\DML\Node
      * 
-     * @since GIG-DML.01.00
-     * @version GIG-DML.02.00 Return static
+     * @edit 17-12-24
+     * - Return static
      * 
      * @ut_factory setAttribute GIndie\ScriptGenerator\DML\Node::defaultNode dflt_0
      * @ut_params setAttribute "myAttribute"
@@ -280,7 +266,7 @@ abstract class NodeAbs
      * @ut_params setAttribute2 "myAttribute" "myValue"
      * @ut_str setAttribute2 "<default_node myAttribute="myValue"></default_node>"
      * 
-     * @edit SG-DML.00.03
+     * @edit 18-01-02
      */
     public function setAttribute($attributeName, $value = null)
     {
@@ -297,7 +283,7 @@ abstract class NodeAbs
      * 
      * @throws \Exception On trying to set content on empty node.
      * 
-     * @since GIG-DML.02.00
+     * @since 17-12-24
      */
     protected function setContent($content)
     {
@@ -320,14 +306,15 @@ abstract class NodeAbs
      * @param string $tagname The name of the tag
      * @return \GIndie\ScriptGenerator\DML\Node
      * 
-     * @since GIG-DML.01.00
-     * @version GIG-DML.02.00 Return static
+     * @since 17-12-24
+     * @edit 17-12-24 
+     * - Return static
      * 
      * @ut_factory setTagname GIndie\ScriptGenerator\DML\Node::defaultNode dflt_0
      * @ut_params setTagname "myTagName"
      * @ut_str setTagname "<myTagName></myTagName>"
      * 
-     * @edit SG-DML.00.03
+     * @edit 18-01-02
      */
     public function setTagname($tagname)
     {
@@ -350,24 +337,17 @@ abstract class NodeAbs
     /**
      * @var array The content of the Node object.
      * 
-     * @since GIG-DML.01.00
-     * @version GIG-DML.02.00 Renamed due to PSR-1 compliance.
+     * @edit 17-12-24 
+     * - Renamed due to PSR-1 compliance.
      */
     protected $content = [];
 
-    /**
-     * @var boolean A boolean flag on wheter or not the current node is an empty node.
-     * 
-     * @since GIG-DML.01.00
-     * @deprecated since GIG-DML.02.00
-     * protected $_emptyNode;
-     */
 
     /**
      * @var GIndie\ScriptGenerator\DML\Node\Tag Object representing the open tag of the node.
      * 
-     * @since GIG-DML.01.00
-     * @version GIG-DML.02.00 Renamed due to PSR-1 compliance.
+     * @edit 17-12-24 
+     * - Renamed due to PSR-1 compliance.
      * @todo change to start tag
      */
     protected $tagOpen;
@@ -375,8 +355,8 @@ abstract class NodeAbs
     /**
      * @var GIndie\ScriptGenerator\DML\Node\Tag Object representing the close tag of the node.
      * 
-     * @since GIG-DML.01.00
-     * @version GIG-DML.02.00 Renamed due to PSR-1 compliance.
+     * @edit 17-12-24
+     * - Renamed due to PSR-1 compliance.
      * @todo change to end tag
      */
     protected $tagClose;
@@ -384,27 +364,27 @@ abstract class NodeAbs
     /**
      * @var int The type of node
      * 
-     * @since GIG-DML.02.00
+     * @since 17-12-24
      */
     protected $type;
 
     /**
-     * @since GIG-DML.02.00
+     * @since 17-12-24
      */
     const TYPE_CONTENT_ONLY = 0;
 
     /**
-     * @since GIG-DML.02.00
+     * @since 17-12-24
      */
     const TYPE_DEFAULT = 1;
 
     /**
-     * @since GIG-DML.02.00
+     * @since 17-12-24
      */
     const TYPE_EMPTY_CLOSED = 2;
 
     /**
-     * @since GIG-DML.02.00
+     * @since 17-12-24
      */
     const TYPE_EMPTY_OPEN = 3;
 

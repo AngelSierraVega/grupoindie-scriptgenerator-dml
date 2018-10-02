@@ -1,7 +1,15 @@
 <?php
 
 /**
- * GIG-DML - Node 2016-12-16
+ * GI-SG0-DML-DVLP - Node
+ *
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
+ *
+ * @package GIndie\ScriptGenerator\DML
+ *
+ * @version 00.D0
+ * @since 16-12-16
  */
 
 namespace GIndie\ScriptGenerator\DML;
@@ -14,38 +22,33 @@ namespace GIndie\ScriptGenerator\DML;
  * this class.
  * 
  * @link https://en.wikipedia.org/wiki/Markup_language description
- *  
- * @copyright (C) 2017 Angel Sierra Vega. Grupo INDIE.
- * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
- * @package ScriptGenerator
- * @subpackage DML
- * 
- * @version GIG-DML.02.00
- * @version SG-DML.00.00 Updated project version
- * @edit SG-DML.00.01
+ * @edit 18-02-27
+ * - Updated project version
  * - Renamed functions for PSR-1 complyance.
- * @edit SG-DML.00.02
+ * @edit 18-09-12
  * - Revised class for UnitTest
+ * @edit 18-10-01
+ * - Upgraded docblock
  */
 class Node extends Node\NodeAbs
 {
 
     /**
-     * @since SG-DML.00.01
+     * @since 18-02-27
      */
     use \GIndie\ScriptGenerator\DML\Node\ToDeprecate;
 
     /**
      * Creates a <i>content only</i> node.
      * 
-     * @since GIG-DML.01.02
      * 
      * @param mixed $content An array containing the literal contents of the node.
      * @return \static An object representation of a <i>content only</i> node.
      * 
-     * @version GIG-DML.02.00 Renamed due to PSR-1 violation
-     * @edit SG-DML.00.01
+     * @edit 18-01-01
+     * - Renamed due to PSR-1 violation
+     * @edit 18-02-27
      * 
      * @ut_str cnt_nly_0 ""
      * 
@@ -60,7 +63,6 @@ class Node extends Node\NodeAbs
     /**
      * Creates a <i>default</i> node.
      * 
-     * @since GIG-DML.02.00
      * 
      * @param string $tagName
      * @param mixed $attributes
@@ -84,7 +86,6 @@ class Node extends Node\NodeAbs
     /**
      * Creates an <i>empty-closed</i> node.
      * 
-     * @since GIG-DML.02.00
      * 
      * @param string $tagName
      * @param mixed $attributes
@@ -104,7 +105,6 @@ class Node extends Node\NodeAbs
     /**
      * Creates an <i>empty-open</i> node.
      * 
-     * @since GIG-DML.02.00
      * 
      * @param string $tagName
      * @param mixed $attributes

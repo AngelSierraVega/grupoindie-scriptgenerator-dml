@@ -1,22 +1,21 @@
 <?php
 
 /**
- * SG-DML - ToDo
+ * GI-SG0-DML-DVLP - ToDo
+ *
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
+ *
+ * @package GIndie\ScriptGenerator\DML
+ *
+ * @version 00.D0
+ * @since 18-01-01
  */
 
 namespace GIndie\ScriptGenerator\DML\Node;
 
 /**
- * Description of ToDo
- *
- * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
- *
- * @package ScriptGenerator
- * @subpackage DML
- *
- * @version SG-DML.00.00 18-01-01 Trait created.
- * @edit SG-DML.00.01
+ * @edit 18-01-01
  * - Added code from GIndie\ScriptGenerator\DML\Node\NodeAbs
  */
 trait ToDo
@@ -25,10 +24,7 @@ trait ToDo
     /**
      * @internal
      * @var    string $_prettyfyed_indentation The indentation to render if pretyfied.
-     * 
-     * @since   GIG-DML.01.01
-     * @deprecated since GIG-DML.02.00
-     * 
+     * @deprecated
      */
     private $_prettyfyed_indentation = "";
 
@@ -36,22 +32,20 @@ trait ToDo
      * @internal
      * @var    string $_prettyfyed_break The break to render if pretyfied.
      * 
-     * @since GIG-DML.01.01
-     * @deprecated since GIG-DML.02.00
+     * @deprecated
      * 
      */
     private $_prettyfyed_break = "";
 
     /**
      * 
-     * @deprecated since GIG-DML.02.00
+     * @deprecated
      * 
      * @param boolean|int $indentation The custom indendation for the node
      * @param boolean $break Whether or not the node breaks
      * 
      * @return string
      * 
-     * @version GIG-DML.01.02
      * @todo Programm function
      */
     public function prettyfy($indentation = 0, $break = \TRUE)

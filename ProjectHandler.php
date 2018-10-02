@@ -1,28 +1,58 @@
 <?php
 
+/**
+ * GI-SG0-DML-DVLP - ProjectHandler
+ *
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
+ *
+ * @package GIndie\ScriptGenerator\DML
+ *
+ * @version 00.D0
+ * @since 18-02-24
+ */
+
 namespace GIndie\ScriptGenerator\DML;
 
 /**
- * DVLP-SG0-DML - ProjectHandler
- *
- * @copyright (c) 2018 Angel Sierra Vega. Grupo INDIE.
- *
- * @package ScriptGenerator
- * @subpackage DML
- *
- * @version SG-DML.00.00 18-02-24 Empty class created.
- * @edit SG-DML.00.01
+ * @version SG-DML.00.00  Empty class created.
+ * @edit 18-02-24
  * - Class extends \GIndie\ProjectHandler
- * @edit SG-DML.00.02
  * - Created projectClasses()
- * @edit SG-DML.00.03 18-03-09
+ * @edit 18-03-09
  * - Deprecated autoloaderFilename()
+ * @edit 18-10-01
+ * - Created versions()
  */
-class ProjectHandler extends \GIndie\ProjectHandler
+class ProjectHandler extends \GIndie\ProjectHandler\AbstractProjectHandler
 {
-    
+
     /**
-     * @since SG-DML.00.02
+     * 
+     * @return array
+     * @since 18-10-01
+     * - Upgraded versions
+     */
+    public static function versions()
+    {
+        $rtnArray = [];
+        //AlphaCero
+        $rtnArray[\hexdec("00.A0")]["code"] = "AlphaCero";
+        $rtnArray[\hexdec("00.A0")]["description"] = "Functional project";
+        $rtnArray[\hexdec("00.A0")]["threshold"] = "00.A0";
+        //BetaCero
+        $rtnArray[\hexdec("00.D0")]["code"] = "BetaCero";
+        $rtnArray[\hexdec("00.D0")]["description"] = "Main funcionality";
+        $rtnArray[\hexdec("00.D0")]["threshold"] = "00.D0";
+        //One
+        $rtnArray[\hexdec("01.00")]["code"] = "One";
+        $rtnArray[\hexdec("01.00")]["description"] = "Final projected version";
+        $rtnArray[\hexdec("01.00")]["threshold"] = "01.00";
+        return $rtnArray;
+    }
+
+    /**
+     * @since 18-02-24
      * @return array
      * @todo Unit test for Node\Tag\Attributes
      */
@@ -39,8 +69,8 @@ class ProjectHandler extends \GIndie\ProjectHandler
 
     /**
      * @return string
-     * @since SG-DML.00.01
-     * @deprecated since SG-DML.00.03
+     * @since 18-02-24
+     * @deprecated since 18-03-09
      */
     public static function autoloaderFilenameDPR()
     {
@@ -49,7 +79,7 @@ class ProjectHandler extends \GIndie\ProjectHandler
 
     /**
      * @return string
-     * @since SG-DML.00.01
+     * @since 18-02-24
      */
     public static function pathToSourceCode()
     {
@@ -58,7 +88,7 @@ class ProjectHandler extends \GIndie\ProjectHandler
 
     /**
      * @return string
-     * @since SG-DML.00.01
+     * @since 18-02-24
      */
     public static function projectName()
     {
@@ -67,7 +97,7 @@ class ProjectHandler extends \GIndie\ProjectHandler
 
     /**
      * @return string
-     * @since SG-DML.00.01
+     * @since 18-02-24
      */
     public static function projectNamespace()
     {
@@ -76,7 +106,7 @@ class ProjectHandler extends \GIndie\ProjectHandler
 
     /**
      * @return string
-     * @since SG-DML.00.01
+     * @since 18-02-24
      */
     public static function projectVendor()
     {

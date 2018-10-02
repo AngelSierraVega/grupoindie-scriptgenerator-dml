@@ -1,7 +1,15 @@
 <?php
 
 /**
- * SG-DML - AliasMethods
+ * GI-SG0-DML-DVLP - AliasMethods
+ *
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
+ *
+ * @package GIndie\ScriptGenerator\DML
+ *
+ * @version 00.D0
+ * @since 18-01-02
  */
 
 namespace GIndie\ScriptGenerator\DML\Node\Tag;
@@ -9,25 +17,16 @@ namespace GIndie\ScriptGenerator\DML\Node\Tag;
 /**
  * Description of AliasMethods
  * 
- * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
- *
- * @package ScriptGenerator
- * @subpackage DML
- *
- * @version SG-DML.00.00 18-01-02 [Class/Trait/Interface] created.
- *
- * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * 
- * @edit SG-DML.00.01
- * - Added code from TagAbs
+ * @edit 18-10-01
+ * - Upgraded docblock and versions
  */
 trait AliasMethods
 {
+
     /**
      * Alias for removeAttribute().
      * 
      * @param string $attributeName
-     * @since SG-DML.00.01
      * 
      * @return GIndie\ScriptGenerator\DML\Node\Tag
      */
@@ -35,4 +34,5 @@ trait AliasMethods
     {
         return $this->removeAttribute($attributeName);
     }
+
 }

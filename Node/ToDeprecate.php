@@ -1,17 +1,15 @@
 <?php
 
 /**
- * SG-DML - ToDeprecate 2017-12-24
+ * GI-SG0-DML-DVLP - ToDeprecate
  *
- * @copyright (C) 2017 Angel Sierra Vega. Grupo INDIE.
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
  *
- * This software is protected under GNU: you can use, study and modify it
- * but not distribute it under the terms of the GNU General Public License 
- * as published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
+ * @package GIndie\ScriptGenerator\DML
  *
- * @package ScriptGenerator
- * @subpackage DML
+ * @version 00.D0
+ * @since 17-12-24
  */
 
 namespace GIndie\ScriptGenerator\DML\Node;
@@ -19,10 +17,10 @@ namespace GIndie\ScriptGenerator\DML\Node;
 /**
  * Description of ToDeprecate
  *
- * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @version SG-DML.00.00
- * @edit SG-DML.00.00
+ * @edit 17-12-24
  * - Added alias / deprecated methods
+ * @edit 18-10-02
+ * - Upgraded docblock and versions
  */
 trait ToDeprecate
 {
@@ -72,8 +70,6 @@ trait ToDeprecate
      *  <i><pre>
      *      <parent><child></child></parent>
      *  </pre></i>
-     * @since GIG-DML.01.02
-     * @edit SG-DML.00.01
      */
     public static function simple($tagname, array $attributes = [], array $content = [])
     {
@@ -97,8 +93,6 @@ trait ToDeprecate
      *      <node_closed />
      *  </pre></i>
      * 
-     * @since GIG-DML.01.02
-     * @edit SG-DML.00.01
      */
     public static function closed($tagname, array $attributes = [])
     {
@@ -124,8 +118,6 @@ trait ToDeprecate
      *      <node_empty>
      *  </pre></i>
      * 
-     * @since GIG-DML.01.02
-     * @edit SG-DML.00.01
      */
     public static function emptyNode($tag, array $attributes = [])
     {

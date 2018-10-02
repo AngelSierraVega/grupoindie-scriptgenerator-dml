@@ -1,27 +1,27 @@
 <?php
 
 /**
- * GIG-DML - Tag 
+ * GI-SG0-DML-DVLP - Tag
+ *
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
+ *
+ * @package GIndie\ScriptGenerator\DML
+ *
+ * @version 00.D0
+ * @since 16-12-16
  */
 
 namespace GIndie\ScriptGenerator\DML\Node;
 
 /**
  * Factory pattern for the tag element of a DML Node.
- * 
- * 
- * @copyright (L) 2017 Angel Sierra Vega. Grupo INDIE.
- * @package ScriptGenerator
- * @subpackage DML
  *
- * @since GIG-DML.00.00 16-12-16
- * @version GIG-DML.01.02 Updated abstract class as a factory pattern.
- * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @since GIG-DML.00.00 2016-12-16
- * @version GIG-DML.02.00
- * @version SG-DML.00.00
- * @edit SG-DML.00.01 18-01-02
+ * @since 16-12-16
+ * @edit 18-01-02 
  * - Revised class for UnitTest
+ * @edit 18-10-02
+ * - Upgraded docblock and versions
  */
 class Tag extends Tag\TagAbs
 {
@@ -30,7 +30,6 @@ class Tag extends Tag\TagAbs
      * 
      * @param string $tagname The name of the tag
      * @return GIndie\ScriptGenerator\DML\Node\Tag
-     * @since GIG-DML.02.00
      * 
      * @ut_params close "close_tag"
      * @ut_str close "</close_tag>"
@@ -45,7 +44,6 @@ class Tag extends Tag\TagAbs
      * @param string $tagname The name of the tag
      * @param array attributes The attributes of the tag
      * @return GIndie\ScriptGenerator\DML\Node\Tag
-     * @since GIG-DML.02.00
      * 
      * @ut_params close "open_closed_tag"
      * @ut_str close "<open_closed_tag />"
@@ -60,7 +58,6 @@ class Tag extends Tag\TagAbs
      * @param string $tagname The name of the tag
      * @param array attributes The attributes of the tag
      * @return GIndie\ScriptGenerator\DML\Node\Tag
-     * @since GIG-DML.02.00
      * 
      * @ut_params open "open_tag"
      * @ut_str open "<open_tag>"

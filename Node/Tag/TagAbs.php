@@ -1,17 +1,15 @@
 <?php
 
 /**
- * SG-DML - TagAbs 2017-11-11
+ * GI-SG0-DML-DVLP - TagAbs
  *
- * @copyright (L) 2017 Angel Sierra Vega. Grupo INDIE.
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
  *
- * This software is protected under GNU: you can use, study and modify it
- * but not distribute it under the terms of the GNU General Public License 
- * as published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
+ * @package GIndie\ScriptGenerator\DML
  *
- * @package ScriptGenerator
- * @subpackage DML
+ * @version 00.D0
+ * @since 17-11-11
  */
 
 namespace GIndie\ScriptGenerator\DML\Node\Tag;
@@ -21,17 +19,19 @@ namespace GIndie\ScriptGenerator\DML\Node\Tag;
  * 
  * @abstract
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @version GIG-DML.00.00 2017-11-11
- * @version GIG-DML.02.00
- * @version SG-DML.00.00 2017-12-23
+ * @edit 17-11-11
+ * @edit 17-11-20
+ * @edit 17-12-23
  * - Updated project version
- * @edit SG-DML.00.01
+ * @edit 17-12-24
  * - Created alias for removeAttribute()
- * @edit SG-DML.00.02 18-01-02
+ * @edit 18-01-02 
  * - Moved aliases to trait
  * - Revised class for UnitTest
- * @edit SG-DML.00.03
+ * @edit 18-01-03
  * - Small bugfix
+ * @edit 18-10-01
+ * - Upgraded docblock and versions
  */
 abstract class TagAbs
 {
@@ -43,8 +43,8 @@ abstract class TagAbs
      * @param string $tagname The name of the tag.
      * @param array $attributes The attributes of the tag.
      * 
-     * @since GIG-DML.01.01
-     * @version GIG-DML.02.00 Protected constructor
+     * @edit 17-11-20
+     * - Protected constructor
      */
     protected function __construct($type, $tagname, array $attributes = [])
     {
@@ -58,8 +58,8 @@ abstract class TagAbs
      * 
      * @return string
      * 
-     * @since GIG-DML.01.01
-     * @version GIG-DML.02.00 Single function handles all types of tags
+     * @edit 17-11-20
+     * - Single function handles all types of tags
      */
     public function __toString()
     {
@@ -82,8 +82,8 @@ abstract class TagAbs
      * 
      * @throws \Exception If is a close tag
      * 
-     * @since GIG-DML.01.02
-     * @version GIG-DML.02.00 Throws exception
+     * @edit 17-11-20
+     * - Throws exception
      * @todo Check if instance.
      * 
      * @ut_factory getAttribute GIndie\ScriptGenerator\DML\Node\Tag::open open_with_attribute
@@ -107,8 +107,8 @@ abstract class TagAbs
      * 
      * @throws \Exception
      * 
-     * @since GIG-DML.01.00
-     * @version GIG-DML.02.00 Return object not attribute.
+     * @edit
+     * - 17-11-20 Return object not attribute.
      * 
      * @ut_factory removeAttribute GIndie\ScriptGenerator\DML\Node\Tag::open open_with_attribute 
      * @ut_params removeAttribute "attribute"
@@ -133,14 +133,13 @@ abstract class TagAbs
      * 
      * @throws \Exception
      * 
-     * @since GIG-DML.01.00
-     * @version GIG-DML.02.00 Return object not attribute. Throw exception
+     * @edit 17-11-20 Return object not attribute. Throw exception
      * 
      * @ut_factory setAttribute GIndie\ScriptGenerator\DML\Node\Tag::open open
      * @ut_params setAttribute "myAttribute" "myValue"
      * @ut_str setAttribute "<open_tag myAttribute="myValue">"
      * 
-     * @edit SG-DML.00.03
+     * @edit 18-01-03
      */
     public function setAttribute($attributeName, $value = null)
     {
@@ -149,7 +148,7 @@ abstract class TagAbs
             case ($this->type == static::TYPE_CLOSE):
                 throw new \Exception("Trying to set attribute on an close tag");
             case \is_null($this->attributes):
-                $this->setAttributes([$attributeName=>$value]);
+                $this->setAttributes([$attributeName => $value]);
                 break;
             default:
                 $this->attributes[$attributeName] = $value;
@@ -191,7 +190,6 @@ abstract class TagAbs
      * 
      * @throws \Exception
      * 
-     * @since GIG-DML.01.01
      * 
      * @ut_factory setTag GIndie\ScriptGenerator\DML\Node\Tag::open open
      * @ut_params setTag "myTag"
@@ -209,8 +207,8 @@ abstract class TagAbs
     /**
      * @var GIndie\ScriptGenerator\DML\Node\Tag\Attributes Stores the attributes of the node.
      * 
-     * @since GIG-DML.01.00
-     * @version GIG-DML.02.00 Renamed due to PSR-1 compliance.
+     * @edit 17-11-20
+     * - Renamed due to PSR-1 compliance.
      */
     protected $attributes;
 
@@ -218,29 +216,30 @@ abstract class TagAbs
      * @var string The name of the tag.
      * 
      * @since GIG-DML.01.01
-     * @version GIG-DML.02.00 Renamed due to PSR-1 compliance.
+     * @edit 17-11-20 
+     * - Renamed due to PSR-1 compliance.
      */
     protected $tagName;
 
     /**
      * @var int The type of tag.
      * 
-     * @since GIG-DML.02.00
+     * @since 17-11-20
      */
     protected $type;
 
     /**
-     * @since GIG-DML.02.00
+     * @since 17-11-20
      */
     const TYPE_OPEN = 0;
 
     /**
-     * @since GIG-DML.02.00
+     * @since 17-11-20
      */
     const TYPE_OPEN_CLOSED = 1;
 
     /**
-     * @since GIG-DML.02.00
+     * @since 17-11-20
      */
     const TYPE_CLOSE = 2;
 

@@ -1,17 +1,15 @@
 <?php
 
 /**
- * SG-DML - Attributes 2017-02-02
+ * GI-SG0-DML-DVLP - Attributes
  *
- * @copyright (L) 2017 Angel Sierra Vega. Grupo INDIE.
+ * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
+ * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
  *
- * This software is protected under GNU: you can use, study and modify it
- * but not distribute it under the terms of the GNU General Public License 
- * as published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
+ * @package GIndie\ScriptGenerator\DML
  *
- * @package ScriptGenerator
- * @subpackage DML
+ * @version 00.D0
+ * @since 17-02-02
  */
 
 namespace GIndie\ScriptGenerator\DML\Node\Tag;
@@ -21,12 +19,12 @@ namespace GIndie\ScriptGenerator\DML\Node\Tag;
  * 
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  * 
- * @version GIG-DML.00.00 2017-02-02
- * @version GIG-DML.02.00
- * @version SG-DML.00.00 2017-12-24
- * 
+ * @edit 17-12-24
+ * @edit 18-10-01
+ * - Upgraded docblock and versions
  */
-class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggregate
+class Attributes extends \GIndie\Common\PHP\ArrayAccess
+        implements \IteratorAggregate
 {
 
     /**
@@ -34,7 +32,6 @@ class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggr
      * 
      * @param array $attributes [optional]
      * 
-     * @since GIG-DML.01.03
      * 
      * @ut_params __construct "attr1"
      * @ut_str __construct " attr1"
@@ -52,8 +49,8 @@ class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggr
      * 
      * @return string
      * 
-     * @since GIG-DML.01.00
-     * @version GIG-DML.01.04 Returns doble comma instead of single comma.
+     * @edit 17
+     * - Returns doble comma instead of single comma.
      */
     public function __toString()
     {
@@ -72,8 +69,6 @@ class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggr
      * Implementation for interface IteratorAggregate
      * 
      * @return \ArrayIterator
-     * 
-     * @since GIG-DML.01.00
      */
     public function getIterator()
     {
@@ -93,7 +88,6 @@ class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggr
      * 
      * @return void
      * 
-     * @since GIG-DML.01.00 
      */
     public function offsetSet($offset, $value)
     {
@@ -119,8 +113,8 @@ class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggr
      * 
      * @throws \Exception If attribute doesnt exists.
      * 
-     * @since GIG-DML.01.02
-     * @update GIG-DML.02.00 Throws exception. Return mixed not mixed|false.
+     * @edit 17
+     * Throws exception. Return mixed not mixed|false.
      * @edit 18-01-20
      * - return null if not exist
      */
@@ -131,7 +125,6 @@ class Attributes extends \GIndie\Common\PHP\ArrayAccess implements \IteratorAggr
             return $rtn;
         }
         return null;
-        throw new \Exception("Attribute doesnt exists. ". $offset);
     }
 
 }
