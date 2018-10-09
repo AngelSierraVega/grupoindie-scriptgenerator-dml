@@ -23,8 +23,7 @@ namespace GIndie\ScriptGenerator\DML\Node\Tag;
  * @edit 18-10-01
  * - Upgraded docblock and versions
  */
-class Attributes extends \GIndie\Common\PHP\ArrayAccess
-        implements \IteratorAggregate
+class Attributes extends ArrayAccess implements \IteratorAggregate
 {
 
     /**

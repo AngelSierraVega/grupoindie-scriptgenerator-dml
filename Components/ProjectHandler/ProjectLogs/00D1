@@ -1,0 +1,31 @@
+
+18-10-09:
+- Added ArrayAccess from GIndie\Common for DEMO.
+- Generated documentation
+
+-------------------------------PROJECT---------------------------------|
+\GIndie\ScriptGenerator\DML
+18-10-09 v:00.D1 LOC:1601
+ABS(3) CLA(4) INT(0) SCR(1) TRA(4) NDF(3)
+-------------------------------VERSIONS--------------------------------|
+[00.A0] AlphaCero....| Functional project
+[00.D0] BetaCero.....| Main funcionality
+[01.00] One..........| Final projected version
+--------------------------------FILE-----------------------------|--V--|
+[SCR] AutoloaderDML.php..........................................|00.D0|
+[TRA] Node\AliasMethods.php......................................|00.D0|
+[ABS] Node\NodeAbs.php...........................................|00.D0|
+[TRA] Node\Tag\AliasMethods.php..................................|00.D0|
+[ABS] Node\Tag\ArrayAccess.php...................................|00.E0|
+[CLA] Node\Tag\Attributes.php....................................|00.D0|
+[ABS] Node\Tag\TagAbs.php........................................|00.D0|
+[CLA] Node\Tag.php...............................................|00.D0|
+[TRA] Node\ToDeprecate.php.......................................|00.D0|
+[TRA] Node\ToDo.php..............................................|00.D0|
+[CLA] Node.php...................................................|00.D0|
+[CLA] ProjectHandler.php.........................................|00.D0|
+[NDF] Components\ProjectHandler\ProjectLogs\00D0.................|NDFND|
+[NDF] Components\ProjectHandler\ProjectLogs\00D1.................|NDFND|
+[NDF] Components\ProjectHandler\ProjectLogs\current..............|NDFND|
+-----------------------------------------------------------------------|
+ \GIndie\ScriptGenerator\DML v 00.D1
