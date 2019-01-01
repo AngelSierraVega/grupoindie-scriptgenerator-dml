@@ -8,7 +8,7 @@
  *
  * @package GIndie\ScriptGenerator\DML
  *
- * @version 00.D0
+ * @version 00.D2
  * @since 18-02-24
  */
 
@@ -44,6 +44,7 @@ class ProjectHandler extends \GIndie\ProjectHandler\AbstractProjectHandler
         $rtnArray[\hexdec("00.D0")]["code"] = "BetaCero";
         $rtnArray[\hexdec("00.D0")]["description"] = "Main funcionality";
         $rtnArray[\hexdec("00.D0")]["threshold"] = "00.D0";
+        
         //One
         $rtnArray[\hexdec("01.00")]["code"] = "One";
         $rtnArray[\hexdec("01.00")]["description"] = "Final projected version";

@@ -8,7 +8,7 @@
  *
  * @package GIndie\ScriptGenerator\DML
  *
- * @version 00.D0
+ * @version 00.EA
  * @since 16-12-21
  */
 
@@ -24,6 +24,8 @@ namespace GIndie\ScriptGenerator\DML\Node;
  * - Revised class for UnitTest
  * @edit 18-10-01
  * - Upgraded docblock and versions
+ * @edit 18-12-10
+ * - Added getContent()
  */
 abstract class NodeAbs
 {
@@ -86,8 +88,8 @@ abstract class NodeAbs
     public function __toString()
     {
         return (isset($this->tagOpen) ? $this->tagOpen : "") .
-                (empty($this->content) ? "" : \join("", $this->content)) .
-                (isset($this->tagClose) ? $this->tagClose : "" );
+            (empty($this->content) ? "" : \join("", $this->content)) .
+            (isset($this->tagClose) ? $this->tagClose : "" );
     }
 
     /**
@@ -156,6 +158,29 @@ abstract class NodeAbs
         $this->content[] = $rtnElement;
         return $rtnElement;
     }
+
+    /**
+     * 
+     * @param int|null $index
+     * @return mixed
+     * @since 18-12-10
+     */
+    public function getContent($index = null)
+    {
+        if (\is_null($index)) {
+            $index = \count($this->content) - 1;
+            if($index == -1){
+                $index = 0;
+            }
+        }
+        if (!isset($this->content[$index])) {
+            \trigger_error("Content is not defined at index {$index}", \E_USER_ERROR);
+        }
+        $rtnElement = &$this->content[$index];
+        return $rtnElement;
+    }
+    
+    
 
     /**
      * 
@@ -341,7 +366,6 @@ abstract class NodeAbs
      * - Renamed due to PSR-1 compliance.
      */
     protected $content = [];
-
 
     /**
      * @var GIndie\ScriptGenerator\DML\Node\Tag Object representing the open tag of the node.
