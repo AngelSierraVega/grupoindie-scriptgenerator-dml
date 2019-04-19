@@ -11,7 +11,7 @@ ${licensePrefix}@copyright (C) ${date?date?string("yyyy")} Angel Sierra Vega. Gr
 ${licensePrefix?replace(" +$", "", "r")}
 ${licensePrefix}@package GIndie\ScriptGenerator\DML
 ${licensePrefix?replace(" +$", "", "r")}
-${licensePrefix}@version UNDEFINED
+${licensePrefix}@version 00.01
 ${licensePrefix}@since ${date?date?string("yy-MM-dd")}
 <#if licenseLast??>
 ${licenseLast}

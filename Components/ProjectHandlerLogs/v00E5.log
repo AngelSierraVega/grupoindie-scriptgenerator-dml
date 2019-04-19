@@ -1,0 +1,39 @@
+18-12-10 to 19-05-25
+- Added getContent() on Node
+19-04-19 to 19-04-22
+- Upgraded DMLDataDefinition
+- Changed Node to Factory
+- Moved AbsNode to root and renamed to Node
+19-05-25
+- Creating or upgrading methods in DML\Node
+- Simple Unit Tests for project
+
+-------------------------------PROJECT---------------------------------|
+\GIndie\ScriptGenerator\DML
+19-05-25 v:00.E5 LOC:2106
+ABS(1) CLA(5) INT(5) SCR(1) TRA(4) LOG(0) NDF(0) 
+-------------------------------VERSIONS--------------------------------|
+[00.A0] AlphaCero....| Functional project
+[00.D0] BetaCero.....| Main funcionality
+[00.E5] PR-RLS.......| 19-05-25: Pre-Release
+[00.F0] RLS..........| 19-??-??: Release
+[01.00] One..........| Final projected version
+--------------------------------FILE-----------------------------|--V--|
+[SCR] AutoloaderDML.php..........................................|00.FA|
+[CLA] Components\ProjectHandler\DML.php..........................|00.E5|
+[INT] DMLDataDefinition\Attributes.php...........................|00.F0|
+[INT] DMLDataDefinition\Node.php.................................|01.00|
+[INT] DMLDataDefinition\NodeTypes.php............................|00.FA|
+[INT] DMLDataDefinition\Tag.php..................................|00.E8|
+[INT] DMLDataDefinition\TagTypes.php.............................|00.FA|
+[CLA] Factory.php................................................|00.E0|
+[TRA] Node\AliasMethods.php......................................|00.F0|
+[ABS] Node\Tag\AbstractTag.php...................................|00.E8|
+[TRA] Node\Tag\AliasMethods.php..................................|00.E8|
+[CLA] Node\Tag\Attributes.php....................................|00.E8|
+[CLA] Node\Tag.php...............................................|00.E0|
+[TRA] Node\ToDeprecate.php.......................................|DPRCT|
+[TRA] Node\ToDo.php..............................................|00.80|
+[CLA] Node.php...................................................|00.E0|
+-----------------------------------------------------------------------|
+ \GIndie\ScriptGenerator\DML v 00.E5

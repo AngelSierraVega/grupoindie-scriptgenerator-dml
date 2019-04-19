@@ -8,7 +8,7 @@
  *
  * @package GIndie\ScriptGenerator\DML
  *
- * @version 00.D0
+ * @version DEPRECATED
  * @since 17-12-24
  */
 
@@ -21,8 +21,9 @@ namespace GIndie\ScriptGenerator\DML\Node;
  * - Added alias / deprecated methods
  * @edit 18-10-02
  * - Upgraded docblock and versions
+ * @deprecated since 19-04-20
  */
-trait ToDeprecate
+trait ToDeprecateDPR
 {
 
     /**

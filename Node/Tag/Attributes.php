@@ -8,11 +8,13 @@
  *
  * @package GIndie\ScriptGenerator\DML
  *
- * @version 00.D0
+ * @version 00.E8
  * @since 17-02-02
  */
 
 namespace GIndie\ScriptGenerator\DML\Node\Tag;
+
+use GIndie\ScriptGenerator\DML\DMLDataDefinition;
 
 /**
  * Represents the collection of attributes in a DML open tag.
@@ -22,52 +24,69 @@ namespace GIndie\ScriptGenerator\DML\Node\Tag;
  * @edit 17-12-24
  * @edit 18-10-01
  * - Upgraded docblock and versions
+ * @edit 19-04-22
+ * - Removed \GIndie\ScriptGenerator\DML\Node\Tag\ArrayAccess extension
+ * - Removed implementantion of interface \IteratorAggregate
+ * - Class implements DMLDataDefinition\Attributes
+ * - Added and validated methods
  */
-class Attributes extends ArrayAccess implements \IteratorAggregate
+class Attributes implements DMLDataDefinition\Attributes
 {
 
     /**
-     * Creates a representation of the attributes in a DML open tag.
+     * Stores the attributes
      * 
-     * @param array $attributes [optional]
-     * 
-     * 
-     * @ut_params __construct "attr1"
-     * @ut_str __construct " attr1"
-     * 
-     * @ut_paramsDPR __construct ["attr1"=>"val1","attr2","attr3"=>null,null=>"attr4"]
-     * @ut_strDPR __construct " attr1="val1" attr2 attr3 attr4"
+     * @var array
+     * @since 19-04-22
      */
-    public function __construct(array $attributes = [])
+    private $attributes;
+
+    /**
+     * {@inheritdoc}
+     * @edit 19-04-22
+     * - Removed attribute and iteration
+     */
+    public function __construct()
     {
-        parent::__construct($attributes);
+        $this->attributes = [];
     }
 
     /**
-     * Casts the attributes as a string.
+     * {@inheritdoc}
      * 
-     * @return string
-     * 
-     * @edit 17
-     * - Returns doble comma instead of single comma.
+     * @edit 17-??-??
+     * - Renders doble comma (") instead of single comma (') in attribute value.
+     * @edit 19-04-20
+     * - Handles rendering of boolean and empty attributes
+     * @edit 19-04-22
+     * - Removed rendering of empty attributes
+     * - Commented alternative string-based code
      */
     public function __toString()
     {
-        $_ctrlArray = [];
-        foreach ($this->data as $key => $value) {
-            if ($value == "") {
-                $_ctrlArray[] = "$key";
-            } else {
-                $_ctrlArray[] = "$key=\"$value\"";
+        $tmpArray = [];
+        foreach ($this->attributes as $key => $value) {
+//            if (!isset($rtnStr)) {
+//                $rtnStr = "";
+//            }
+            switch (true)
+            {
+                case $value === true:
+//                    $rtnStr .= " {$key}";
+                    $tmpArray[] = "{$key}";
+                    break;
+                default:
+//                    $rtnStr .= " {$key}=\"{$value}\"";
+                    $tmpArray[] = "{$key}=\"{$value}\"";
+                    break;
             }
         }
-        return count($_ctrlArray) > 0 ? " " . join(" ", $_ctrlArray) . "" : "";
+//        return \count($this->attributes) > 0 ? $rtnStr : "";
+        return \count($tmpArray) > 0 ? " " . \join(" ", $tmpArray) . "" : "";
     }
 
     /**
-     * Implementation for interface IteratorAggregate
-     * 
-     * @return \ArrayIterator
+     * {@inheritdoc}
      */
     public function getIterator()
     {
@@ -75,55 +94,61 @@ class Attributes extends ArrayAccess implements \IteratorAggregate
     }
 
     /**
-     * Adaptation for interface ArrayAccess. When $offset is NULL this funcion
-     * replaces $offset for $value in the internal data.
-     * 
-     * @example Non assoc method
-     * <pre>$array[] = "value";</pre> 
-     * <i>Stores as <pre>$array["value"] = "";</pre></i>
-     * 
-     * @param mixed $offset The offset to assign the value to.
-     * @param mixed $value The value to set.
-     * 
-     * @return void
-     * 
+     * {@inheritdoc}
+     * @edit 19-04-22
+     * - Simple funcionality
      */
     public function offsetSet($offset, $value)
     {
-        switch (true)
-        {
-            case \is_int($offset):
-                $this->data[$value] = "";
-                break;
-            case (\strcmp($offset, "") == 0):
-                $this->data[$value] = "";
-                break;
-            default:
-                parent::offsetSet($offset, $value);
-                break;
-        }
+        $this->attributes[$offset] = $value;
     }
 
     /**
-     * Implementation for interface ArrayAccess
-     *
-     * @param mixed $offset The offset to retrieve.
-     * @return mixed An instance of the offsetted data.
+     * {@inheritdoc}
      * 
-     * @throws \Exception If attribute doesnt exists.
+     * @return mixed|null An instance of the offsetted data. Returns NULL if it doesnt exists
      * 
-     * @edit 17
+     * @edit 17-??-??
      * Throws exception. Return mixed not mixed|false.
      * @edit 18-01-20
      * - return null if not exist
+     * @edit 19-04-22
+     * - Elegant handle of single return
      */
     public function offsetGet($offset)
     {
-        if (\array_key_exists($offset, $this->data)) {
-            $rtn = &$this->data[$offset];
-            return $rtn;
+        switch (true)
+        {
+            case \array_key_exists($offset, $this->attributes):
+                $rtn = &$this->attributes[$offset];
+                break;
+            default:
+                $rtn = null;
+                break;
         }
-        return null;
+        return $rtn;
+    }
+
+    /**
+     * {@inheritdoc}
+     * 
+     * @since 18-10-09
+     * @edit 19-04-22
+     */
+    public function offsetExists($offset)
+    {
+        return isset($this->attributes[$offset]);
+    }
+
+    /**
+     * {@inheritdoc}
+     * 
+     * @since 18-10-09
+     * @edit 19-04-22
+     */
+    public function offsetUnset($offset)
+    {
+        unset($this->attributes[$offset]);
     }
 
 }

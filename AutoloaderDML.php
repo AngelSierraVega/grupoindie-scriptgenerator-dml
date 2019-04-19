@@ -6,10 +6,10 @@
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
  *
- * @package GIndie\ScriptGenerator\DML
+ * @package GIndie\ScriptGenerator\DML\Components
  *
- * @version 00.D0
- * @since 17-00-00
+ * @version 00.FA
+ * @since 17-??-??
  * @edit 18-10-01
  * - Upgraded docblock
  */
@@ -25,7 +25,8 @@ namespace GIndie\ScriptGenerator\DML;
     switch (\substr($className, 0, (\strlen(__NAMESPACE__) * 1)))
     {
         case __NAMESPACE__:
-            $edited = \substr($className, \strlen(__NAMESPACE__) + \strrpos($className, __NAMESPACE__));
+            $edited = \substr($className,
+                \strlen(__NAMESPACE__) + \strrpos($className, __NAMESPACE__));
             $edited = \str_replace("\\", \DIRECTORY_SEPARATOR, __DIR__ . $edited) . ".php";
             if (\is_readable($edited)) {
                 require_once($edited);

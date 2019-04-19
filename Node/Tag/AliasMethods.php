@@ -8,14 +8,14 @@
  *
  * @package GIndie\ScriptGenerator\DML
  *
- * @version 00.D0
+ * @version 00.E8
  * @since 18-01-02
  */
 
 namespace GIndie\ScriptGenerator\DML\Node\Tag;
 
 /**
- * Description of AliasMethods
+ * AliasMethods for AbstractTag
  * 
  * @edit 18-10-01
  * - Upgraded docblock and versions
@@ -24,15 +24,20 @@ trait AliasMethods
 {
 
     /**
-     * Alias for removeAttribute().
-     * 
-     * @param string $attributeName
-     * 
-     * @return GIndie\ScriptGenerator\DML\Node\Tag
+     * {@inheritdoc}
      */
     public function unsetAttribute($attributeName)
     {
         return $this->removeAttribute($attributeName);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @since 19-04-23
+     */
+    public function setTag($tagname)
+    {
+        return $this->setTag($tagname);
     }
 
 }

@@ -8,7 +8,7 @@
  *
  * @package GIndie\ScriptGenerator\DML
  *
- * @version 00.D0
+ * @version 00.E0
  * @since 16-12-16
  */
 
@@ -22,8 +22,9 @@ namespace GIndie\ScriptGenerator\DML\Node;
  * - Revised class for UnitTest
  * @edit 18-10-02
  * - Upgraded docblock and versions
+ * - Class extends Tag\AbstractTag
  */
-class Tag extends Tag\TagAbs
+class Tag extends Tag\AbstractTag
 {
 
     /**

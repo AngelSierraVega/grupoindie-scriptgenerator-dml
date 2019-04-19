@@ -8,7 +8,7 @@
  *
  * @package GIndie\ScriptGenerator\DML
  *
- * @version 00.D0
+ * @version 00.F0
  * @since 16-12-16
  */
 
@@ -27,9 +27,7 @@ trait AliasMethods
 {
 
     /**
-     * Alias for removeAttribute().
-     * 
-     * @param string $attributeName
+     * {@inheritdoc}
      * @return \GIndie\ScriptGenerator\DML\Node
      * 
      */
@@ -39,14 +37,39 @@ trait AliasMethods
     }
 
     /**
-     * Alias for setTagname()
-     * @param string $tagname
-     * @return \GIndie\ScriptGenerator\DML\Node
+     * {@inheritdoc}
      * @since 18-01-02
      */
     public function setTag($tagname)
     {
         return static::setTagname($tagname);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @since 19-04-26
+     */
+    public function addContentGP($content)
+    {
+        return $this->addContentGetPointer($content);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @since 19-04-26
+     */
+    public function appendContent($content)
+    {
+        return $this->addContent($content);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @since 19-05-01
+     */
+    public function swapContent($indexA, $indexB)
+    {
+        return $this->switchContent($indexA, $indexB);
     }
 
 }

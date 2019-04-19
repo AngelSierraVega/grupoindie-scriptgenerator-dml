@@ -1,18 +1,20 @@
 <?php
 
 /**
- * GI-SG0-DML-DVLP - ProjectHandler
+ * GI-SG0-DML-DVLP - DML
  *
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
+ * @copyright (C) 2019 Angel Sierra Vega. Grupo INDIE.
  *
- * @package GIndie\ScriptGenerator\DML
+ * @package GIndie\ScriptGenerator\DML\Components
  *
- * @version 00.D2
+ * @version 00.E5
  * @since 18-02-24
  */
 
-namespace GIndie\ScriptGenerator\DML;
+namespace GIndie\ScriptGenerator\DML\Components\ProjectHandler;
+
+use GIndie\ScriptGenerator\DML as BaseProject;
 
 /**
  * @version SG-DML.00.00  Empty class created.
@@ -23,8 +25,11 @@ namespace GIndie\ScriptGenerator\DML;
  * - Deprecated autoloaderFilename()
  * @edit 18-10-01
  * - Created versions()
+ * @edit 19-04-19
+ * - Moved file from root to \ProjectHandler
+ * - Updated namespace and package
  */
-class ProjectHandler extends \GIndie\ProjectHandler\AbstractProjectHandler
+class DML extends \GIndie\ProjectHandler\AbstractProjectHandler
 {
 
     /**
@@ -44,7 +49,20 @@ class ProjectHandler extends \GIndie\ProjectHandler\AbstractProjectHandler
         $rtnArray[\hexdec("00.D0")]["code"] = "BetaCero";
         $rtnArray[\hexdec("00.D0")]["description"] = "Main funcionality";
         $rtnArray[\hexdec("00.D0")]["threshold"] = "00.D0";
-        
+        /**
+         * 00.E5: RLS
+         */
+        $rtnArray[\hexdec("00.E5")]["code"] = "PR-RLS";
+        $rtnArray[\hexdec("00.E5")]["description"] = "19-05-25: Pre-Release";
+        $rtnArray[\hexdec("00.E5")]["threshold"] = "00.E5";
+
+        /**
+         * 00.F0: RLS
+         */
+        $rtnArray[\hexdec("00.F0")]["code"] = "RLS";
+        $rtnArray[\hexdec("00.F0")]["description"] = "19-??-??: Release";
+        $rtnArray[\hexdec("00.F0")]["threshold"] = "00.F0";
+
         //One
         $rtnArray[\hexdec("01.00")]["code"] = "One";
         $rtnArray[\hexdec("01.00")]["description"] = "Final projected version";
@@ -53,38 +71,29 @@ class ProjectHandler extends \GIndie\ProjectHandler\AbstractProjectHandler
     }
 
     /**
-     * @since 18-02-24
+     * 
      * @return array
-     * @todo Unit test for Node\Tag\Attributes
+     * @since 18-02-24
+     * @edit 19-04-22
      */
     public static function projectClasses()
     {
         return [
-            Node::class,
-            Node\NodeAbs::class,
-            Node\Tag::class,
-            Node\Tag\TagAbs::class,
-            Node\Tag\Attributes::class
+            BaseProject\Node\Tag\AbstractTag::class,
+            BaseProject\Node\Tag::class,
+            BaseProject\Node::class,
+            BaseProject\Factory::class
         ];
     }
 
     /**
      * @return string
      * @since 18-02-24
-     * @deprecated since 18-03-09
-     */
-    public static function autoloaderFilenameDPR()
-    {
-        return "autoloader.php";
-    }
-
-    /**
-     * @return string
-     * @since 18-02-24
+     * @edit 19-04-19
      */
     public static function pathToSourceCode()
     {
-        return \pathinfo(__FILE__, \PATHINFO_DIRNAME) . \DIRECTORY_SEPARATOR;
+        return \GIndie\Common\PHP\Directories::getDirectoryFromFile(__FILE__, 2) . \DIRECTORY_SEPARATOR;
     }
 
     /**
