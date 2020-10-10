@@ -42,11 +42,15 @@ class DML extends \GIndie\ProjectHandler\AbstractProjectHandler
     public static function versions()
     {
         $rtnArray = [];
-        //AlphaCero
+        /**
+         * AlphaCero
+         */
         $rtnArray[\hexdec("00.A0")]["code"] = "AlphaCero";
         $rtnArray[\hexdec("00.A0")]["description"] = "Functional project";
         $rtnArray[\hexdec("00.A0")]["threshold"] = "00.A0";
-        //BetaCero
+        /**
+         * BetaCero
+         */
         $rtnArray[\hexdec("00.D0")]["code"] = "BetaCero";
         $rtnArray[\hexdec("00.D0")]["description"] = "Main funcionality";
         $rtnArray[\hexdec("00.D0")]["threshold"] = "00.D0";
@@ -56,15 +60,15 @@ class DML extends \GIndie\ProjectHandler\AbstractProjectHandler
         $rtnArray[\hexdec("00.E5")]["code"] = "PR-RLS";
         $rtnArray[\hexdec("00.E5")]["description"] = "19-05-25: Pre-Release";
         $rtnArray[\hexdec("00.E5")]["threshold"] = "00.E5";
-
         /**
          * 00.F0: RLS
          */
         $rtnArray[\hexdec("00.F0")]["code"] = "RLS";
         $rtnArray[\hexdec("00.F0")]["description"] = "19-??-??: Release";
         $rtnArray[\hexdec("00.F0")]["threshold"] = "00.F0";
-
-        //One
+        /**
+         * One
+         */
         $rtnArray[\hexdec("01.00")]["code"] = "One";
         $rtnArray[\hexdec("01.00")]["description"] = "Final projected version";
         $rtnArray[\hexdec("01.00")]["threshold"] = "01.00";
