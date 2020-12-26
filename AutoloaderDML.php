@@ -4,12 +4,12 @@
  * GI-SG0-DML-DVLP - AutoloaderDML
  *
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
- * @license file://LICENSE MIT License
+ * @copyright (CC) 2020 Angel Sierra Vega. Grupo INDIE.
+ * @license file://LICENSE
  *
  * @package GIndie\ScriptGenerator\DML\Components
  *
- * @version 00.FA
+ * @version 01.00
  * @since 17-??-??
  * @edit 18-10-01
  * - Upgraded docblock

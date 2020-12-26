@@ -5,11 +5,11 @@
  *
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
- * @license file://LICENSE MIT License
+ * @license file://LICENSE
  *
  * @package GIndie\ScriptGenerator\DML
  *
- * @version 00.E0
+ * @version 00.F0
  * @since 16-12-16
  */
 

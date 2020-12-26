@@ -4,12 +4,12 @@
  * GI-SG0-DML-DVLP - TagAbs
  *
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
- * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
- * @license file://LICENSE MIT License
+ * @copyright (CC) 2020 Angel Sierra Vega. Grupo INDIE.
+ * @license file://LICENSE
  *
  * @package GIndie\ScriptGenerator\DML
  *
- * @version 00.E8
+ * @version 00.FA
  * @since 17-11-11
  */
 

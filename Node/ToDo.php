@@ -5,7 +5,7 @@
  *
  * @author Angel Sierra Vega <angel.sierra@grupoindie.com>
  * @copyright (C) 2018 Angel Sierra Vega. Grupo INDIE.
- * @license file://LICENSE MIT License
+ * @license file://LICENSE
  *
  * @package GIndie\ScriptGenerator\DML
  *
@@ -44,6 +44,7 @@ trait ToDo
      * 
      * @param boolean|int $indentation The custom indendation for the node
      * @param boolean $break Whether or not the node breaks
+     * 
      * 
      * @return string
      * 
