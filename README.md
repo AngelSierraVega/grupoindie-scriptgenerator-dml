@@ -1,10 +1,9 @@
-## Script Generator - Descriptive Markup Languaje
-
-This project is a framework for a *Descriptive Markup Languaje* (**DML**) script generator.
+# ScriptGenerator - DML.
+Code factory for *Descriptive Markup Languaje* (**DML**). 
 LaTeX, XML, and HTML are examples of languajes that can be generated using this code.
 
 ## License
-Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+MIT License
 
 ## Author
 Angel Sierra Vega. <angel.sierra@grupoindie.com>
